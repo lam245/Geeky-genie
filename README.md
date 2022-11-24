@@ -1,4 +1,4 @@
-# React Admin Dashboard
-
-Completed React Admin Dashboard Repo
-
+git clone 
+cd ./r
+npm install
+npm  start
