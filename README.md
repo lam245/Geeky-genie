@@ -6,7 +6,7 @@ git clone https://github.com/lam245/Geeky-genie.git
 
 git checkout lam
 
-cd ./r
+cd ./g
 
 npm install
 
