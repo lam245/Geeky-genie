@@ -6,10 +6,15 @@ import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettin
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../components/Header";
+import Topbar from "../../scenes/global/Topbar";
+import { useState } from "react";
+import "../../index.css"
+import Sidebar from "../../scenes/global/Sidebar";
 
 const Team = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const [isSidebar, setIsSidebar] = useState(true);
   const columns = [
     { field: "id", headerName: "ID" },
     {
@@ -18,13 +23,7 @@ const Team = () => {
       flex: 1,
       cellClassName: "name-column--cell",
     },
-    {
-      field: "age",
-      headerName: "Age",
-      type: "number",
-      headerAlign: "left",
-      align: "left",
-    },
+    
     {
       field: "phone",
       headerName: "Phone Number",
@@ -36,29 +35,30 @@ const Team = () => {
       flex: 1,
     },
     {
-      field: "accessLevel",
-      headerName: "Access Level",
+      field: "Action",
+      headerName: "Action",
       flex: 1,
       renderCell: ({ row: { access } }) => {
         return (
+          
           <Box
-            width="60%"
+            width="100%"
             m="0 auto"
             p="5px"
             display="flex"
             justifyContent="center"
             backgroundColor={
-              access === "admin"
+              access === "delete"
                 ? colors.greenAccent[600]
-                : access === "manager"
+                : access === "ban 10 days"
                 ? colors.greenAccent[700]
                 : colors.greenAccent[700]
             }
             borderRadius="4px"
           >
-            {access === "admin" && <AdminPanelSettingsOutlinedIcon />}
-            {access === "manager" && <SecurityOutlinedIcon />}
-            {access === "user" && <LockOpenOutlinedIcon />}
+            {access === "delete" && <SecurityOutlinedIcon />}
+            {access === "ban 10 days" && <AdminPanelSettingsOutlinedIcon />}
+            {access === "ban 100 days" && <LockOpenOutlinedIcon />}
             <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
               {access}
             </Typography>
@@ -69,8 +69,15 @@ const Team = () => {
   ];
 
   return (
+    <div className="app">
+      
+    <div className="side-team">
+      <Sidebar isSidebar={isSidebar} />
+      </div>
+    <main className="content">
+    <Topbar setIsSidebar={setIsSidebar} />
     <Box m="20px">
-      <Header title="TEAM" subtitle="Managing the Team Members" />
+      <Header title="Users" subtitle="Managing the users" />
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -102,7 +109,9 @@ const Team = () => {
       >
         <DataGrid checkboxSelection rows={mockDataTeam} columns={columns} />
       </Box>
-    </Box>
+        </Box>
+        </main>
+      </div>
   );
 };
 

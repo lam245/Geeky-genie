@@ -12,12 +12,21 @@ import GeographyChart from "../../components/GeographyChart";
 import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
+import Sidebar from "../../scenes/global/Sidebar";
+import { useState } from "react";
+import "../../index.css"
 
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
+  const [isSidebar, setIsSidebar] = useState(true);
   return (
+    <div className="app">
+      <div className="side">
+        <Sidebar isSidebar={isSidebar} />
+        </div>
+      <main className="content">
+       
     <Box m="20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
@@ -277,7 +286,9 @@ const Dashboard = () => {
           </Box>
         </Box>
       </Box>
-    </Box>
+        </Box>
+        </main>
+      </div>
   );
 };
 

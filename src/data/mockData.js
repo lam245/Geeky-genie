@@ -7,7 +7,7 @@ export const mockDataTeam = [
     email: "jonsnow@gmail.com",
     age: 35,
     phone: "(665)121-5454",
-    access: "admin",
+    access: "delete",
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const mockDataTeam = [
     email: "cerseilannister@gmail.com",
     age: 42,
     phone: "(421)314-2288",
-    access: "manager",
+    access: "delete",
   },
   {
     id: 3,
@@ -23,7 +23,7 @@ export const mockDataTeam = [
     email: "jaimelannister@gmail.com",
     age: 45,
     phone: "(422)982-6739",
-    access: "user",
+    access: "delete",
   },
   {
     id: 4,
@@ -31,7 +31,7 @@ export const mockDataTeam = [
     email: "anyastark@gmail.com",
     age: 16,
     phone: "(921)425-6742",
-    access: "admin",
+    access: "delete",
   },
   {
     id: 5,
@@ -39,7 +39,7 @@ export const mockDataTeam = [
     email: "daenerystargaryen@gmail.com",
     age: 31,
     phone: "(421)445-1189",
-    access: "user",
+    access: "ban 10 days",
   },
   {
     id: 6,
@@ -47,7 +47,7 @@ export const mockDataTeam = [
     email: "evermelisandre@gmail.com",
     age: 150,
     phone: "(232)545-6483",
-    access: "manager",
+    access: "ban 100 days",
   },
   {
     id: 7,
@@ -55,7 +55,7 @@ export const mockDataTeam = [
     email: "ferraraclifford@gmail.com",
     age: 44,
     phone: "(543)124-0123",
-    access: "user",
+    access: "delete",
   },
   {
     id: 8,
@@ -63,7 +63,7 @@ export const mockDataTeam = [
     email: "rossinifrances@gmail.com",
     age: 36,
     phone: "(222)444-5555",
-    access: "user",
+    access: "delete",
   },
   {
     id: 9,
@@ -71,7 +71,7 @@ export const mockDataTeam = [
     email: "harveyroxie@gmail.com",
     age: 65,
     phone: "(444)555-6239",
-    access: "admin",
+    access: "delete",
   },
 ];
 
@@ -269,49 +269,49 @@ export const mockDataInvoices = [
 export const mockTransactions = [
   {
     txId: "01e4dsa",
-    user: "johndoe",
+    delete: "johndoe",
     date: "2021-09-01",
     cost: "43.95",
   },
   {
     txId: "0315dsaa",
-    user: "jackdower",
+    delete: "jackdower",
     date: "2022-04-01",
     cost: "133.45",
   },
   {
     txId: "01e4dsa",
-    user: "aberdohnny",
+    delete: "aberdohnny",
     date: "2021-09-01",
     cost: "43.95",
   },
   {
     txId: "51034szv",
-    user: "goodmanave",
+    delete: "goodmanave",
     date: "2022-11-05",
     cost: "200.95",
   },
   {
     txId: "0a123sb",
-    user: "stevebower",
+    delete: "stevebower",
     date: "2022-11-02",
     cost: "13.55",
   },
   {
     txId: "01e4dsa",
-    user: "aberdohnny",
+    delete: "aberdohnny",
     date: "2021-09-01",
     cost: "43.95",
   },
   {
     txId: "120s51a",
-    user: "wootzifer",
+    delete: "wootzifer",
     date: "2019-04-15",
     cost: "24.20",
   },
   {
     txId: "0315dsaa",
-    user: "jackdower",
+    delete: "jackdower",
     date: "2022-04-01",
     cost: "133.45",
   },
