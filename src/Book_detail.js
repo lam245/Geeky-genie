@@ -1,9 +1,11 @@
 import 'font-awesome/css/font-awesome.min.css';
 import "./styles/general.css"
 import "./styles/books.css"
+import CommentModal from './scenes/comment/CommentModal';
 function BookDetail() {
     return (
         <div>
+          
         <div className="bookDetails">
           <div className="large-cover" />
           <div className="book-view-container">
@@ -112,7 +114,7 @@ function BookDetail() {
             </div>
           </div>
         </div>
-        <include src="./footer.html" />
+        <CommentModal />
       </div>
 
     );
