@@ -53,7 +53,7 @@ function BookDetail() {
               </div>
               <h2>Đánh giá của người đọc</h2>
               <div id="ratingDetails" className="rating-details">
-                <div className="side">
+                <div className="side bar">
                   <div>5 sao</div>
                 </div>
                 <div className="middle">
@@ -61,10 +61,10 @@ function BookDetail() {
                     <div className="bar-5" />
                   </div>
                 </div>
-                <div className="side right">
+                <div className="side bar right">
                   <div>150</div>
                 </div>
-                <div className="side">
+                <div className="side bar">
                   <div>4 sao</div>
                 </div>
                 <div className="middle">
@@ -72,10 +72,10 @@ function BookDetail() {
                     <div className="bar-4" />
                   </div>
                 </div>
-                <div className="side right">
+                <div className="side bar right">
                   <div>63</div>
                 </div>
-                <div className="side">
+                <div className="side bar">
                   <div>3 sao</div>
                 </div>
                 <div className="middle">
@@ -83,10 +83,10 @@ function BookDetail() {
                     <div className="bar-3" />
                   </div>
                 </div>
-                <div className="side right">
+                <div className="side bar right">
                   <div>15</div>
                 </div>
-                <div className="side">
+                <div className="side bar">
                   <div>2 sao</div>
                 </div>
                 <div className="middle">
@@ -94,10 +94,10 @@ function BookDetail() {
                     <div className="bar-2" />
                   </div>
                 </div>
-                <div className="side right">
+                <div className="side bar right">
                   <div>6</div>
                 </div>
-                <div className="side">
+                <div className="side bar">
                   <div>1 sao</div>
                 </div>
                 <div className="middle">
@@ -105,7 +105,7 @@ function BookDetail() {
                     <div className="bar-1" />
                   </div>
                 </div>
-                <div className="side right">
+                <div className="side bar right">
                   <div>20</div>
                 </div>
               </div>
