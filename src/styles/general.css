@@ -39,7 +39,7 @@ body, html {
   font-size: 100%;
 }
 
-header {
+.header1 {
   position: fixed;
   background-color: transparent;
   padding-right: 2%;

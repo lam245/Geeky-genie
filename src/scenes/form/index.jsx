@@ -22,7 +22,13 @@ const Form = () => {
       </div>
     <main className="content">
       
-    <Box m="20px">
+        <Box sx={{
+          width: 4000,
+          height: 5000
+          
+          
+        }}
+          m="20px">
       <Header title="CREATE BOOK" subtitle="Create a New Book Profile" />
 
       <Formik

@@ -1,12 +1,19 @@
 .bg {
-    background-color: #06121e;
-  }
-  
-  .btn-sub {
-    background-color: #ffe08a;
-    border-color: transparent;
-    color: rgba(0, 0, 0, 0.7);
-  }
-  .icon-edit:hover {
-    color: #ffe08a !important;
-  }
+  background-color: #06121e;
+}
+
+.btn-sub {
+  background-color: #ffe08a;
+  border-color: transparent;
+  color: rgba(0, 0, 0, 0.7);
+}
+.icon-edit:hover {
+  color: #ffe08a !important;
+}
+.icon {
+  display: none;
+}
+
+.image:hover .icon {
+  display: block;
+}

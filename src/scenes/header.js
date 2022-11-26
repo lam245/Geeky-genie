@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/general.css';
 function Header() {
     return (
-        <header>
+        <header className='header1'>
         <div className="sitelogo"  />
         <div className="brandName" ><span>GeekyGenie</span></div>
         <nav className="toolBar">

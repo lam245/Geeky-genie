@@ -13,6 +13,9 @@ import Footer from "./scenes/footer";
 import Search from "./scenes/search"
 import BookDetail from "./Book_detail";
 import CommentModal from "./scenes/comment/CommentModal";
+import Accounts from "./scenes/accounts";
+import Author from "./scenes/Author";
+
 function App() {
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
@@ -29,7 +32,8 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/team" element={<Team />} />
               <Route path="/form" element={<Form />} />
-              <Route path="/book" element={<> <BookDetail />   </>} />
+              <Route path="/book" element={<> <BookDetail /> <CommentModal />   </>} />
+              <Route path="/account" element= {<Accounts />} />
             </Routes>
           </main>
         </div>
