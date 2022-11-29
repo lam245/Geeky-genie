@@ -1,6 +1,36 @@
 import React from 'react';
 import '../styles/search.css'
 import SearchIcon from '@mui/icons-material/Search';
+import imgSrc1 from '../images/mainPage/book1.jpg'
+import imgSrc2 from '../images/mainPage/book2.jpg'
+import imgSrc3 from '../images/mainPage/book3.jpg'
+import imgSrc4 from '../images/mainPage/book4.jpg'
+import imgSrc5 from '../images/mainPage/book5.jpg'
+import imgSrc6 from '../images/mainPage/book6.jpg'
+import imgSrc7 from '../images/mainPage/book7.jpg'
+import imgSrc8 from '../images/mainPage/book8.jpg'
+import imgSrc9 from '../images/mainPage/book9.jpg'
+import imgSrc10 from '../images/mainPage/book10.jpg'
+import imgSrc11 from '../images/mainPage/book11.jpg'
+import imgSrc12 from '../images/mainPage/book12.jpg'
+import imgSrc13 from '../images/mainPage/book13.jpg'
+import imgSrc14 from '../images/mainPage/book14.jpg'
+import imgSrc15 from '../images/mainPage/book15.jpg'
+import imgSrc16 from '../images/mainPage/book16.jpg'
+import imgSrc17 from '../images/mainPage/book17.jpg'
+import imgSrc18 from '../images/mainPage/book18.jpg'
+import imgSrc19 from '../images/mainPage/book19.jpg'
+import imgSrc20 from '../images/mainPage/book20.jpg'
+import imgSrc21 from '../images/mainPage/book21.jpg'
+import imgSrc22 from '../images/mainPage/book22.jpg'
+import imgSrc23 from '../images/mainPage/book23.jpg'
+import imgSrc24 from '../images/mainPage/book24.jpg'
+import imgSrc25 from '../images/mainPage/book25.jpg'
+import imgSrc26 from '../images/mainPage/book26.jpg'
+import imgSrc27 from '../images/mainPage/book27.jpg'
+import imgSrc28 from '../images/mainPage/book28.jpg'
+import imgSrc29 from '../images/mainPage/book29.jpg'
+import imgSrc30 from '../images/mainPage/book30.jpg'
 function Search() {
     return (
         <div>
@@ -10,7 +40,7 @@ function Search() {
         
         <div id="wrapper">
           <div className="search-field">
-            <input type="text" className="input is-medium" placeholder="Nhập tên phim..." defaultValue />
+            <input type="text" className="input is-medium" placeholder="Nhập tên sách..." />
             <div className="icon-margin">
               <SearchIcon sx={{ fontSize: 40 }} />
               </div>
@@ -21,7 +51,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book1.jpg" alt="" />
+                    <img src={imgSrc1} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -34,7 +64,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book2.jpg" alt="" />
+                    <img src={imgSrc2} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -47,7 +77,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book3.jpg" alt="" />
+                    <img src={imgSrc3} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -60,7 +90,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book4.jpg" alt="" />
+                    <img src={imgSrc4} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -73,7 +103,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book5.jpg" alt="" />
+                    <img src={imgSrc5} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -86,7 +116,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book6.jpg" alt="" />
+                    <img src={imgSrc6} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -99,7 +129,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book7.jpg" alt="" />
+                    <img src={imgSrc7} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -112,7 +142,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book8.jpg" alt="" />
+                    <img src={imgSrc8} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -125,7 +155,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book9.jpg" alt="" />
+                    <img src={imgSrc9} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -138,7 +168,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book10.jpg" alt="" />
+                    <img src={imgSrc10} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -151,7 +181,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book11.jpg" alt="" />
+                    <img src={imgSrc11} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -164,7 +194,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book12.jpg" alt="" />
+                    <img src={imgSrc12} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -177,7 +207,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book13.jpg" alt="" />
+                    <img src={imgSrc13} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -190,7 +220,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book14.jpg" alt="" />
+                    <img src={imgSrc14} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -203,7 +233,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book15.jpg" alt="" />
+                    <img src={imgSrc15} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -216,7 +246,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book16.jpg" alt="" />
+                    <img src={imgSrc16} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -229,7 +259,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book17.jpg" alt="" />
+                    <img src={imgSrc17} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -242,7 +272,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book18.jpg" alt="" />
+                    <img src={imgSrc18} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -255,7 +285,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book19.jpg" alt="" />
+                    <img src={imgSrc19} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -268,7 +298,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book20.jpg" alt="" />
+                    <img src={imgSrc20} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -281,7 +311,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book21.jpg" alt="" />
+                    <img src={imgSrc21} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -294,7 +324,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book22.jpg" alt="" />
+                    <img src={imgSrc22} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -307,7 +337,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book23.jpg" alt="" />
+                    <img src={imgSrc23} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -320,7 +350,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book24.jpg" alt="" />
+                    <img src={imgSrc24} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -333,7 +363,7 @@ function Search() {
               <div className="product-item is-hidden-desktop">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book25.jpg" alt="" />
+                    <img src={imgSrc25} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -346,7 +376,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book26.jpg" alt="" />
+                    <img src={imgSrc26} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -359,7 +389,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book27.jpg" alt="" />
+                    <img src={imgSrc27} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -372,7 +402,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book28.jpg" alt="" />
+                    <img src={imgSrc28} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -385,7 +415,7 @@ function Search() {
               <div className="product-item">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book29.jpg" alt="" />
+                    <img src={imgSrc29} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -398,7 +428,7 @@ function Search() {
               <div className="product-item is-hidden-desktop">
                 <div className="product-top">
                   <a href className="product-thumb">
-                    <img src="../images/search/book30.jpg" alt="" />
+                    <img src={imgSrc30} alt="" />
                   </a>
                 </div>
                 <div className="product-info">
