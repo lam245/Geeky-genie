@@ -8,14 +8,14 @@ import Form from "./scenes/form";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme"
 import HomePage from "./scenes/HomePage";
-import Header from "./scenes/header";
+import Header from "./scenes/Header";
 import Footer from "./scenes/footer";
 import Search from "./scenes/search"
 import BookDetail from "./Book_detail";
 import Register from "./scenes/register";
 import Login from "./scenes/login";
 import CommentModal from "./scenes/comment/CommentModal";
-import Accounts from "./scenes/accounts";
+import Accounts from "./scenes/Accounts";
 import Author from "./scenes/Author";
 
 function App() {
@@ -39,6 +39,7 @@ function App() {
               <Route path="/form" element={<Form />} />
               <Route path="/book" element={<> <BookDetail /> <CommentModal />   </>} />
               <Route path="/account" element= {<Accounts />} />
+              <Route path="/author/:auth_id" element= {<Author />} />
             </Routes>
           </main>
         </div>

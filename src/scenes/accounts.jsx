@@ -1,7 +1,27 @@
   import "../styles/accounts.css";
 import "../styles/authorDetail.css";
+import axios from "axios"
+import { useEffect, useState } from 'react';
+import { useParams, useSearchParams } from 'react-router-dom'
+const Account = (props) => {
+  const [user, setUser] = useState(null)
 
-function Accounts() {
+  //const { auth_id } = useParams()
+
+
+  useEffect(() => {
+    axios.get(`http://w22g7.int3306.freeddns.org/my_account`).then(res => {
+      setUser(res.data)
+    })
+
+    return () => {
+
+    }
+  }, [])
+
+  if (!user) {
+    return <></> //loading
+  }
   return (
     <div className="body mt-5">
       <div className="container-lg">
@@ -9,7 +29,7 @@ function Accounts() {
           <div className="col-12 col-md-3 text-white">
             <div className="p-3">
               <img
-                src="https://i.pinimg.com/736x/6a/29/8d/6a298df72cb446bdf65891b846374079.jpg"
+                src={user.profile_pic ?? "https://i.pinimg.com/736x/6a/29/8d/6a298df72cb446bdf65891b846374079.jpg"}
                 className="w-100"
               />
             </div>
@@ -24,41 +44,26 @@ function Accounts() {
                 ></i>
               </div>
               <div className="px-1 mt-3">
-                <div className="fw-bold">Nghề Nghiệp</div>
-                <div style={{ color: "#999" }}>Biên Kịch</div>
+                <div className="fw-bold">Email</div>
+                <div style={{ color: "#999" }}>{user.website ?? "Không có thông tin"}</div>
               </div>
               <div className="px-1 mt-3">
-                <div className="fw-bold">Giới Tính</div>
-                <div style={{ color: "#999" }}>Nam</div>
+                <div className="fw-bold">Tên tài khoản</div>
+                <div style={{ color: "#999" }}>{user.username ?? "Không có thông tin"}</div>
               </div>
               <div className="px-1 mt-3">
-                <div className="fw-bold">Ngày Sinh</div>
-                <div style={{ color: "#999" }}>10/10/2000</div>
-              </div>
-              <div className="px-1 mt-3">
-                <div className="fw-bold">Nơi Sinh</div>
-                <div style={{ color: "#999" }}>Đoán xem</div>
+                <div className="fw-bold">Số điện thoại</div>
+                <div style={{ color: "#999" }}>{user.phone ?? "Không có thông tin"}</div>
               </div>
             </div>
           </div>
           <div className="col-12 col-md-9 text-white">
-            <div className="fs-1 fw-bold">George R. R. Martin</div>
-            <div className="fw-bold mt-4">Giới Thiệu</div>
+            <div class="fs-1 fw-bold">{user.name}</div>
+            <div class="fw-bold mt-4">Giới thiệu</div>
             <div style={{ color: "#999" }} className="mt-2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-              similique deserunt sapiente, quos a delectus veritatis pariatur,
-              dolorem alias non dolores repudiandae, eaque eum praesentium
-              provident velit? Quibusdam, magnam recusandae? Lorem ipsum dolor
-              sit amet consectetur adipisicing elit. Ullam similique deserunt
-              sapiente, quos a delectus veritatis pariatur, dolorem alias non
-              dolores repudiandae, eaque eum praesentium provident velit?
-              Quibusdam, magnam recusandae? Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Ullam similique deserunt sapiente,
-              quos a delectus veritatis pariatur, dolorem alias non dolores
-              repudiandae, eaque eum praesentium provident velit? Quibusdam,
-              magnam recusandae?
+            {user.bio  ?? "Không có thông tin"}
             </div>
-            <div className="fw-bold mt-4">Các tác phẩm</div>
+            <div className="fw-bold mt-4">Bộ sưu tập</div>
             <div className="row mt-2">
               <div className="col-12 col-md-3">
                 <div className="position-relative image">
@@ -266,4 +271,4 @@ function Accounts() {
   );
 }
 
-export default Accounts;
+export default Account;
