@@ -7,10 +7,12 @@ import Topbar from "../../scenes/global/Topbar";
 import { useState } from "react";
 import "../../index.css"
 import Sidebar from "../../scenes/global/Sidebar";
-
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const [isSidebar, setIsSidebar] = useState(true);
+  const [age,setAge] = useState("")
 
   const handleFormSubmit = (values) => {
     console.log(values);
@@ -24,7 +26,7 @@ const Form = () => {
       
         <Box sx={{
           width: 4000,
-          height: 5000
+          height: 8000
           
           
         }}
@@ -44,7 +46,20 @@ const Form = () => {
           handleChange,
           handleSubmit,
         }) => (
-          <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit}>
+                <Select
+                  sx={{minWidth: 1200,marginBottom : 3}}
+    labelId="demo-simple-select-label"
+    id="demo-simple-select"
+    value={age}
+                  label="Age"
+                  gap="30px"
+    onChange={handleChange}
+  >
+    <MenuItem value={10}>Ten</MenuItem>
+    <MenuItem value={20}>Twenty</MenuItem>
+    <MenuItem value={30}>Thirty</MenuItem>
+  </Select>
             <Box
               display="grid"
               gap="30px"
@@ -65,7 +80,8 @@ const Form = () => {
                 error={!!touched.title && !!errors.title}
                 helperText={touched.title && errors.title}
                 sx={{ gridColumn: "span 2" }}
-              />
+                  />
+                   
               <TextField
                 fullWidth
                 variant="filled"
@@ -139,7 +155,8 @@ const Form = () => {
             </Box>
           </form>
         )}
-      </Formik>
+          </Formik>
+          
         </Box>
         </main>
       </div>
@@ -150,8 +167,8 @@ const Form = () => {
 
 const checkoutSchema = yup.object().shape({
   title: yup.string().required("required"),
-  translator: yup.string().required("required"),
-  cover: yup.string().required("required"),
+  
+  
   page_count: yup
     .string().required("required"),
   public_year: yup.string().required("required"),
@@ -163,6 +180,7 @@ const initialValues = {
   cover: "",
   page_count: "",
   public_year: "",
+  republish_count: "",
   content: "",
 };
 
