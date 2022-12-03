@@ -19,9 +19,18 @@ const AccountManagement = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const [imageUpload, setImageUpload] = useState(null);
   const [imageUrls, setImageUrls] = useState([]);
+  let initialValues = {
+    avatar_url: "",
+    username: "",
+    email: "",
+    name: "",
 
-    const handleFormSubmit = (values) => {
-        console.log(values);
+    user_role: ""
+  };
+  const [Info, setInfos] = useState(initialValues);
+  const handleFormSubmit = (values) => {
+      setInfos(values)
+        console.log(Info);
   };
   const imagesListRef = ref(storage, "images/");
   const uploadFile = () => {
@@ -30,6 +39,7 @@ const AccountManagement = () => {
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         setImageUrls(url);
+        
         console.log(imageUrls)
 
       });
@@ -38,12 +48,12 @@ const AccountManagement = () => {
 
  
     return (
-        <div className="app">
-        <main className="content1">
+        
+        <div className="content1">
           
             <Box sx={{
               width: 4000,
-              height: 8000
+              height: 10000
               
               
             }}
@@ -128,23 +138,24 @@ const AccountManagement = () => {
                     sx={{ gridColumn: "span 4" }}
                   />
                   
+                  
                   </Box>
-                  <Box>
-                  <input
+                  <Box sx={{marginTop : 2 }} display="flex" flexDirection={"row"}  m="  0  0 20px 0" justifyContent={"space-between"}>
+                  <input 
         type="file"
         onChange={(event) => {
           setImageUpload(event.target.files[0]);
         }}
       />
-      <button onClick={uploadFile}> Upload Image</button>
+      <button type="button" onClick={uploadFile}> Upload Image</button>
                   </Box>
                   <Box>
                     
-       <img src={imageUrls} />
+       <img src={imageUrls} width={100} height={100} marginTop={300} />
       
                   </Box>
                 <Box display="flex" justifyContent="end" mt="20px">
-                                    <Button type="submit" color="secondary" variant="contained"
+                                    <Button type="submit" color="secondary" variant="contained" 
                                         sx={{
                                             fontSize: 20,
                                             marginRight: 50,
@@ -160,8 +171,7 @@ const AccountManagement = () => {
              
       
             </Box>
-            </main>
-          </div>
+            </div>
       );
     };
     
@@ -169,20 +179,10 @@ const AccountManagement = () => {
     
     const checkoutSchema = yup.object().shape({
       username: yup.string().required("required"),
-      
-      
-      profile_pic: yup
-        .string().required("required"),
-      user_role: yup.string().required("required"),
-      content: yup.string().required("required"),
-    });
-    let initialValues = {
-      username: "",
-      email: "",
+      email: yup.string().required("required"),
       name: "",
-      profile_pic: "",
-      user_role: "",
-      republish_count: "",
-      content: "",
-    };
+      user_role: yup.string().required("required"),
+     
+    });
+
 export default AccountManagement
