@@ -29,20 +29,14 @@ const AccountManagement = () => {
     const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
-        setImageUrls((prev) => [...prev, url]);
+        setImageUrls(url);
+        console.log(imageUrls)
+
       });
     });
   };
 
-  useEffect(() => {
-    listAll(imagesListRef).then((response) => {
-      response.items.forEach((item) => {
-        getDownloadURL(item).then((url) => {
-          setImageUrls((prev) => [...prev, url]);
-        });
-      });
-    });
-  }, []);
+ 
     return (
         <div className="app">
         <main className="content1">
@@ -134,7 +128,21 @@ const AccountManagement = () => {
                     sx={{ gridColumn: "span 4" }}
                   />
                   
-                </Box>
+                  </Box>
+                  <Box>
+                  <input
+        type="file"
+        onChange={(event) => {
+          setImageUpload(event.target.files[0]);
+        }}
+      />
+      <button onClick={uploadFile}> Upload Image</button>
+                  </Box>
+                  <Box>
+                    
+       <img src={imageUrls} />
+      
+                  </Box>
                 <Box display="flex" justifyContent="end" mt="20px">
                                     <Button type="submit" color="secondary" variant="contained"
                                         sx={{
@@ -144,15 +152,13 @@ const AccountManagement = () => {
                                         }}>
                     EDIT INFO
                                     </Button>
-                                    <input type="file" name="file"  />
-			<div>
-				<button  >Submit</button>
-			</div>
+                                   
                 </Box>
               </form>
             )}
               </Formik>
-              
+             
+      
             </Box>
             </main>
           </div>
