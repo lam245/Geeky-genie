@@ -9,14 +9,47 @@ import "../../index.css"
 import Sidebar from "../../scenes/global/Sidebar";
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const [isSidebar, setIsSidebar] = useState(true);
-  const [age,setAge] = useState("")
-
+  const [age, setAge] = useState("")
+const [personName, setPersonName] = useState([]);
+  const names = [
+    'Oliver Hansen',
+    'Van Henry',
+    'April Tucker',
+    'Ralph Hubbard',
+    'Omar Alexander',
+    'Carlos Abbott',
+    'Miriam Wagner',
+    'Bradley Wilkerson',
+    'Virginia Andrews',
+    'Kelly Snyder',
+  ];
+  const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
+  const handleChange1 = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setPersonName(
+      // On autofill we get a stringified value.
+      value
+    );
+  };
   const handleFormSubmit = (values) => {
     console.log(values);
+    console.log(personName)
   };
   return (
     <div className="app">
@@ -46,21 +79,28 @@ const Form = () => {
           handleBlur,
           handleChange,
           handleSubmit,
+          
         }) => (
               <form onSubmit={handleSubmit}>
                 <Select
-                  sx={{minWidth: 1200,marginBottom : 3}}
-    labelId="demo-simple-select-label"
-    id="demo-simple-select"
-    value={age}
-                  label="Age"
-                  gap="30px"
-    onChange={handleChange}
-  >
-    <MenuItem value={10}>Ten</MenuItem>
-    <MenuItem value={20}>Twenty</MenuItem>
-    <MenuItem value={30}>Thirty</MenuItem>
-  </Select>
+                  sx = {{minWidth:1200, color:"white", marginBottom:2}}
+          labelId="demo-multiple-name-label"
+          id="demo-multiple-name"
+          multiple
+          value={personName}
+          onChange={handleChange1}
+          MenuProps={MenuProps}
+        >
+          {names.map((name) => (
+            <MenuItem
+              key={name}
+              value={name}
+              
+            >
+              {name}
+            </MenuItem>
+          ))}
+        </Select>
             <Box
               display="grid"
               gap="30px"
