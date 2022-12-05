@@ -4,16 +4,82 @@ import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import Topbar from "../../scenes/global/Topbar";
-import { useState } from "react";
 import "../../index.css"
 import Sidebar from "../../scenes/global/Sidebar";
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import { useState, useEffect } from "react";
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  listAll,
+  list,
+} from "firebase/storage";
+import { storage } from "../../firebase";
+import { v4 } from "uuid";
+
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
+  const [imageUpload, setImageUpload] = useState(null);
+  const [imageUrls, setImageUrls] = useState([]);
   const [isSidebar, setIsSidebar] = useState(true);
+  const [age, setAge] = useState("")
+const [personName, setPersonName] = useState([]);
+  const names = [
+    'Oliver Hansen',
+    'Van Henry',
+    'April Tucker',
+    'Ralph Hubbard',
+    'Omar Alexander',
+    'Carlos Abbott',
+    'Miriam Wagner',
+    'Bradley Wilkerson',
+    'Virginia Andrews',
+    'Kelly Snyder',
+  ];
+  const [Info, setInfos] = useState(initialValues);
+  const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
+  const handleChange1 = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setPersonName(
+      // On autofill we get a stringified value.
+      value
+    );
+  };
+  const imagesListRef = ref(storage, "images/");
+  const uploadFile = () => {
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageUrls(url);
+        
+        console.log(imageUrls)
+
+      });
+    });
+  };
 
   const handleFormSubmit = (values) => {
+    values.name = personName
+    values.cover = imageUrls
     console.log(values);
+    setInfos(values)
+        console.log(Info);
   };
   return (
     <div className="app">
@@ -24,7 +90,7 @@ const Form = () => {
       
         <Box sx={{
           width: 4000,
-          height: 5000
+          height: 2000
           
           
         }}
@@ -43,8 +109,28 @@ const Form = () => {
           handleBlur,
           handleChange,
           handleSubmit,
+          
         }) => (
-          <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit}>
+                <Select
+                  sx = {{minWidth:1200, color:"white", marginBottom:2}}
+          labelId="demo-multiple-name-label"
+          id="demo-multiple-name"
+          multiple
+          value={personName}
+          onChange={handleChange1}
+          MenuProps={MenuProps}
+        >
+          {names.map((name) => (
+            <MenuItem
+              key={name}
+              value={name}
+              
+            >
+              {name}
+            </MenuItem>
+          ))}
+        </Select>
             <Box
               display="grid"
               gap="30px"
@@ -65,7 +151,8 @@ const Form = () => {
                 error={!!touched.title && !!errors.title}
                 helperText={touched.title && errors.title}
                 sx={{ gridColumn: "span 2" }}
-              />
+                  />
+                   
               <TextField
                 fullWidth
                 variant="filled"
@@ -131,7 +218,21 @@ const Form = () => {
                 helperText={touched.content && errors.content}
                 sx={{ gridColumn: "span 4" }}
               />
-            </Box>
+                </Box>
+                <Box sx={{marginTop : 2 }} display="flex" flexDirection={"row"}  m="  0  0 20px 0" justifyContent={"space-between"}>
+                  <input 
+        type="file"
+        onChange={(event) => {
+          setImageUpload(event.target.files[0]);
+        }}
+      />
+      <button type="button" onClick={uploadFile}> Upload Image</button>
+                  </Box>
+                  <Box>
+                    
+       <img src={imageUrls} width={100} height={100} marginTop={300} />
+      
+                  </Box>
             <Box display="flex" justifyContent="end" mt="20px">
               <Button type="submit" color="secondary" variant="contained">
                 Create New User
@@ -139,7 +240,8 @@ const Form = () => {
             </Box>
           </form>
         )}
-      </Formik>
+          </Formik>
+          
         </Box>
         </main>
       </div>
@@ -150,19 +252,21 @@ const Form = () => {
 
 const checkoutSchema = yup.object().shape({
   title: yup.string().required("required"),
-  translator: yup.string().required("required"),
-  cover: yup.string().required("required"),
+  
+  
   page_count: yup
     .string().required("required"),
   public_year: yup.string().required("required"),
   content: yup.string().required("required"),
 });
 const initialValues = {
+  name: "",
   title: "",
   translator: "",
   cover: "",
   page_count: "",
   public_year: "",
+  republish_count: "",
   content: "",
 };
 

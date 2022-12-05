@@ -25,6 +25,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.0",
     "chart.js": "^3.9.1",
+    "firebase": "^9.14.0",
     "font-awesome": "^4.7.0",
     "formik": "^2.2.9",
     "react": "^18.2.0",
@@ -39,7 +40,7 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": " react-scripts start",
+    "start": " react-scripts start --host 0.0.0.0",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

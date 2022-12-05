@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import Topbar from "./scenes/global/Topbar";
-import Sidebar from "./scenes/global/Sidebar";
 import Dashboard from "./scenes/dashboard";
 import Team from "./scenes/team";
 import Form from "./scenes/form";
@@ -34,7 +32,7 @@ function App() {
               <Route path="/register" element={<><Header /> <Register /> <Footer /> </>}/>
               <Route path="/search" element={<><Header /> <Search /> <Footer /> </>}/>
               <Route path="/login" element={<><Header /> <Login /> <Footer /> </>}/>
-              <Route path="/" element={<Dashboard />} />
+              <Route path="/Dashboard" element={<Dashboard />} />
               <Route path="/team" element={<Team />} />
               <Route path="/form" element={<Form />} />
               <Route path="/book/:book_id" element={<> <BookDetail /> <CommentModal />   </>} />

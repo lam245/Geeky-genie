@@ -14,7 +14,6 @@ import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
 import Sidebar from "../../scenes/global/Sidebar";
 import { useState } from "react";
-import "../../index.css"
 
 const Dashboard = () => {
   const theme = useTheme();
