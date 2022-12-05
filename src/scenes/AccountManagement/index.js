@@ -29,6 +29,7 @@ const AccountManagement = () => {
   };
   const [Info, setInfos] = useState(initialValues);
   const handleFormSubmit = (values) => {
+    values.avatar_url = imageUrls
       setInfos(values)
         console.log(Info);
   };

@@ -4,15 +4,27 @@ import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import Topbar from "../../scenes/global/Topbar";
-import { useState } from "react";
 import "../../index.css"
 import Sidebar from "../../scenes/global/Sidebar";
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import OutlinedInput from '@mui/material/OutlinedInput';
+import { useState, useEffect } from "react";
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  listAll,
+  list,
+} from "firebase/storage";
+import { storage } from "../../firebase";
+import { v4 } from "uuid";
+
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
+  const [imageUpload, setImageUpload] = useState(null);
+  const [imageUrls, setImageUrls] = useState([]);
   const [isSidebar, setIsSidebar] = useState(true);
   const [age, setAge] = useState("")
 const [personName, setPersonName] = useState([]);
@@ -28,6 +40,7 @@ const [personName, setPersonName] = useState([]);
     'Virginia Andrews',
     'Kelly Snyder',
   ];
+  const [Info, setInfos] = useState(initialValues);
   const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
   const MenuProps = {
@@ -47,9 +60,26 @@ const ITEM_PADDING_TOP = 8;
       value
     );
   };
+  const imagesListRef = ref(storage, "images/");
+  const uploadFile = () => {
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageUrls(url);
+        
+        console.log(imageUrls)
+
+      });
+    });
+  };
+
   const handleFormSubmit = (values) => {
+    values.name = personName
+    values.cover = imageUrls
     console.log(values);
-    console.log(personName)
+    setInfos(values)
+        console.log(Info);
   };
   return (
     <div className="app">
@@ -60,7 +90,7 @@ const ITEM_PADDING_TOP = 8;
       
         <Box sx={{
           width: 4000,
-          height: 8000
+          height: 2000
           
           
         }}
@@ -188,7 +218,21 @@ const ITEM_PADDING_TOP = 8;
                 helperText={touched.content && errors.content}
                 sx={{ gridColumn: "span 4" }}
               />
-            </Box>
+                </Box>
+                <Box sx={{marginTop : 2 }} display="flex" flexDirection={"row"}  m="  0  0 20px 0" justifyContent={"space-between"}>
+                  <input 
+        type="file"
+        onChange={(event) => {
+          setImageUpload(event.target.files[0]);
+        }}
+      />
+      <button type="button" onClick={uploadFile}> Upload Image</button>
+                  </Box>
+                  <Box>
+                    
+       <img src={imageUrls} width={100} height={100} marginTop={300} />
+      
+                  </Box>
             <Box display="flex" justifyContent="end" mt="20px">
               <Button type="submit" color="secondary" variant="contained">
                 Create New User
@@ -216,6 +260,7 @@ const checkoutSchema = yup.object().shape({
   content: yup.string().required("required"),
 });
 const initialValues = {
+  name: "",
   title: "",
   translator: "",
   cover: "",
