@@ -37,7 +37,7 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/team" element={<Team />} />
               <Route path="/form" element={<Form />} />
-              <Route path="/book" element={<> <BookDetail /> <CommentModal />   </>} />
+              <Route path="/book/:book_id" element={<> <BookDetail /> <CommentModal />   </>} />
               <Route path="/account" element= {<Accounts />} />
               <Route path="/author/:auth_id" element= {<Author />} />
             </Routes>

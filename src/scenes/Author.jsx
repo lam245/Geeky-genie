@@ -2,9 +2,11 @@ import '../styles/authorDetail.css'
 import axios from "axios"
 import { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom'
+import Rating from '@mui/material/Rating';
 
 const Author = (props) => {
   const [user, setUser] = useState(null)
+  const [books, setBooks] = useState([])
 
   const { auth_id } = useParams()
 
@@ -12,11 +14,8 @@ const Author = (props) => {
   useEffect(() => {
     axios.get(`http://w22g7.int3306.freeddns.org/authors/?author_id=${auth_id}`).then(res => {
       setUser(res.data)
+      setBooks(res.data.books)
     })
-
-    return () => {
-
-    }
   }, [])
 
   if (!user) {
@@ -55,30 +54,27 @@ const Author = (props) => {
             </div>
             <div class="fw-bold mt-4">Quotes</div>
             <div style={{ color: "#999" }} class="mt-2">
-              {user.quotes  ?? "Không có thông tin"}
+              {user.quote  ?? "Không có thông tin"}
             </div>
             <div class="fw-bold mt-4">Các tác phẩm</div>
             <div class="row mt-2">
+              {books.map((book) => (
               <div class="col-12 col-md-3">
                 <a href="" className='no-underline'>
                   <img
-                    src="https://taimienphi.vn/tmp/cf/aut/0jRR-odmp-K3i2-8y3Q-w1jw-aKXX-BfHP-hinh-nen-1.jpg"
-                    class="w-100"
+                    src={book.cover}
+                    class="w-100 image-height"
                     alt="image"
                   />
                   <div style={{ color: "#999" }} class="text-center mt-2">
-                  <div className="ratings">
-                    <i className="fa fa-star rating-color"></i>
-                    <i className="fa fa-star rating-color"></i>
-                    <i className="fa fa-star rating-color"></i>
-                    <i className="fa fa-star rating-color"></i>
-                    <i className="fa fa-star"></i>
-                  </div>
-                    Tác Phẩm 1
+                      <Rating name="half-rating" value={book.current_rating} precision={1} />
+                      <h1 className='text'>{book.title}</h1>
                   </div>
                 </a>
               </div>
-              <div class="col-12 col-md-3">
+                
+              ))}
+           {/*    <div class="col-12 col-md-3">
                 <img
                   src="https://taimienphi.vn/tmp/cf/aut/0jRR-odmp-K3i2-8y3Q-w1jw-aKXX-BfHP-hinh-nen-1.jpg"
                   class="w-100"
@@ -104,7 +100,7 @@ const Author = (props) => {
                 <div style={{ color: "#999" }} class="text-center mt-2">
                   Tác Phẩm 4
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

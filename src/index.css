@@ -42,3 +42,7 @@ body,
 a{
   text-decoration: none;
 }
+
+.image-height {
+  height: 200px;
+}
