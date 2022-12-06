@@ -51,6 +51,26 @@ a{
   text-decoration: none;
 }
 
-.image-height {
-  height: 200px;
+.book {
+  position: relative;
+  height: 100%;
+  overflow-y: hidden;
+  display: block;
+}
+
+.rating {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  transform: translateY(101%);
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: all 0.2s linear;
+}
+
+.book:hover .rating {
+  transform: translateY(0);
 }
