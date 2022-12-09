@@ -1,24 +1,41 @@
-  import "../styles/accounts.css";
+import "../styles/accounts.css";
 import "../styles/authorDetail.css";
 import axios from "axios"
 import { useEffect, useState } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom'
+import { redirect, useParams, useSearchParams } from 'react-router-dom'
+import { useCookies } from 'react-cookie'
+import { useNavigate } from "react-router-dom";
+
 const Account = (props) => {
+  let nav = useNavigate()
   const [user, setUser] = useState(null)
-
-  //const { auth_id } = useParams()
-
-
+  const [cookies, setCookie] = useCookies('state')
+  const [states, setStates] = useState([]);
+  const items = {
+    'state': (localStorage.getItem('state'))
+  };
+  const { auth_id } = useParams()
   useEffect(() => {
-    axios.get(`http://w22g7.int3306.freeddns.org/my_account`).then(res => {
-      setUser(res.data)
+    console.log(items)
+    axios.get("http://w22g7.int3306.freeddns.org/my_account", {
+      params: { 'state': localStorage.getItem('state') },
+      headers: {
+        "Access-Control-Allow-Headers": "Content-Type",
+        'Content-Type': 'application/json'
+      },
     })
-
+      .then((res) => {
+        if (res.status == 203) {
+          nav("/login")
+        }
+        else {
+          console.log(res)
+        }
+      })
+      .catch((err) => console.log(err));
     return () => {
-
     }
   }, [])
-
   if (!user) {
     return <></> //loading
   }
@@ -38,7 +55,7 @@ const Account = (props) => {
                 Thông tin cá nhân
                 <i
                   className="fa-solid fa-pen-to-square"
-                  style={{ color: "#fbc634", cursor: "pointer" }}
+                  style={{ color: "#FBC634", cursor: "pointer" }}
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
                 ></i>
@@ -61,7 +78,7 @@ const Account = (props) => {
             <div class="fs-1 fw-bold">{user.name}</div>
             <div class="fw-bold mt-4">Giới thiệu</div>
             <div style={{ color: "#999" }} className="mt-2">
-            {user.bio  ?? "Không có thông tin"}
+              {user.bio ?? "Không có thông tin"}
             </div>
             <div className="fw-bold mt-4">Bộ sưu tập</div>
             <div className="row mt-2">
@@ -270,5 +287,4 @@ const Account = (props) => {
     </div>
   );
 }
-
 export default Account;
