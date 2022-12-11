@@ -2,6 +2,7 @@
   "name": "react-admin",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://w22g7.int3306.freeddns.org/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -32,6 +33,7 @@
     "react-chartjs-2": "^4.3.1",
     "react-cookie": "^4.1.1",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.40.0",
     "react-icons-kit": "^2.0.0",
     "react-pro-sidebar": "^0.7.1",
     "react-redux": "^8.0.2",
@@ -66,6 +68,5 @@
   },
   "devDependencies": {
     "sass": "^1.56.1"
-  },
-  "proxy": "http://w22g7.int3306.freeddns.org/"
+  }
 }

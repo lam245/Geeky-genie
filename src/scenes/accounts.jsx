@@ -6,63 +6,67 @@ import { redirect, useParams, useSearchParams } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 import { useNavigate } from "react-router-dom";
 import Rating from '@mui/material/Rating';
+import { useForm } from "react-hook-form";
 
 const Account = (props) => {
   let nav = useNavigate()
   const [user, setUser] = useState(null)
   const [collections, setCollections] = useState([])
-  const [cookies, setCookie] = useCookies('state')
-  const [states, setStates] = useState([]);
-  console.log("first", collections)
+  
+  const { register, handleSubmit } = useForm()
+  
   const items = {
     'state': (localStorage.getItem('state'))
   };
   const { auth_id } = useParams()
-  const updateAccount = () => {
-    axios.post(`http://w22g7.int3306.freeddns.org/my_account`, {
+  const updateAccount = (e) => {
+    console.log(e);
+    axios.post(`/my_account?state=${localStorage.getItem('state')}`, {
       //  axios.post(`http://w22g7.int3306.freeddns.org/my_account?state=${localStorage.getItem('state')}`, {
-      "username": "user",
-      "name": "string",
-      "phone": "string",
+      "username": user.username,
+      "name": e.name,
+      "phone": e.phone,
       "theme": 0,
-      "profile_pic": "string",
+      "profile_pic": user.profile_pic,
       "receive_email": 1,
-      "bio": "string"
+      "bio": e.bio
     }, {
-      params: {
-        state: localStorage.getItem('state')
-      }
+      
     })
       .then(function (response) {
-        console.log(response);
+        console.log(response.data);
+        fetchUser()
       })
       .catch(function (error) {
         console.log(error);
       });
   }
+
+
+  function fetchUser() {
+    axios.get("http://w22g7.int3306.freeddns.org/my_account", {
+      params: { 'state': localStorage.getItem('state') },
+      headers: {
+        "Access-Control-Allow-Headers": "Content-Type",
+        'Content-Type': 'application/json'
+      },
+    })
+      .then((res) => {
+        if (res.status == 203) {
+          nav("/login")
+        }
+        else {
+          console.log(res)
+          setUser(res.data)
+          setCollections(res.data.collections)
+        }
+      })
+      .catch((err) => console.log(err));
+  }
+
   useEffect(() => {
     console.log(items)
-    axios.get("http://w22g7.int3306.freeddns.org/login").then(res => {
-      console.log(res);
-      axios.get("http://w22g7.int3306.freeddns.org/my_account", {
-        params: { 'state': localStorage.getItem('state') },
-        headers: {
-          "Access-Control-Allow-Headers": "Content-Type",
-          'Content-Type': 'application/json'
-        },
-      })
-        .then((res) => {
-          if (res.status == 203) {
-            nav("/login")
-          }
-          else {
-            console.log(res)
-            setUser(res.data)
-            setCollections(res.data.collections)
-          }
-        })
-        .catch((err) => console.log(err));
-    })
+    fetchUser()
     return () => {
     }
   }, [])
@@ -83,7 +87,7 @@ const Account = (props) => {
               />
             </div>
             <div className="p-3">
-              <div className="fw-bold text-center fs-3">
+              <div className="fw-bold text-center fs-3"  data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
                 Thông tin cá nhân
                 <i
                   className="fa-solid fa-pen-to-square"
@@ -149,7 +153,7 @@ const Account = (props) => {
         aria-hidden="true"
       >
         <div className="modal-dialog">
-          <div className="modal-content">
+          <form className="modal-content" onSubmit={handleSubmit(updateAccount)}>
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
                 Chỉnh Sửa Thông Tin
@@ -176,6 +180,7 @@ const Account = (props) => {
                   className="form-control"
                   id="floatingInputGrid"
                   defaultValue={user.name}
+                  {...register('name')}
                 />
                 <label htmlFor="floatingInputGrid">Họ Và Tên</label>
               </div>
@@ -185,6 +190,7 @@ const Account = (props) => {
                   className="form-control"
                   id="floatingInputGrid"
                   defaultValue={user.bio}
+                  {...register('bio')}
                 />
                 <label htmlFor="floatingInputGrid"> Giới thiệu</label>
               </div>
@@ -194,6 +200,7 @@ const Account = (props) => {
                   className="form-control"
                   id="floatingInputGrid"
                   defaultValue={user.username}
+                  {...register('username')}
                 />
                 <label htmlFor="floatingInputGrid">Tên tài khoản</label>
               </div>
@@ -203,6 +210,7 @@ const Account = (props) => {
                   className="form-control"
                   id="floatingInputGrid"
                   defaultValue={user.email}
+                  {...register('email')}
                 />
                 <label htmlFor="floatingInputGrid">Email</label>
               </div>
@@ -212,6 +220,7 @@ const Account = (props) => {
                   className="form-control"
                   id="floatingInputGrid"
                   defaultValue={user.phone}
+                  {...register('phone')}
                 />
                 <label htmlFor="floatingInputGrid">Số điện thoại </label>
               </div>
@@ -224,11 +233,11 @@ const Account = (props) => {
               >
                 Close
               </button>
-              <button type="button" className="btn btn-primary" onClick={updateAccount}>
+              <button type="submit" className="btn btn-primary">
                 Save changes
               </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
