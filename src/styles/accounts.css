@@ -17,3 +17,6 @@
 .image:hover .icon {
   display: block;
 }
+.fs-y::before{
+  font-size: 20px;
+}

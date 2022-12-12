@@ -35,6 +35,7 @@ const Account = (props) => {
     })
       .then(function (response) {
         console.log(response.data);
+        document.getElementById('form1-close')?.click()
         fetchUser()
       })
       .catch(function (error) {
@@ -90,7 +91,7 @@ const Account = (props) => {
               <div className="fw-bold text-center fs-3"  data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
                 Thông tin cá nhân
                 <i
-                  className="fa-solid fa-pen-to-square"
+                  className="fa-solid fa-pen-to-square fs-y"
                   style={{ color: "#FBC634", cursor: "pointer" }}
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
@@ -130,6 +131,10 @@ const Account = (props) => {
                             class="w-100 h-100"
                             alt="image"
                           />
+                          <div className='rating'>
+                            {/* http://w22g7.int3306.freeddns.org/book/book_id */}
+                            <Rating name="half-rating" value={book.current_rating} precision={1} />
+                          </div>
                           <div className='rating'>
                             {/* http://w22g7.int3306.freeddns.org/book/book_id */}
                             <Rating name="half-rating" value={book.current_rating} precision={1} />
@@ -229,6 +234,7 @@ const Account = (props) => {
               <button
                 type="button"
                 className="btn btn-secondary"
+                id="form1-close"
                 data-bs-dismiss="modal"
               >
                 Close
