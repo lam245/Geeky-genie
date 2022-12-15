@@ -22,7 +22,8 @@ const Account = (props) => {
   const updateAccount = (e) => {
     console.log(e);
     axios.post(`/my_account?state=${localStorage.getItem('state')}`, {
-      //  axios.post(`http://w22g7.int3306.freeddns.org/my_account?state=${localStorage.getItem('state')}`, {
+
+      //  axios.post(`http://w22g7.int3306.freeddns.org/my_account?state=${localSlogtorage.getItem('state')}`, {
       "username": user.username,
       "name": e.name,
       "phone": e.phone,
