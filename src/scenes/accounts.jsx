@@ -3,6 +3,16 @@ import "../styles/authorDetail.css";
 import axios from "axios"
 import { useEffect, useState } from 'react';
 import { redirect, useParams, useSearchParams } from 'react-router-dom'
+
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  listAll,
+  list,
+} from "firebase/storage";
+import { storage } from "../firebase";
+import { v4 } from "uuid";
 import { useCookies } from 'react-cookie'
 import { useNavigate } from "react-router-dom";
 import Rating from '@mui/material/Rating';
@@ -12,15 +22,28 @@ const Account = (props) => {
   let nav = useNavigate()
   const [user, setUser] = useState(null)
   const [collections, setCollections] = useState([])
-  
+  const [imageUpload, setImageUpload] = useState(null);
+  const [imageUrls, setImageUrls] = useState(null);
   const { register, handleSubmit } = useForm()
   
   const items = {
     'state': (localStorage.getItem('state'))
   };
-  const { auth_id } = useParams()
+  const uploadFile = () => {
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageUrls(url);
+        
+        
+
+      });
+    });
+  };
   const updateAccount = (e) => {
     console.log(e);
+    console.log(imageUrls)
     axios.post(`/my_account?state=${localStorage.getItem('state')}`, {
 
       //  axios.post(`http://w22g7.int3306.freeddns.org/my_account?state=${localSlogtorage.getItem('state')}`, {
@@ -28,7 +51,7 @@ const Account = (props) => {
       "name": e.name,
       "phone": e.phone,
       "theme": 0,
-      "profile_pic": user.profile_pic,
+      "profile_pic": imageUrls,
       "receive_email": 1,
       "bio": e.bio
     }, {
@@ -83,6 +106,7 @@ const Account = (props) => {
         <div className="row">
           <div className="col-12 col-md-3 text-white">
             <div className="p-3">
+              
               <img
                 src={user.profile_pic ?? "https://i.pinimg.com/736x/6a/29/8d/6a298df72cb446bdf65891b846374079.jpg"}
                 className="w-100"
@@ -173,11 +197,18 @@ const Account = (props) => {
             </div>
             <div className="modal-body">
               <div className="form-floating mb-3">
+              
                 <input
+                  onChange={(event) => {
+                    setImageUpload(event.target.files[0]);
+                  }}
                   type="file"
                   className="form-control"
                   id="floatingInputGrid"
                 />
+                <div className="form-floating mb-3">
+                  <button type="button" onClick={uploadFile}> Upload Image</button>
+                </div>
                 <label htmlFor="floatingInputGrid">Avatar</label>
               </div>
               <div className="form-floating mb-3">

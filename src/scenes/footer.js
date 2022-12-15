@@ -3,6 +3,8 @@ import '../styles/general.css';
 import imgTele from '../images/telegram.png'
 import imgFB from '../images/fb.png'
 import imgMail from '../images/mail.png'
+import { FacebookShareButton, TwitterShareButton, TelegramShareButton } from "react-share";
+import { FacebookIcon, TwitterIcon, TelegramIcon } from "react-share";
 function Footer() {
     return (
         <footer>
@@ -21,9 +23,35 @@ function Footer() {
             Cho phép bình luận và đánh giá, nâng cao trải nhiệm của bạn.
           </li>
         </ul>
-        <a className="circleBtn" title="Telegram channel" ><img src={imgTele} /></a>
-        <a className="circleBtn" title="Facebook page" ><img src={imgFB} /></a>
-        <a className="circleBtn" title="Liên hệ email" ><img src={imgMail} /></a>
+        <FacebookShareButton
+        url={"http://localhost:3000/home"}
+        quote={""}
+        hashtag={"#hashtag"}
+        description={"aiueo"}
+        className="Demo__some-network__share-button"
+      >
+        <FacebookIcon size={32} round /> Facebook
+      </FacebookShareButton>
+      <br />
+      <TwitterShareButton
+        title={"test"}
+        url={"http://localhost:3000/home"}
+        hashtags={["hashtag1", "hashtag2"]}
+      >
+        <TwitterIcon size={32} round />
+        Twitter
+        </TwitterShareButton>
+
+        <TelegramShareButton
+        title={"test"}
+        url={"http://localhost:3000/home"}
+        hashtags={["hashtag1", "hashtag2"]}
+      >
+        <TelegramIcon size={32} round />
+        Telegram
+        </TelegramShareButton>
+        
+        
       </footer>
     );
     
