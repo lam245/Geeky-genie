@@ -2,7 +2,39 @@ import 'font-awesome/css/font-awesome.min.css';
 import "./styles/general.css"
 import "./styles/books.css"
 import CommentModal from './scenes/comment/CommentModal';
+import axios from "axios"
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 function BookDetail() {
+  const [data, setData] = useState([]);
+  function fetchBook() {
+    axios.get("http://127.0.0.1:5000/books/?book_id=2", {
+      
+      headers: {
+        "Access-Control-Allow-Headers": "Content-Type",
+        'Content-Type': 'application/json'
+      },
+    })
+      .then((res) => {
+        if (res.status == 203) {
+          nav("/login")
+        }
+        else {
+          console.log(res)
+          setData(res.data)
+          
+        }
+      })
+      .catch((err) => console.log(err));
+  }
+  let nav = useNavigate()
+  useEffect(() => {
+    
+    fetchBook()
+    return () => {
+    }
+  }, [])
     return (
         <div>
           
