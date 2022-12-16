@@ -13,20 +13,30 @@ function Search() {
 
   useEffect(() => {
     if (searchValue === '') {
-      axios.get(`http://w22g7.int3306.freeddns.org`).then(res => {
+      axios.get(`http://127.0.0.1:5000/`).then(res => {
         console.log(res.data?.popular?.books);
         setBooks(res.data?.popular?.books)
       }).catch(() => {
         setBooks([])
       })
     } else {
-      axios.get(`http://w22g7.int3306.freeddns.org/books/search?query=${searchValue}`).then(res => {
+      axios.get(`http://127.0.0.1:5000/books/search?query=${searchValue}`).then(res => {
         setBooks(res.data)
       }).catch(() => {
         setBooks([])
       })
     }
   }, [searchValue])
+
+  const ratings = {
+    position: "absolute",
+    left: 0,
+    bottom: 0,
+    transform:" translateY(100%)",
+    padding: "1rem",
+    maxHeight:" 100%",
+    transition: "transform 0.3s linear",
+  }
 
   return (
     <div>
@@ -50,8 +60,10 @@ function Search() {
                   <a href className="product-thumb">
                     <img src={book.cover} alt="" />
                     
+                    <div className="product-rating">
+                            <Rating classes={ratings} value={book.current_rating} precision={1} />
+                    </div>
                             {/* http://w22g7.int3306.freeddns.org/book/book_id */}
-                            <Rating classname="rating" value={book.current_rating} precision={1} />
                          
                   </a>
                 </div>

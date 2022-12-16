@@ -103,3 +103,26 @@ ul.products li img{
 .rating-color{
     color:#fbc634 !important;
 }
+
+.product-top {
+    position: relative;
+    overflow: hidden;
+}
+
+.product-rating {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: translateY(100%);
+    padding: 1rem;
+    max-height: 100%;
+    transition: transform 0.3s linear;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.product-thumb:hover .product-rating {
+    transform: translateY(0%);
+}

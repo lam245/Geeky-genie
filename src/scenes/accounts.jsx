@@ -29,29 +29,25 @@ const Account = (props) => {
   const items = {
     'state': (localStorage.getItem('state'))
   };
-  const uploadFile = () => {
+  const uploadFile = async () => {
     if (imageUpload == null) return;
     const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
-    uploadBytes(imageRef, imageUpload).then((snapshot) => {
-      getDownloadURL(snapshot.ref).then((url) => {
-        setImageUrls(url);
-        
-        
-
-      });
-    });
+    const snapshot = await uploadBytes(imageRef, imageUpload);
+    const url = await getDownloadURL(snapshot.ref)
+    console.log('url', url);
+    return url
   };
-  const updateAccount = (e) => {
+  const updateAccount = async (e) => {
     console.log(e);
-    console.log(imageUrls)
-    axios.post(`/my_account?state=${localStorage.getItem('state')}`, {
+    e.profile_pic = await uploadFile()
+    axios.post(`http://127.0.0.1:5000/my_account?state=${localStorage.getItem('state')}`, {
 
       //  axios.post(`http://w22g7.int3306.freeddns.org/my_account?state=${localSlogtorage.getItem('state')}`, {
       "username": user.username,
       "name": e.name,
       "phone": e.phone,
       "theme": 0,
-      "profile_pic": imageUrls,
+      "profile_pic": e.profile_pic,
       "receive_email": 1,
       "bio": e.bio
     }, {
@@ -69,7 +65,7 @@ const Account = (props) => {
 
 
   function fetchUser() {
-    axios.get("http://w22g7.int3306.freeddns.org/my_account", {
+    axios.get("http://127.0.0.1:5000/my_account", {
       params: { 'state': localStorage.getItem('state') },
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
@@ -206,9 +202,7 @@ const Account = (props) => {
                   className="form-control"
                   id="floatingInputGrid"
                 />
-                <div className="form-floating mb-3">
-                  <button type="button" onClick={uploadFile}> Upload Image</button>
-                </div>
+
                 <label htmlFor="floatingInputGrid">Avatar</label>
               </div>
               <div className="form-floating mb-3">

@@ -74,3 +74,6 @@ a{
 .book:hover .rating {
   transform: translateY(0);
 }
+.flex-main{
+  display: flex;
+}
