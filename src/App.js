@@ -6,14 +6,14 @@ import Form from "./scenes/form";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme"
 import HomePage from "./scenes/HomePage";
-import Header from "./scenes/Header";
+import Header from "./scenes/header";
 import Footer from "./scenes/footer";
 import Search from "./scenes/search"
 import BookDetail from "./Book_detail";
 import Register from "./scenes/register";
 import Login from "./scenes/login";
 import CommentModal from "./scenes/comment/CommentModal";
-import Accounts from "./scenes/Accounts";
+import Accounts from "./scenes/accounts";
 import Author from "./scenes/Author";
 
 function App() {

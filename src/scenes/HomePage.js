@@ -31,8 +31,6 @@ import imgSrc28 from '../images/mainPage/book28.jpg'
 function HomePage() {
   return (
     <div>
-   
-    
     <title>GeekyGenie</title>
     <div id="wrapper">
       <div className="search-field">
