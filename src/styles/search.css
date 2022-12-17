@@ -13,6 +13,7 @@
 .search-field {
     display: flex;
     margin-left: 8px;
+    flex-wrap: nowrap;
 }
 ul.products {
     list-style: none;
