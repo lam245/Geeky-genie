@@ -53,7 +53,7 @@ function Search() {
         <ul className="products">
           { books.map((book, key) => {
             return <li key={key}>
-              <div className="product-item is-hidden-desktop">
+              <div className="product-item">
                 
                 <div className="product-top">
                   

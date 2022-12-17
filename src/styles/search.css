@@ -4,9 +4,6 @@
     margin: 0;
     box-sizing: border-box;
 }
-/* body {
-    background-color: #06121e;
-} */
 #wrapper {
     max-width: 1300px;
     margin: 90px auto 0px;
@@ -22,10 +19,11 @@ ul.products {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    gap: calc(12%/3);
+    padding: 0;
+    /* gap: calc(12%/3); */
 }
 ul.products li {
-    flex-basis: 22%;
+    flex-basis: 20%;
     padding-left: 10px;
     padding-right: 10px;
     margin-bottom: 30px;
@@ -58,7 +56,6 @@ ul.products li img{
     display: block;
     font-size: 1.25rem;
     padding: 15px;
-    /* margin-bottom: 20px; */
     border-radius: 5px;
     max-width: 99%;
     width: 100%;
@@ -73,9 +70,6 @@ ul.products li img{
     font-size: 20px;
 }
 @media screen and (min-width:1024px) and (max-width:1300px) {
-    ul.products {
-        justify-content: flex-start;
-    }
     ul.products li {
         flex-basis: 25%;
     }
