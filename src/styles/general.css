@@ -68,6 +68,8 @@ footer {
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 100;
+  position: sticky;
+  top: 100%;
 }
 
 footer ul li {
