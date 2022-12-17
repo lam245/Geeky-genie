@@ -13,9 +13,11 @@ import { useEffect, useState } from "react";
 import "../../index.css"
 import Sidebar from "../../scenes/global/Sidebar";
 
-const Team = () => {
+const Team = (props) => {
   
   const [data, setData] = useState([]);
+  const [searchData, setsearchData] = useState([]);
+
   const [uid, setId] = useState([]);
   let id = -1;
   function handleGetRowId() {
@@ -28,6 +30,8 @@ const Team = () => {
   const colors = tokens(theme.palette.mode);
   const [isSidebar, setIsSidebar] = useState(true);
   const [selectionModel, setSelectionModel] = useState([]);
+  const [user, setUser] = useState([]);
+
   const columns = [
     { field: "id", headerName: "ID" },
     {
@@ -49,7 +53,27 @@ const Team = () => {
     },
     
   ];
-  const Ban10 = (e) =>  {
+  function fetchUser() {
+    axios.get("http://127.0.0.1:5000/my_account", {
+      params: { 'state': localStorage.getItem('state') },
+      headers: {
+        "Access-Control-Allow-Headers": "Content-Type",
+        'Content-Type': 'application/json'
+      },
+    })
+      .then((res) => {
+        if (res.status == 203) {
+          nav("/login")
+        }
+        else {
+          console.log(res)
+          setUser(res.data)
+        }
+      })
+      .catch((err) => console.log(err));
+  }
+  const Ban10 = (e) => {
+    console.log(user)
     console.log(data[selectionModel.newSelectionModel]['username'])
     axios.post(`http://127.0.0.1:5000/ban_user?state=${localStorage.getItem('state')}`, {
       "username": data[selectionModel.newSelectionModel]['username'],
@@ -95,6 +119,8 @@ const Team = () => {
   useEffect(() => {
     
     fetchBook()
+    fetchUser()
+    
     
   }, [])
 
@@ -102,10 +128,10 @@ const Team = () => {
     <div className="app">
       
     <div className="side-team">
-      <Sidebar isSidebar={isSidebar} />
+      <Sidebar {...user} isSidebar={isSidebar} />
       </div>
     <main className="content">
-        <Topbar setIsSidebar={setIsSidebar} />
+        <Topbar  setIsSidebar={setIsSidebar} />
        
     <Box m="20px">
           <Header title="Users" subtitle="Managing the users" />

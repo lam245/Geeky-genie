@@ -28,14 +28,14 @@ function App() {
           <main className="content">
             
             <Routes>
-              <Route path="/home" element={<><Header /> <HomePage /> <Footer /> </>}/>
+              <Route path="/" element={<><Header /> <HomePage /> <Footer /> </>}/>
               <Route path="/register" element={<><Header /> <Register /> <Footer /> </>}/>
               <Route path="/search" element={<><Header /> <Search /> <Footer /> </>}/>
               <Route path="/login" element={<><Header /> <Login /> <Footer /> </>}/>
               <Route path="/Dashboard" element={<Dashboard />} />
               <Route path="/team" element={<Team />} />
               <Route path="/form" element={<Form />} />
-              <Route path="/book/:book_id" element={<> <BookDetail /> <CommentModal />   </>} />
+              <Route path="/book/:auth_id" element={<> <BookDetail />    </>} />
               <Route path="/account" element= {<Accounts />} />
               <Route path="/author/:auth_id" element= {<Author />} />
             </Routes>
