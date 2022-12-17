@@ -1,21 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/general.css';
 function Header() {
     return (
         <header className="header1">
-        <div className="sitelogo"  />
-        <div className="brandName" ><span>GeekyGenie</span></div>
+        <Link to="/home">
+          <div className="sitelogo"  />
+          <div className="brandName" >GeekyGenie</div></Link>
         <nav className="toolBar">
-          <button className="tabBtn" type="button" onclick="location.href='/home'">Trang chủ</button>
-          <button className="tabBtn" type="button">
+          <Link className="tabBtn" role="button" to="/home">Trang chủ</Link>
+          <Link className="tabBtn" role="button" to="/search">
             <div style={{WebkitTransform: 'rotate(-45deg)', MozTransform: 'rotate(-45deg)', OTransform: 'rotate(-45deg)', transform: 'rotate(-45deg)', display: 'inline-block'}}>
               ⚲
             </div> Tìm kiếm
-          </button>
-          <button className="tabBtn" type="button">Tài khoản</button>
+          </Link>
+          <Link className="tabBtn" role="button" to="/account">Tài khoản</Link>
         </nav>
-        {/* <button id="profile" class="tabRoundBtn"><i class="fa fa-user-o"></i></button> */}
-        <button id="sign-in" className="redBtn" onclick="location.href='/login'">Đăng nhập</button>
+        {/* <Link id="profile" class="tabRoundBtn"><i class="fa fa-user-o"></i></Link> */}
+        <Link id="sign-in" className="redBtn" role="button" to="/login">Đăng nhập</Link>
       </header>
     );
 }

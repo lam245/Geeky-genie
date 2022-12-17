@@ -1,10 +1,11 @@
 import 'font-awesome/css/font-awesome.min.css';
-import "./styles/general.css"
-import "./styles/books.css"
-import CommentModal from './scenes/comment/CommentModal';
+import "../styles/general.css"
+import "../styles/books.css"
+import CommentModal from './comment/CommentModal';
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import demo from '../images/demoBookCover1.jpg';
 
 function BookDetail() {
   const [data, setData] = useState([]);
@@ -42,7 +43,7 @@ function BookDetail() {
           <div className="large-cover" />
           <div className="book-view-container">
             <div className="column book-view-left">
-              <div className="book-cover"><img src="../images/demoBookCover1.jpg" /></div>
+              <div className="book-cover"><img src={demo} alt=""/></div>
               <button id="readBtn" className="readBtn" role="link">ĐỌC SÁCH</button>
             </div>
             <div className="column book-view-right">
@@ -86,63 +87,63 @@ function BookDetail() {
                 trước thực tế nghiệt ngã của cuộc sống nơi chiến hào.
               </div>
               <h2>Đánh giá của người đọc</h2>
-              <div id="ratingDetails" className="rating-details">
-                <div className="side bar">
-                  <div>5 sao</div>
+                  <div id="ratingDetails" class="rating-details">
+                    <div class="side">
+                        <div>5 sao</div>
+                    </div>
+                    <div class="middle">
+                        <div class="bar-container">
+                            <div class="bar-5"></div>
+                        </div>
+                    </div>
+                    <div class="side right">
+                        <div>150</div>
+                    </div>
+                    <div class="side">
+                        <div>4 sao</div>
+                    </div>
+                    <div class="middle">
+                        <div class="bar-container">
+                            <div class="bar-4"></div>
+                        </div>
+                    </div>
+                    <div class="side right">
+                        <div>63</div>
+                    </div>
+                    <div class="side">
+                        <div>3 sao</div>
+                    </div>
+                    <div class="middle">
+                        <div class="bar-container">
+                            <div class="bar-3"></div>
+                        </div>
+                    </div>
+                    <div class="side right">
+                        <div>15</div>
+                    </div>
+                    <div class="side">
+                        <div>2 sao</div>
+                    </div>
+                    <div class="middle">
+                        <div class="bar-container">
+                            <div class="bar-2"></div>
+                        </div>
+                    </div>
+                    <div class="side right">
+                        <div>6</div>
+                    </div>
+                    <div class="side">
+                        <div>1 sao</div>
+                    </div>
+                    <div class="middle">
+                        <div class="bar-container">
+                            <div class="bar-1"></div>
+                        </div>
+                    </div>
+                    <div class="side right">
+                        <div>20</div>
+                    </div>
                 </div>
-                <div className="middle">
-                  <div className="bar-container">
-                    <div className="bar-5" />
-                  </div>
-                </div>
-                <div className="side bar right">
-                  <div>150</div>
-                </div>
-                <div className="side bar">
-                  <div>4 sao</div>
-                </div>
-                <div className="middle">
-                  <div className="bar-container">
-                    <div className="bar-4" />
-                  </div>
-                </div>
-                <div className="side bar right">
-                  <div>63</div>
-                </div>
-                <div className="side bar">
-                  <div>3 sao</div>
-                </div>
-                <div className="middle">
-                  <div className="bar-container">
-                    <div className="bar-3" />
-                  </div>
-                </div>
-                <div className="side bar right">
-                  <div>15</div>
-                </div>
-                <div className="side bar">
-                  <div>2 sao</div>
-                </div>
-                <div className="middle">
-                  <div className="bar-container">
-                    <div className="bar-2" />
-                  </div>
-                </div>
-                <div className="side bar right">
-                  <div>6</div>
-                </div>
-                <div className="side bar">
-                  <div>1 sao</div>
-                </div>
-                <div className="middle">
-                  <div className="bar-container">
-                    <div className="bar-1" />
-                  </div>
-                </div>
-                <div className="side bar right">
-                  <div>20</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

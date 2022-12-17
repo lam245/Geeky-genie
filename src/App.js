@@ -9,7 +9,7 @@ import HomePage from "./scenes/HomePage";
 import Header from "./scenes/header";
 import Footer from "./scenes/footer";
 import Search from "./scenes/search"
-import BookDetail from "./Book_detail";
+import BookDetail from "./scenes/Book_detail";
 import Register from "./scenes/register";
 import Login from "./scenes/login";
 import CommentModal from "./scenes/comment/CommentModal";

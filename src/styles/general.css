@@ -60,7 +60,7 @@ footer {
   padding: 5% 5% 5% 9%;
   margin-top: 3vw;
   height: max-content;
-  font-size: 2.5vw;
+  font-size: 2.4vw;
   width: 100%;
   word-break: break-all;
   color: white;
@@ -89,8 +89,8 @@ footer div a:hover {
   color: yellow;
   cursor: pointer;
   letter-spacing: 5px;
-  margin-left: 85px;
-  margin-top: 7px;
+  margin-left: 80px;
+  margin-top: 6px;
   text-transform: uppercase;
   font-weight: bold;
   font-family: 'Bangers', cursive;
@@ -130,7 +130,14 @@ footer div a:hover {
 
 @media screen and (min-width: 850px) {
   footer {
-    font-size: 105%;
+    font-size: 110%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .toolBar {
+    grid-template-columns: repeat(4, 1fr);
+    width: max-content;
   }
 }
 
@@ -138,12 +145,6 @@ footer div a:hover {
   footer {
     font-size: 3.2vw;
     padding-bottom: 10%;
-  }
-
-  .toolBar {
-    grid-template-columns: repeat(4, 1fr);
-    float: right;
-    margin-right: 10%;
   }
 
   .brandName {

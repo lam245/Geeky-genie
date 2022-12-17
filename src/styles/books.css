@@ -4,11 +4,24 @@
     left: 0;
     width: 100%;
     min-height: 100vh;
+    font-family: sans-serif;
+}
+
+.bookDetails h2 {
+    margin-left: 0;
+    letter-spacing: 2px;
+    font-weight: bolder;
 }
 
 .rating-stars {
     cursor: pointer;
     text-decoration: none;
+    color: white;
+    font-size: large;
+}
+
+.bookDetails
+.rating-stars:hover {
     color: white;
 }
 
@@ -81,12 +94,13 @@
 .average-rating-point {
     display: inline;
     color: white;
-    font-size: larger;
+    font-size: large;
 }
 
 .book-details-table {
-    margin-top: 8vh;
+    margin-top: 10vh;
     line-height: 3vh;
+    font-size: 110%;
 }
 
 .book-details-table th {
@@ -102,6 +116,7 @@
 .book-description {
     margin-top: 5vh;
     margin-bottom: 5vh;
+    font-size: 110%;
     color: #b5b5b5;
 }
 
@@ -131,7 +146,7 @@
 }
 
 /* Rating stars */
-.side bar {
+.side {
   float: left;
   width: 15%;
   margin-top:10px;
@@ -187,8 +202,8 @@
     .genre-tag-list {
         float: left;
     }
-      .side bar, .middle {
-    width: 100%;
+    .side, .middle {
+        width: 100%;
     }
     .right {
         display: none;

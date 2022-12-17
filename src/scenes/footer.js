@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/general.css';
 import imgTele from '../images/telegram.png'
 import imgFB from '../images/fb.png'
@@ -8,7 +9,7 @@ import { FacebookIcon, TwitterIcon, TelegramIcon } from "react-share";
 function Footer() {
     return (
         <footer>
-        <div>Tại sao thư viện sách <a href="/">GeekyGenie</a> nên là sự lựa chọn của bạn?</div>
+        <div>Tại sao thư viện sách <Link to="/home">GeekyGenie</Link> nên là sự lựa chọn của bạn?</div>
         <ul>
           <li>
             Thư viện cung cấp những tiện ích hoàn toàn miễn phí.
