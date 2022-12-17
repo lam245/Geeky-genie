@@ -12,11 +12,15 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "../../index.css"
 import Sidebar from "../../scenes/global/Sidebar";
+import SearchIcon from "@mui/icons-material/Search";
 
 const Team = (props) => {
   
   const [data, setData] = useState([]);
-  const [searchData, setsearchData] = useState([]);
+  const [searchValue, setSearchValue] = useState('')
+  const [books, setBooks] = useState([])
+  const [users, setUsers] = useState([])
+
 
   const [uid, setId] = useState([]);
   let id = -1;
@@ -111,6 +115,7 @@ const Team = (props) => {
           
           setData(getData)
           console.log(getData)
+          setUser(getData.username)
         }
       })
       .catch((err) => console.log(err));
@@ -123,6 +128,18 @@ const Team = (props) => {
     
     
   }, [])
+  useEffect(() => {
+    if (searchValue === '') {
+      axios.get(`http://127.0.0.1:5000/`).then(res => {
+        console.log(res.data?.popular?.books);
+        setBooks(res.data?.popular?.books)
+      }).catch(() => {
+        setBooks([])
+      })
+    } else {
+      
+    }
+  }, [searchValue])
 
   return (
     <div className="app">
@@ -130,8 +147,16 @@ const Team = (props) => {
     <div className="side-team">
       <Sidebar {...user} isSidebar={isSidebar} />
       </div>
-    <main className="content">
-        <Topbar  setIsSidebar={setIsSidebar} />
+      <main className="content">
+      <div id="wrapper">
+        <div className="search-field">
+          <input type="text" className="input is-medium" placeholder="Nhập tên user..." onInput={e => setSearchValue(e.target.value)} />
+          <div className="icon-margin">
+            <SearchIcon sx={{ fontSize: 40 }} />
+          </div>
+          </div>
+          </div>
+       
        
     <Box m="20px">
           <Header title="Users" subtitle="Managing the users" />
