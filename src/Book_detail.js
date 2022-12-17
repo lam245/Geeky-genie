@@ -5,11 +5,13 @@ import CommentModal from './scenes/comment/CommentModal';
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useParams, useSearchParams } from 'react-router-dom'
 
-function BookDetail() {
+const BookDetail= (props) => {
   const [data, setData] = useState([]);
+   let { auth_id } = useParams()
   function fetchBook() {
-    axios.get("http://127.0.0.1:5000/books/?book_id=2", {
+    axios.get(`http://127.0.0.1:5000/books/?book_id=${auth_id}`, {
       
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",

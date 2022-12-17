@@ -19,6 +19,7 @@ import {
 } from "firebase/storage";
 import { storage } from "../../firebase";
 import { v4 } from "uuid";
+import axios from "axios"
 
 
 const Form = () => {
@@ -27,19 +28,8 @@ const Form = () => {
   const [imageUrls, setImageUrls] = useState([]);
   const [isSidebar, setIsSidebar] = useState(true);
   const [age, setAge] = useState("")
-const [personName, setPersonName] = useState([]);
-  const names = [
-    'Oliver Hansen',
-    'Van Henry',
-    'April Tucker',
-    'Ralph Hubbard',
-    'Omar Alexander',
-    'Carlos Abbott',
-    'Miriam Wagner',
-    'Bradley Wilkerson',
-    'Virginia Andrews',
-    'Kelly Snyder',
-  ];
+
+  
   const [Info, setInfos] = useState(initialValues);
   const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -51,15 +41,7 @@ const ITEM_PADDING_TOP = 8;
       },
     },
   };
-  const handleChange1 = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      value
-    );
-  };
+ 
   const imagesListRef = ref(storage, "images/");
   const uploadFile = () => {
     if (imageUpload == null) return;
@@ -73,13 +55,40 @@ const ITEM_PADDING_TOP = 8;
       });
     });
   };
+  
 
-  const handleFormSubmit = (values) => {
-    values.name = personName
-    values.cover = imageUrls
-    console.log(values);
-    setInfos(values)
-        console.log(Info);
+  const handleFormSubmit = (e) => {
+    axios.post(`http://127.0.0.1:5000/books?state=${localStorage.getItem('state')}`, {
+      "title": "second book added via api",
+      "page_count": 88,
+      "public_year": 3033,
+      "content": "...(mandatory)",
+      "descript": "...(mandatory)",
+      "translator": null,
+      "cover": null,
+      "republish_count": null,
+      "genres": [
+          "ggenre1",
+          "genre2"
+      ],
+      "authors": [
+          1,
+          3,
+          4
+      ]
+  }, {
+      headers: {
+        "Access-Control-Allow-Headers": "Content-Type",
+        'Content-Type': 'application/json'
+      },
+    })
+      .then(function (response) {
+        console.log(response.data);
+        
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
   return (
     <div className="app">
@@ -112,25 +121,7 @@ const ITEM_PADDING_TOP = 8;
           
         }) => (
               <form onSubmit={handleSubmit}>
-                <Select
-                  sx = {{minWidth:1200, color:"white", marginBottom:2}}
-          labelId="demo-multiple-name-label"
-          id="demo-multiple-name"
-          multiple
-          value={personName}
-          onChange={handleChange1}
-          MenuProps={MenuProps}
-        >
-          {names.map((name) => (
-            <MenuItem
-              key={name}
-              value={name}
-              
-            >
-              {name}
-            </MenuItem>
-          ))}
-        </Select>
+                
             <Box
               display="grid"
               gap="30px"
@@ -191,6 +182,19 @@ const ITEM_PADDING_TOP = 8;
                 error={!!touched.page_count && !!errors.page_count}
                 helperText={touched.page_count && errors.page_count}
                 sx={{ gridColumn: "span 4" }}
+                  />
+                  <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Author"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.author}
+                name="author"
+                error={!!touched.author && !!errors.author}
+                helperText={touched.author && errors.author}
+                sx={{ gridColumn: "span 4" }}
               />
               <TextField
                 fullWidth
@@ -234,7 +238,7 @@ const ITEM_PADDING_TOP = 8;
       
                   </Box>
             <Box display="flex" justifyContent="end" mt="20px">
-              <Button type="submit" color="secondary" variant="contained">
+              <Button type="submit" color="secondary" variant="contained" >
                 Create New User
               </Button>
             </Box>
@@ -260,7 +264,7 @@ const checkoutSchema = yup.object().shape({
   content: yup.string().required("required"),
 });
 const initialValues = {
-  name: "",
+  author: "",
   title: "",
   translator: "",
   cover: "",

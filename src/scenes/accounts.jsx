@@ -39,8 +39,8 @@ const Account = (props) => {
   };
   const updateAccount = async (e) => {
     console.log(e);
-    e.profile_pic = await uploadFile()
-    axios.post(`http://127.0.0.1:5000/my_account?state=${localStorage.getItem('state')}`, {
+    console.log(imageUrls)
+    axios.post(`/my_account?state=${localStorage.getItem('state')}`, {
 
       //  axios.post(`http://w22g7.int3306.freeddns.org/my_account?state=${localSlogtorage.getItem('state')}`, {
       "username": user.username,
