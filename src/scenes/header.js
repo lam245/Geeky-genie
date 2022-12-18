@@ -5,24 +5,9 @@ import '../styles/general.css';
 
 function Header() {
   const isLogin = () => {
-    if (localStorage.getItem("state") === null) return false;
+    if (localStorage.getItem("state") === null) { return false };
 
-    axios.get("http://127.0.0.1:5000/my_account", {
-      params: { 'state': localStorage.getItem('state') },
-      headers: {
-        "Access-Control-Allow-Headers": "Content-Type",
-        'Content-Type': 'application/json'
-      },
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          return true;
-        }
-        if (res.status === 203) {
-          return false;
-        }
-      })
-      .catch((err) => console.log(err));
+   return true
   }
 
   const [signedin, signin] = useState(isLogin());
