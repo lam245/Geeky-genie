@@ -13,8 +13,15 @@ const HomePage = (props) => {
   const [personalBooks, setPersonalBooks] = useState([])
 
   useEffect(() => {
-    axios.get(`http://127.0.0.1:5000/`, { params: { state: localStorage.getItem('state') } })
+    axios.get(`http://127.0.0.1:5000`, {
+      
+    headers: {
+      "Access-Control-Allow-Headers": "Content-Type",
+      'Content-Type': 'application/json'
+    },
+  })
       .then(res => {
+        console.log(res.data.popular)
         setPopularBooks(res.data.popular);
         setNewBooks(res.data.new);
 
