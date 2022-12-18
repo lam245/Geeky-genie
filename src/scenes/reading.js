@@ -64,6 +64,20 @@ function Reading() {
     return () => {
     }
   }, [])
+  const [scrollPosition, setScrollPosition] = useState(0);
+const handleScroll = () => {
+    const position = window.pageYOffset;
+  setScrollPosition(position);
+  console.log(position)
+};
+
+useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+        window.removeEventListener('scroll', handleScroll);
+    };
+}, []);
   return (
     <div className='reading-view'>
       
