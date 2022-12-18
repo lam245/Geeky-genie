@@ -80,54 +80,64 @@ const HomePage = (props) => {
           <h2>Sách đề cử</h2>
           <hr />
         </div>
-        {popularBooks?.books.map(book => (
-          <div className="col-12 col-md-3">
-            <a className='no-underline book' href={``} target="_blank">
-              <img
-                src={book.cover}
-                class="w-100 h-100"
-                alt="image"
-              />
-              <div className='rating'>
-                {/* http://w22g7.int3306.freeddns.org/book/book_id */}
-                <Rating name="half-rating" value={book.current_rating} precision={1} />
+        <ul className="products">
+          {popularBooks?.books.map(book => (
+            <li><div className="product-item">
+              <div className="product-top">
+                <a className="product-thumb" href={``} target="_blank">
+                  <img
+                    src={book.cover}
+                    alt="image"
+                  />
+                  <div className='product-rating'>
+                    {/* http://w22g7.int3306.freeddns.org/book/book_id */}
+                    <Rating name="half-rating" value={book.current_rating} precision={1} />
+                  </div>
+                  <div className='rating'>
+                    {/* http://w22g7.int3306.freeddns.org/book/book_id */}
+                    <Rating name="half-rating" value={book.current_rating} precision={1} />
+                  </div>
+                </a>
               </div>
-              <div className='rating'>
-                {/* http://w22g7.int3306.freeddns.org/book/book_id */}
-                <Rating name="half-rating" value={book.current_rating} precision={1} />
+
+              <div className="product-info">
+                    <a href className="product-name">{book.title}</a>
               </div>
-            </a>
-            <h1 className='fs-4 fw-bold mt-4 text-center'>{book.title}</h1>
-          </div>
-        ))}
+            </div></li>
+          ))}
+        </ul>
 
-
+        
         <div className="headline">
           <h2>Sách mới</h2>
           <hr />
         </div>
-        {newBooks?.books.map(book => (
-          <div className="col-12 col-md-3">
-            <a className='no-underline book' href={``} target="_blank">
-              <img
-                src={book.cover}
-                class="w-100 h-100"
-                alt="image"
-              />
-              <div className='rating'>
-                {/* http://w22g7.int3306.freeddns.org/book/book_id */}
-                <Rating name="half-rating" value={book.current_rating} precision={1} />
+        <ul className="products">
+          {newBooks?.books.map(book => (
+            <li><div className="product-item">
+              <div className="product-top">
+                <a className='product-thumb' href={``} target="_blank">
+                  <img
+                    src={book.cover}
+                    alt="image"
+                  />
+                  <div className='product-rating'>
+                    {/* http://w22g7.int3306.freeddns.org/book/book_id */}
+                    <Rating name="half-rating" value={book.current_rating} precision={1} />
+                  </div>
+                  <div className='rating'>
+                    {/* http://w22g7.int3306.freeddns.org/book/book_id */}
+                    <Rating name="half-rating" value={book.current_rating} precision={1} />
+                  </div>
+                </a>
               </div>
-              <div className='rating'>
-                {/* http://w22g7.int3306.freeddns.org/book/book_id */}
-                <Rating name="half-rating" value={book.current_rating} precision={1} />
+
+              <div className="product-info">
+                    <a href className="product-name">{book.title}</a>
               </div>
-            </a>
-            <h1 className='fs-4 fw-bold mt-4 text-center'>{book.title}</h1>
-          </div>
-        ))}
-
-
+            </div></li>
+          ))}
+        </ul>
 
       </div>
     </div>
