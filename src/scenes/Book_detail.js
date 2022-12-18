@@ -6,11 +6,35 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import demo from '../images/demoBookCover1.jpg';
+import { useParams, useSearchParams } from 'react-router-dom'
 
+import React from "react";
+import {
+  MDBBtn,
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+  MDBCol,
+  MDBContainer,
+  MDBIcon,
+  MDBRow,
+  MDBTextArea,
+  MDBTypography,
+} from "mdb-react-ui-kit";
 function BookDetail() {
   const [data, setData] = useState([]);
+  const { auth_id } = useParams()
+  const [genre, setGenre] = useState([]);
+  const [author, setAuthor] = useState([])
+  const [commentData, setcommentData] = useState("")
+  const [comments, updateComments] = useState([]);
+  const [oneStar, updateoneStar] = useState([]);
+  const [twoStar, updatetwoStar] = useState([]);
+  const [threeStar, updatethreeStar] = useState([]);
+  const [fourStar, updatefourStar] = useState([]);
+  const[fiveStar, updatefiveStar] = useState([]);
   function fetchBook() {
-    axios.get("http://127.0.0.1:5000/books/?book_id=2", {
+    axios.get(`http://127.0.0.1:5000/books/?book_id=${auth_id}`, {
       
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
@@ -22,20 +46,52 @@ function BookDetail() {
           nav("/login")
         }
         else {
-          console.log(res)
+          console.log(res.data)
           setData(res.data)
+          setGenre(res.data.genre)
+          setAuthor(res.data.author)
+          updatefiveStar(res.data.five_star.ratings)
+    updatefourStar(res.data.four_star.ratings)
+    updateoneStar(res.data.one_star.ratings)
+    updatethreeStar(res.data.three_star.ratings)
+          updatetwoStar(res.data.two_star.ratings)
           
+    console.log(res.data)
         }
       })
       .catch((err) => console.log(err));
   }
   let nav = useNavigate()
-  useEffect(() => {
+ 
+  useEffect(() => { 
     
     fetchBook()
+    
     return () => {
     }
   }, [])
+  const cmt = async (e) => {
+   const cmmt = await(e.target.value)
+    setcommentData(cmmt)
+  }
+  const addRatings = async (e) => {
+    axios.post(`http://127.0.0.1:5000/my_ratings?state=${localStorage.getItem('state')}`, {
+      "book_id": data.book_id,
+    "stars": 3,
+    "content": commentData }, {
+     
+  })
+    .then(function (response) {
+      console.log(response.data);
+      
+      fetchBook()
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+ 
+
     return (
         <div>
           
@@ -43,12 +99,12 @@ function BookDetail() {
           <div className="large-cover" />
           <div className="book-view-container">
             <div className="column book-view-left">
-              <div className="book-cover"><img src={demo} alt=""/></div>
+              <div className="book-cover"><img src={data.cover} alt=""/></div>
               <button id="readBtn" className="readBtn" role="link">ĐỌC SÁCH</button>
             </div>
             <div className="column book-view-right">
-              <h1 className="book-name">All Quiet on the Western Front</h1>
-              <h2 className="book-name-translated">Phía Tây không có gì lạ <span className="release-year">(2022)</span></h2>
+              <h1 className="book-name">{ data.title}</h1>
+              
               <a className="rating-stars" href="#ratingDetails">
                 <span className="fa fa-star checked-star" />
                 <span className="fa fa-star checked-star" />
@@ -60,31 +116,32 @@ function BookDetail() {
               <button className="share-to-fb"><i className="fab fa-facebook-square" /> &nbsp;Chia sẻ</button>
               <button className="add-to-collection"><i className="fas fa-plus" /> &nbsp;Bộ sưu tập</button>
               <div className="genre-tag-list">
-                <a className="genre-tag">Phiêu lưu</a>
-                <a className="genre-tag">Lịch sử</a>
+                {genre.map((gen) => (
+                  <a className="genre-tag">{gen }</a>
+                ))}
+                
               </div>
               <table className="book-details-table">
                 <tbody><tr>
-                    <th>TÁC GIẢ</th>
+                  <th>TÁC GIẢ</th>
+                  
                     <td> Edward Berger</td>
                   </tr>
                   <tr>
                     <th>DỊCH GIẢ</th>
-                    <td> Caydenthan</td>
+                    <td> {"unknown" ?? data.translator}</td>
                   </tr>
                   <tr>
                     <th>XUẤT BẢN</th>
-                    <td> 10/7/2022</td>
+                    <td> { data.public_year}</td>
                   </tr>
                   <tr>
                     <th>TÁI BẢN</th>
-                    <td> Lần thứ 2</td>
+                    <td>  {"unknown" ?? data.republish_count}</td>
                   </tr>
                 </tbody></table>
               <div className="book-description">
-                Khi thiếu niên 17 tuổi Paul tham gia Mặt trận phía Tây trong Thế chiến I, niềm phấn khích ban đầu
-                của cậu sớm vỡ vụn
-                trước thực tế nghiệt ngã của cuộc sống nơi chiến hào.
+                {data.descript}
               </div>
               <h2>Đánh giá của người đọc</h2>
                   <div id="ratingDetails" class="rating-details">
@@ -147,7 +204,330 @@ function BookDetail() {
             </div>
           </div>
         </div>
-        <CommentModal />
+        {fiveStar.map((four) => (
+                  <div style={{marginRight:"100px" }}>
+                  <section className="">
+                    <MDBContainer className="py-5" style={{ maxWidth: "1000px" }}>
+                      <MDBRow className="justify-content-center">
+                        <MDBCol>
+                          <div className="d-flex flex-start mb-4">
+                            <img
+                              className="rounded-circle shadow-1-strong me-3"
+                              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp"
+                              alt="avatar"
+                              width="65"
+                              height="65"
+                            />
+              
+                            <MDBCard className="w-100">
+                              <MDBCardBody className="p-4">
+                                <div>
+                            <MDBTypography className='black' tag="h5">{ four.username}</MDBTypography>
+                            <div>
+                                <a href="">
+                                  <MDBIcon far icon="star text-danger me-1" />
+                                  <MDBIcon far icon="star text-danger me-1" />
+                                  <MDBIcon far icon="star text-danger me-1" />
+                                  <MDBIcon far icon="star text-danger me-1" />
+                                  <MDBIcon far icon="star text-danger me-1" />
+                                </a>
+                              </div>
+                                  <p className='black'style={{ minWidth: "1000px" }} >
+                                   {four.content}
+                                  </p>
+              
+                                  <div className="d-flex justify-content-between align-items-center">
+                                    <div className="d-flex align-items-center">
+                                      <a href="#!" className="link-muted me-2">
+                                        <MDBIcon fas icon="thumbs-up me-1" />
+                                        132
+                                      </a>
+                                      <a href="#!" className="link-muted">
+                                        <MDBIcon fas icon="thumbs-down me-1" />
+                                        15
+                                      </a>
+                                    </div>
+                                    <a href="#!" className="link-muted">
+                                      <MDBIcon fas icon="reply me-1" /> Reply
+                                    </a>
+                                  </div>
+                                </div>
+                              </MDBCardBody>
+                            </MDBCard>
+                          </div>
+              
+                          
+                        </MDBCol>
+                      </MDBRow>
+                    </MDBContainer>
+                        </section>
+                        </div>
+                ))}
+        {fourStar.map((four) => ( 
+                  <div style={{marginRight:"100px" }}>
+                  <section className="">
+                    <MDBContainer className="py-5" style={{ maxWidth: "1000px" }}>
+                      <MDBRow className="justify-content-center">
+                        <MDBCol>
+                          <div className="d-flex flex-start mb-4">
+                            <img
+                              className="rounded-circle shadow-1-strong me-3"
+                              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp"
+                              alt="avatar"
+                              width="65"
+                              height="65"
+                            />
+              
+                            <MDBCard className="w-100">
+                              <MDBCardBody className="p-4">
+                                <div>
+                            <MDBTypography className='black' tag="h5">{ four.username}</MDBTypography>
+                            <div>
+                                <a href="">
+                                  <MDBIcon far icon="star text-danger me-1" />
+                                  <MDBIcon far icon="star text-danger me-1" />
+                                  <MDBIcon far icon="star text-danger me-1" />
+                                  <MDBIcon far icon="star text-danger me-1" />
+                                  
+                                </a>
+                              </div>
+                                  <p className='black'style={{ minWidth: "1000px" }} >
+                                   {four.content}
+                                  </p>
+              
+                                  <div className="d-flex justify-content-between align-items-center">
+                                    <div className="d-flex align-items-center">
+                                      <a href="#!" className="link-muted me-2">
+                                        <MDBIcon fas icon="thumbs-up me-1" />
+                                        132
+                                      </a>
+                                      <a href="#!" className="link-muted">
+                                        <MDBIcon fas icon="thumbs-down me-1" />
+                                        15
+                                      </a>
+                                    </div>
+                                    <a href="#!" className="link-muted">
+                                      <MDBIcon fas icon="reply me-1" /> Reply
+                                    </a>
+                                  </div>
+                                </div>
+                              </MDBCardBody>
+                            </MDBCard>
+                          </div>
+              
+                          
+                        </MDBCol>
+                      </MDBRow>
+                    </MDBContainer>
+                        </section>
+                        </div>
+        ))}
+        {threeStar.map((four) => (
+                  <div style={{marginRight:"100px" }}>
+                  <section className="">
+                    <MDBContainer className="py-5" style={{ maxWidth: "1000px" }}>
+                      <MDBRow className="justify-content-center">
+                        <MDBCol>
+                          <div className="d-flex flex-start mb-4">
+                            <img
+                              className="rounded-circle shadow-1-strong me-3"
+                              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp"
+                              alt="avatar"
+                              width="65"
+                              height="65"
+                            />
+              
+                            <MDBCard className="w-100">
+                              <MDBCardBody className="p-4">
+                                <div>
+                            <MDBTypography className='black' tag="h5">{ four.username}</MDBTypography>
+                            <div>
+                                <a href="">
+                                  
+                                  <MDBIcon far icon="star text-danger me-1" />
+                                  <MDBIcon far icon="star text-danger me-1" />
+                                  <MDBIcon far icon="star text-danger me-1" />
+                                </a>
+                              </div>
+                                  <p className='black'style={{ minWidth: "1000px" }} >
+                                   {four.content}
+                                  </p>
+              
+                                  <div className="d-flex justify-content-between align-items-center">
+                                    <div className="d-flex align-items-center">
+                                      <a href="#!" className="link-muted me-2">
+                                        <MDBIcon fas icon="thumbs-up me-1" />
+                                        132
+                                      </a>
+                                      <a href="#!" className="link-muted">
+                                        <MDBIcon fas icon="thumbs-down me-1" />
+                                        15
+                                      </a>
+                                    </div>
+                                    <a href="#!" className="link-muted">
+                                      <MDBIcon fas icon="reply me-1" /> Reply
+                                    </a>
+                                  </div>
+                                </div>
+                              </MDBCardBody>
+                            </MDBCard>
+                          </div>
+              
+                          
+                        </MDBCol>
+                      </MDBRow>
+                    </MDBContainer>
+                        </section>
+                        </div>
+        ))}
+        {twoStar.map((four) => (
+                  <div style={{marginRight:"100px" }}>
+                  <section className="">
+                    <MDBContainer className="py-5" style={{ maxWidth: "1000px" }}>
+                      <MDBRow className="justify-content-center">
+                        <MDBCol>
+                          <div className="d-flex flex-start mb-4">
+                            <img
+                              className="rounded-circle shadow-1-strong me-3"
+                              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp"
+                              alt="avatar"
+                              width="65"
+                              height="65"
+                            />
+              
+                            <MDBCard className="w-100">
+                              <MDBCardBody className="p-4">
+                                <div>
+                            <MDBTypography className='black' tag="h5">{ four.username}</MDBTypography>
+                            <div>
+                                <a href="">
+                                  
+                                  <MDBIcon far icon="star text-danger me-1" />
+                                  <MDBIcon far icon="star text-danger me-1" />
+                                </a>
+                              </div>
+                                  <p className='black'style={{ minWidth: "1000px" }} >
+                                   {four.content}
+                                  </p>
+              
+                                  <div className="d-flex justify-content-between align-items-center">
+                                    <div className="d-flex align-items-center">
+                                      <a href="#!" className="link-muted me-2">
+                                        <MDBIcon fas icon="thumbs-up me-1" />
+                                        132
+                                      </a>
+                                      <a href="#!" className="link-muted">
+                                        <MDBIcon fas icon="thumbs-down me-1" />
+                                        15
+                                      </a>
+                                    </div>
+                                    <a href="#!" className="link-muted">
+                                      <MDBIcon fas icon="reply me-1" /> Reply
+                                    </a>
+                                  </div>
+                                </div>
+                              </MDBCardBody>
+                            </MDBCard>
+                          </div>
+              
+                          
+                        </MDBCol>
+                      </MDBRow>
+                    </MDBContainer>
+                        </section>
+                        </div>
+        ))}
+        {oneStar.map((four) => (
+                  <div style={{marginRight:"100px" }}>
+                  <section className="">
+                    <MDBContainer className="py-5" style={{ maxWidth: "1000px" }}>
+                      <MDBRow className="justify-content-center">
+                        <MDBCol>
+                          <div className="d-flex flex-start mb-4">
+                            <img
+                              className="rounded-circle shadow-1-strong me-3"
+                              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp"
+                              alt="avatar"
+                              width="65"
+                              height="65"
+                            />
+              
+                            <MDBCard className="w-100">
+                              <MDBCardBody className="p-4">
+                                <div>
+                            <MDBTypography className='black' tag="h5">{ four.username}</MDBTypography>
+                            <div>
+                                <a href="">
+                                  
+                                  <MDBIcon far icon="star text-danger me-1" />
+                                </a>
+                              </div>
+                                  <p className='black'style={{ minWidth: "1000px" }} >
+                                   {four.content}
+                                  </p>
+              
+                                  <div className="d-flex justify-content-between align-items-center">
+                                    <div className="d-flex align-items-center">
+                                      <a href="#!" className="link-muted me-2">
+                                        <MDBIcon fas icon="thumbs-up me-1" />
+                                        132
+                                      </a>
+                                      <a href="#!" className="link-muted">
+                                        <MDBIcon fas icon="thumbs-down me-1" />
+                                        15
+                                      </a>
+                                    </div>
+                                    <a href="#!" className="link-muted">
+                                      <MDBIcon fas icon="reply me-1" /> Reply
+                                    </a>
+                                  </div>
+                                </div>
+                              </MDBCardBody>
+                            </MDBCard>
+                          </div>
+              
+                          
+                        </MDBCol>
+                      </MDBRow>
+                    </MDBContainer>
+                        </section>
+                        </div>
+                ))}
+        <div style={{ marginLeft: "60px" }}>
+                  <section style={{ width:"90%"}}>
+               
+                  <MDBRow className="justify-content-center"  >
+                    <MDBCol  >
+                      <MDBCard>
+                        <MDBCardBody className="p-4">
+                          <div className="d-flex flex-start w-200">
+                            <MDBCardImage
+                              className="rounded-circle shadow-1-strong me-3"
+                              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(21).webp"
+                              alt="avatar"
+                              width="65"
+                              height="65"
+                            />
+          
+                            <div className="w-100">
+                              <MDBTypography className='black' tag="h5">Add a comment</MDBTypography>
+                              
+                              <MDBTextArea onChange={cmt} label="What is your view?" rows={4} />
+          
+                              <div className="d-flex justify-content-between mt-3">
+                                <MDBBtn onClick={addRatings} color="danger">
+                                  Send <MDBIcon fas icon="long-arrow-alt-right ms-1"  />
+                                </MDBBtn>
+                              </div>
+                            </div>
+                          </div>
+                        </MDBCardBody>
+                      </MDBCard>
+                    </MDBCol>
+                  </MDBRow>
+               
+                    </section>
+                    </div>
       </div>
 
     );
