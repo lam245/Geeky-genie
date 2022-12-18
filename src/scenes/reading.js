@@ -1,17 +1,49 @@
-import React from 'react';
 import '../styles/general.css';
 import '../styles/reading.css';
 import { useParams, useSearchParams } from 'react-router-dom'
-
+import axios from "axios"
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 function Reading() {
+  const nav = useNavigate( )
   const { book_id } = useParams()
-  
+  const [data, setData] = useState([]);
+
+  function fetchBook() {
+    axios.get(`http://127.0.0.1:5000/books/?book_id=${book_id}`, {
+      
+      headers: {
+        "Access-Control-Allow-Headers": "Content-Type",
+        'Content-Type': 'application/json'
+      },
+    })
+      .then((res) => {
+        if (res.status == 203) {
+          nav("/login")
+        }
+        else {
+          console.log(res.data)
+          setData(res.data.content)
+         
+          
+    console.log(res.data)
+        }
+      })
+      .catch((err) => console.log(err));
+  }
+  useEffect(() => { 
+    
+    fetchBook()
+    
+    return () => {
+    }
+  }, [])
   return (
     <div className='reading-view'>
         <h1>Tên sách</h1>
         <div className='arrow'><i className='arrow-left'></i> <i className="arrow-right"></i></div>
         <div id='book-content' className="paper">
-            <p>Bỏ nội dung sách vào chỗ này</p>
+        <p>{ data}</p>
         </div>
     </div>
   );
