@@ -1,5 +1,19 @@
-.paper {
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Oswald:wght@200&family=Poppins:wght@300;400;500&display=swap');
+
+/* .paper {
     background-color: #fafaf3;
+    color: #000000;
+    font-size: 18px;
+    padding: 4% 4%;    
+    margin: 5% 5% 3% 28%;
+    box-shadow: 1px 3px 4px 3px rgba(0, 0, 0, 0.3);
+    transition: 1s margin-left;
+    z-index: 2;
+} */
+
+.book-container {
+    background-color: #fafaf3;
+    max-width: 900px;
     color: #000000;
     font-size: 18px;
     padding: 4% 4%;    
@@ -21,17 +35,18 @@ h1 {
     margin: auto;
     display: block;
     text-align: center;
-    color: white;
+    color: red;
+    font-family: Gabriola;
 }
 
 .arrow {
-    margin-top: 2vh;
+    /* margin-top: 1vh; */
     text-align: center;
     cursor: pointer;
 }
 
 .arrow-right {
-    border: solid white;
+    border: solid red;
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 3px;
@@ -45,7 +60,7 @@ h1 {
 }
 
 .arrow-left {
-    border: solid white;
+    border: solid red;
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 3px;
@@ -67,9 +82,9 @@ h1 {
 
 .sticky-note-papper {
     position: fixed;
-    top: 22%;
+    top: 40%;
     left: 5%;
-    background-color: yellow;
+    background-color: #fafaf3;
     color: black;
     border-style: none; 
     border-color: Transparent; 

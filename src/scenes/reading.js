@@ -41,10 +41,13 @@ function Reading() {
   return (
     <div className='reading-view'>
         <textarea className='sticky-note-papper' placeholder="Ghi chú..."></textarea>
-      <h1>{data.title}</h1>
-        <div className='arrow'><i className='arrow-left'></i> <i className="arrow-right"></i></div>
-        <div id='book-content' className="paper">
-        <p style={{whiteSpace: "pre-wrap"}}>{ data.content}</p>
+        <div className='book-container'>
+          <h1>{data.title}</h1>
+          <div className='arrow'><i className='arrow-left'></i> <i className="arrow-right"></i></div>
+          <hr />
+          <div id='book-content' className="paper">
+          <p style={{whiteSpace: "pre-wrap"}}>{ data.content}</p>
+          </div>
         </div>
     </div>
   );
