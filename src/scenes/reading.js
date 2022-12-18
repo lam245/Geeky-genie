@@ -1,13 +1,11 @@
-import React, {useEffect, useState} from 'react';
-// import { Link } from 'react-router-dom';
-// import axios from "axios";
+import React from 'react';
 import '../styles/general.css';
 import '../styles/reading.css';
 
 function Reading() {
 
   return (
-    <div style="margin-top: 100px">
+    <div className='reading-view'>
         <h1>Tên sách</h1>
         <div className='arrow'><i className='arrow-left'></i> <i className="arrow-right"></i></div>
         <div id='book-content' className="paper">
