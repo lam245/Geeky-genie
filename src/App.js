@@ -12,6 +12,7 @@ import Search from "./scenes/search"
 import BookDetail from "./scenes/Book_detail";
 import Register from "./scenes/register";
 import Login from "./scenes/login";
+import Reading from "./scenes/reading";
 import CommentModal from "./scenes/comment/CommentModal";
 import Accounts from "./scenes/accounts";
 import Author from "./scenes/Author";
@@ -32,11 +33,12 @@ function App() {
               <Route path="/register" element={<><Header /> <Register /> <Footer /> </>}/>
               <Route path="/search" element={<><Header /> <Search /> <Footer /> </>}/>
               <Route path="/login" element={<><Header /> <Login /> <Footer /> </>}/>
+              <Route path="/reading" element={<><Header /> <Reading /> <Footer /> </>}/>
               <Route path="/Dashboard" element={<Dashboard />} />
               <Route path="/team" element={<Team />} />
               <Route path="/form" element={<Form />} />
-              <Route path="/book/:auth_id" element={<> <BookDetail />    </>} />
-              <Route path="/account" element= {<Accounts />} />
+              <Route path="/book/:auth_id" element={<> <Header /> <BookDetail /> <Footer /> </>} />
+              <Route path="/account" element= {<> <Header /> <Accounts /> <Footer /> </>} />
               <Route path="/author/:auth_id" element= {<Author />} />
             </Routes>
           </main>
