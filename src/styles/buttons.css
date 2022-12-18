@@ -127,8 +127,6 @@ button {
         height: 35px;
     }
     .readBtn {
-        display: flex;
-        text-align: center;
         width: 100%;
     }
     .tabBtn {
