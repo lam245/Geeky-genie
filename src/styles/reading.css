@@ -1,34 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Oswald:wght@200&family=Poppins:wght@300;400;500&display=swap');
 
-/* .paper {
+.column {
+    float: left;
+  }
+  
+  .left {
+    margin-top: 7.5%;
+    width: 15%;
+  }
+  
+  .right {
+    width: 85%;
+  }
+.paper {
     background-color: #fafaf3;
     color: #000000;
     font-size: 18px;
     padding: 4% 4%;    
-    margin: 5% 5% 3% 28%;
+    margin: 5% 5% 8% 28%;
     box-shadow: 1px 3px 4px 3px rgba(0, 0, 0, 0.3);
     transition: 1s margin-left;
     z-index: 2;
-} */
-
-.book-container {
-    background-color: #fafaf3;
-    max-width: 900px;
-    color: #000000;
-    font-size: 18px;
-    padding: 4% 4%;    
-    margin: 5% 5% 3% 28%;
-    box-shadow: 1px 3px 4px 3px rgba(0, 0, 0, 0.3);
-    transition: 1s margin-left;
-    z-index: 2;
+    min-width: 300px;
+    
 }
-
+book-content{
+    box-sizing: border-box;
+}
 .paper p {
     text-align: justify;
 }
 
 .reading-view {
-    margin-top: 90px;
+    margin-top:5% ;
+   display: flex;
+    
+    
+   
+    
 }
   
 .book-container h1 {
@@ -39,62 +47,8 @@
     font-family: Gabriola;
 }
 
-.arrow {
-    /* margin-top: 1vh; */
-    text-align: center;
-    cursor: pointer;
-}
+.notee{
+margin-top: 110px;
+margin-right: 300px;
 
-.arrow-right {
-    border: solid red;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);   
-}
-
-.arrow-right:hover {
-    color: yellow;
-    border-width: 0 3.5px 3.5px 0;
-}
-
-.arrow-left {
-    border: solid red;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-    transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
-}
-
-.arrow-left:hover {
-    color: yellow;
-    border-width: 0 3.5px 3.5px 0;
-}
-
-.sticky-note-btn {
-    position: fixed;
-    cursor: pointer;
-    top: 18%;
-    font-size: 40px;
-}
-
-.sticky-note-papper {
-    position: fixed;
-    top: 40%;
-    left: 5%;
-    background-color: #fafaf3;
-    color: black;
-    border-style: none; 
-    border-color: Transparent; 
-    padding: 1vw;
-    font-size: medium;
-    width: 20%;    
-    height: 120px;
-    overflow: hidden;
-}
-
-textarea::placeholder {
-    font-size: medium;
 }
