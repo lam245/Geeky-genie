@@ -23,7 +23,7 @@ function Reading() {
         }
         else {
           console.log(res.data)
-          setData(res.data.content)
+          setData(res.data)
          
           
     console.log(res.data)
@@ -40,10 +40,10 @@ function Reading() {
   }, [])
   return (
     <div className='reading-view'>
-        <h1>Tên sách</h1>
+      <h1>{data.title}</h1>
         <div className='arrow'><i className='arrow-left'></i> <i className="arrow-right"></i></div>
         <div id='book-content' className="paper">
-        <p>{ data}</p>
+        <p>{ data.content}</p>
         </div>
     </div>
   );
