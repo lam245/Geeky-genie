@@ -120,29 +120,12 @@
     color: #b5b5b5;
 }
 
-.genre-tag-list {
-    /* position: static; */
-    float: right;
-    margin-top: 5vh;
-}
-
-.genre-tag {
-    border-radius: 50px;
-    border: 1px solid white;
-    height: 25px;
-    padding: 6px;
+a.genre-tag {
     text-align: center;
     text-decoration: none;
-    cursor: pointer;
-    color: white;
+    color: #dbdbdb;
     margin-left: 1vw;
     font-weight: 100;
-    font-size: small;
-}
-
-.genre-tag:hover {
-    background-color: white;
-    color: rgb(72, 95, 199);
 }
 
 /* Rating stars */

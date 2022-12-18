@@ -118,29 +118,27 @@ function BookDetail() {
               </a><br />
               <button className="share-to-fb"><i className="fab fa-facebook-square" /> &nbsp;Chia sẻ</button>
               <button className="add-to-collection"><i className="fas fa-plus" /> &nbsp;Bộ sưu tập</button>
-              <div className="genre-tag-list">
+              {/* <div className="genre-tag-list">
                 {genre.map((gen) => (
                   <a className="genre-tag">{gen }</a>
                 ))}
                 
-              </div>
+              </div> */}
               <table className="book-details-table">
                 <tbody><tr>
-                  <th>TÁC GIẢ</th>
+                  <th>TÁC GIẢ : </th>
                   
                     <td> Edward Berger</td>
                   </tr>
                   <tr>
-                    <th>DỊCH GIẢ</th>
-                    <td> {"unknown" ?? data.translator}</td>
+                    <th>THỂ LOẠI : </th>
+                    <td> {genre.map((gen) => (
+                          <a className="genre-tag">{gen }</a>
+                        ))}</td>
                   </tr>
                   <tr>
-                    <th>XUẤT BẢN</th>
+                    <th>XUẤT BẢN : </th>
                     <td> { data.public_year}</td>
-                  </tr>
-                  <tr>
-                    <th>TÁI BẢN</th>
-                    <td>  {"unknown" ?? data.republish_count}</td>
                   </tr>
                 </tbody></table>
               <div className="book-description">
