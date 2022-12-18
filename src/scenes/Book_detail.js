@@ -70,6 +70,9 @@ function BookDetail() {
     return () => {
     }
   }, [])
+  const readBook = async (e) => {
+    nav("/reading/"+data.book_id)
+  }
   const cmt = async (e) => {
    const cmmt = await(e.target.value)
     setcommentData(cmmt)
@@ -100,7 +103,7 @@ function BookDetail() {
           <div className="book-view-container">
             <div className="column book-view-left">
               <div className="book-cover"><img src={data.cover} alt=""/></div>
-              <button id="readBtn" className="readBtn" role="link">ĐỌC SÁCH</button>
+              <button id="readBtn" onClick={readBook} className="readBtn" role="link">ĐỌC SÁCH</button>
             </div>
             <div className="column book-view-right">
               <h1 className="book-name">{ data.title}</h1>

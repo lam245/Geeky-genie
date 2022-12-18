@@ -4,14 +4,18 @@ import '../styles/HomePage.css';
 import axios from "axios"
 import { useEffect, useState } from 'react';
 import Rating from '@mui/material/Rating';
-
-
+import { useNavigate } from 'react-router-dom';
+import {useRef} from 'react';
 
 const HomePage = (props) => {
+  const ref = useRef(null);
+
   const [popularBooks, setPopularBooks] = useState(null)
   const [newBooks, setNewBooks] = useState(null)
   const [personalBooks, setPersonalBooks] = useState([])
-
+  const nav = useNavigate()
+  
+  
   useEffect(() => {
     axios.get(`http://127.0.0.1:5000`, {
       
@@ -32,6 +36,15 @@ const HomePage = (props) => {
       })
   }, [])
 
+  const readpopularBooks = async (e) => {
+    console.log(e.currentTarget.id);
+   const id = ref.current.id
+    console.log(ref.current.id);
+    nav("/book/"+id) 
+  }
+  const readnewBooks = async (e) => {
+    // nav("/book/"+newBooks.book_id)
+  }
   return (
     <div>
       <title>GeekyGenie</title>
@@ -89,9 +102,9 @@ const HomePage = (props) => {
         </div>
         <ul className="products">
           {popularBooks?.books.map(book => (
-            <li><div className="product-item">
+            <li  ><div className="product-item" ref={ref}  id ={book.book_id} onClick={ readpopularBooks}>
               <div className="product-top">
-                <a className="product-thumb" href={``} target="_blank">
+                <a className="product-thumb"    target="_blank">
                   <img
                     src={book.cover}
                     alt="image"
