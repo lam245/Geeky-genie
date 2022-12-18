@@ -18,7 +18,7 @@ function Reading() {
       },
     })
       .then((res) => {
-        if (res.status == 203) {
+        if (res.status === 203) {
           nav("/login")
         }
         else {
@@ -40,6 +40,7 @@ function Reading() {
   }, [])
   return (
     <div className='reading-view'>
+        <textarea className='sticky-note-papper' placeholder="Ghi chú..."></textarea>
       <h1>{data.title}</h1>
         <div className='arrow'><i className='arrow-left'></i> <i className="arrow-right"></i></div>
         <div id='book-content' className="paper">

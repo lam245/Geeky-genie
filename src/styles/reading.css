@@ -1,10 +1,9 @@
 .paper {
     background-color: #fafaf3;
     color: #000000;
-    max-width: 900px;
     font-size: 18px;
-    padding: 4% 4%;
-    margin: 5% auto;
+    padding: 4% 4%;    
+    margin: 5% 5% 3% 28%;
     box-shadow: 1px 3px 4px 3px rgba(0, 0, 0, 0.3);
     transition: 1s margin-left;
     z-index: 2;
@@ -26,7 +25,7 @@ h1 {
 }
 
 .arrow {
-    margin: auto;
+    margin-top: 2vh;
     text-align: center;
     cursor: pointer;
 }
@@ -40,6 +39,11 @@ h1 {
     -webkit-transform: rotate(-45deg);   
 }
 
+.arrow-right:hover {
+    color: yellow;
+    border-width: 0 3.5px 3.5px 0;
+}
+
 .arrow-left {
     border: solid white;
     border-width: 0 3px 3px 0;
@@ -47,4 +51,35 @@ h1 {
     padding: 3px;
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
+}
+
+.arrow-left:hover {
+    color: yellow;
+    border-width: 0 3.5px 3.5px 0;
+}
+
+.sticky-note-btn {
+    position: fixed;
+    cursor: pointer;
+    top: 18%;
+    font-size: 40px;
+}
+
+.sticky-note-papper {
+    position: fixed;
+    top: 22%;
+    left: 5%;
+    background-color: yellow;
+    color: black;
+    border-style: none; 
+    border-color: Transparent; 
+    padding: 1vw;
+    font-size: medium;
+    width: 20%;    
+    height: 120px;
+    overflow: hidden;
+}
+
+textarea::placeholder {
+    font-size: medium;
 }
