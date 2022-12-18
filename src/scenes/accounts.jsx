@@ -25,7 +25,7 @@ const Account = (props) => {
   const [imageUpload, setImageUpload] = useState(null);
   const [imageUrls, setImageUrls] = useState(null);
   const { register, handleSubmit } = useForm()
-  
+
   const items = {
     'state': (localStorage.getItem('state'))
   };
@@ -50,9 +50,7 @@ const Account = (props) => {
       "profile_pic": e.profile_pic,
       "receive_email": 1,
       "bio": e.bio
-    }, {
-      
-    })
+    }, {})
       .then(function (response) {
         console.log(response.data);
         document.getElementById('form1-close')?.click()
@@ -93,7 +91,7 @@ const Account = (props) => {
   }, [])
 
   if (!user) {
-    return <>loading</> //loading
+    return <>Please login first</> //loading
   }
 
   return (
@@ -102,14 +100,14 @@ const Account = (props) => {
         <div className="row">
           <div className="col-12 col-md-3 text-white">
             <div className="p-3">
-              
+
               <img
                 src={user.profile_pic ?? "https://i.pinimg.com/736x/6a/29/8d/6a298df72cb446bdf65891b846374079.jpg"}
                 className="w-100"
               />
             </div>
             <div className="p-3">
-              <div className="fw-bold text-center fs-3"  data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
+              <div className="fw-bold text-center fs-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
                 Thông tin cá nhân
                 <i
                   className="fa-solid fa-pen-to-square fs-y"
@@ -193,7 +191,7 @@ const Account = (props) => {
             </div>
             <div className="modal-body">
               <div className="form-floating mb-3">
-              
+
                 <input
                   onChange={(event) => {
                     setImageUpload(event.target.files[0]);
