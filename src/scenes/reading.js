@@ -43,7 +43,7 @@ function Reading() {
       <h1>{data.title}</h1>
         <div className='arrow'><i className='arrow-left'></i> <i className="arrow-right"></i></div>
         <div id='book-content' className="paper">
-        <p>{ data.content}</p>
+        <p style={{whiteSpace: "pre-wrap"}}>{ data.content}</p>
         </div>
     </div>
   );
