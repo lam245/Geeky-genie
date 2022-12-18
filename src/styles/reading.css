@@ -11,6 +11,10 @@
 .paper p {
     text-align: justify;
 }
+
+.reading-view {
+    margin-top: 90px;
+}
   
 h1 {
     margin: auto;

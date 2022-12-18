@@ -34,6 +34,7 @@ function Login() {
 
                 localStorage.setItem('state', (res.data.state));
                 window.location.assign(res.data.auth_url)
+                window.dispatchEvent(new Event("loggedin"));
             })
             .catch((err) => console.log(err));
         return () => {
