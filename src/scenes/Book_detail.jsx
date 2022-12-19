@@ -42,19 +42,20 @@ function BookDetail() {
 
   const updateCollection = async (e) => {
     console.log(e);
-    axios.post(`http://127.0.0.1:5000/my_collections?state=${localStorage.getItem('state')}`, {
+    axios.post(`http://127.0.0.1:5000/my_collections/${e.name}?state=${localStorage.getItem('state')}`, {
 
       //  axios.post(`http://w22g7.int3306.freeddns.org/my_account?state=${localSlogtorage.getItem('state')}`, {
       //"username": user.username,
-      "collname": e.name,
+      
+      "books": [auth_id],
       // "books": 
     }, {})
       .then(function (response) {
-        console.log(response.data);
+        console.log(response);
         document.getElementById('form1-close')?.click()
       })
       .catch(function (error) {
-        console.log(error);
+        
       });
   }
 
