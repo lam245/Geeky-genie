@@ -3,7 +3,7 @@ import "../styles/general.css"
 import "../styles/books.css"
 import CommentModal from './comment/CommentModal';
 import axios from "axios"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import demo from '../images/demoBookCover1.jpg';
 import { useParams, useSearchParams } from 'react-router-dom'
@@ -153,7 +153,7 @@ function BookDetail() {
                 <tbody><tr>
                   <th>TÁC GIẢ : </th>
 
-                  <td> Edward Berger</td>
+                  <td><Link className="author-link" to='/author/1'>Edward Berger</Link></td>
                 </tr>
                   <tr>
                     <th>THỂ LOẠI : </th>
