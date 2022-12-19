@@ -13,7 +13,36 @@ function Reading() {
   const { book_id } = useParams()
   const [data, setData] = useState([]);
   const [bookMark, setbookMark] = useState([])
+  const [note, setbookNote] = useState([])
+  
+  const upLoadBookMark = async (e) => {
+    axios.post(`http://127.0.0.1:5000/my_bookmark?state=${localStorage.getItem('state')}&bm_name=bookmark`, {
+      
+    
+      "book_id": book_id,
+      "line_pos": scrollPosition
+ 
+    
+      }, {
+     
+  })
+    .then(function (response) {
+      console.log(response);
+      
+     
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
 
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    upLoadBookMark()
+    return () => {
+        window.removeEventListener('scroll', handleScroll);
+    };
+  }, [upLoadBookMark]);
   const fetchBook = async () => {
     let res;
   res = await axios.get(`http://127.0.0.1:5000/books/?book_id=${book_id}`, {
@@ -51,34 +80,16 @@ function Reading() {
         }
         else {
           console.log(res.data)
-          setbookMark(res.data[1])
-          localStorage.setItem('text', (res.data[0].content))
+          setbookMark(res.data[0])
+          setbookNote(res.data[1])
+          localStorage.setItem('text', (res.data[1].content))
           
     
         }
      
      
   }
-  const upLoadBookMark = async (e) => {
-    axios.post(`http://127.0.0.1:5000/my_bookmark?state=${localStorage.getItem('state')}&bm_name=book_mar`, {
-      
-    
-      "book_id": book_id,
-      "line_pos": scrollPosition
- 
-    
-      }, {
-     
-  })
-    .then(function (response) {
-      console.log(response);
-      
-     
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }
+  
   useEffect(() => { 
     
     fetchBook()
@@ -95,25 +106,19 @@ function Reading() {
     console.log(position)
   };
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    upLoadBookMark()
-    return () => {
-        window.removeEventListener('scroll', handleScroll);
-    };
-  }, [upLoadBookMark]); 
+   
 
   return (
     
     <div className='reading-view'>
       <ScrollTo>
         {({ scroll }) => (
-          <a onClick={() => scroll({ x: 20, y: bookMark.line_pos })}>đi đến chỗ dang đọc</a>
+          <a onClick={() => scroll({ x: 20, y: bookMark.line_position })}>đi đến chỗ dang đọc</a>
         )}
       </ScrollTo>
         <h1>{data.title}</h1>
         <hr />
-      < Notes {... bookMark} />
+      < Notes {... note} />
       {/* <div className="book-cover"><img src={data.cover} alt=""/></div> */}
       
       <div id='book-content' className="paper">
