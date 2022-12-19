@@ -36,6 +36,7 @@ function Reading() {
       })
       .catch((err) => console.log(err));
   }
+
   function fetchBookmark() {
     axios.get(`http://127.0.0.1:5000/my_bookmark?book_id=${book_id}&bm_name=aaa`, {
       params: { 'state': localStorage.getItem('state') },
@@ -66,37 +67,31 @@ function Reading() {
     }
   }, [])
   const [scrollPosition, setScrollPosition] = useState(0);
-const handleScroll = () => {
-    const position = window.pageYOffset;
-  setScrollPosition(position);
-  console.log(position)
-};
 
-useEffect(() => {
+  const handleScroll = () => {
+      const position = window.pageYOffset;
+    setScrollPosition(position);
+    console.log(position)
+  };
+
+  useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
         window.removeEventListener('scroll', handleScroll);
     };
-}, []);
+  }, []); 
+
   return (
     <div className='reading-view'>
+        <h1>{data.title}</h1>
+        <hr />
+      < Notes {...bookMark} />
+      {/* <div className="book-cover"><img src={data.cover} alt=""/></div> */}
       
-      <div className='column left'>
-      
-        < Notes {...bookMark} />
-        </div>
-        
-      <div className='column right'>
-        <div className='book-container'>
-          <h1>{data.title}</h1>
-          
-          <hr />
-          <div  id='book-content' className="paper">
-          <p style={{whiteSpace: "pre-wrap"}}>{ data.content}</p>
-          </div>
-            </div>
-    </div>
+      <div id='book-content' className="paper">
+        <p style={{whiteSpace: "pre-wrap"}}>{ data.content}</p>
+      </div>
     </div>
   );
 }
