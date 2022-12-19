@@ -511,13 +511,13 @@ function BookDetail() {
                             />
           
                             <div className="w-100">
-                              <MDBTypography className='black' tag="h5">Add a comment</MDBTypography>
+                              <MDBTypography className='black' tag="h5">Thêm bình luận</MDBTypography>
                               
                               <MDBTextArea onChange={cmt} label="What is your view?" rows={4} />
           
                               <div className="d-flex justify-content-between mt-3">
                                 <MDBBtn onClick={addRatings} color="danger">
-                                  Send <MDBIcon fas icon="long-arrow-alt-right ms-1"  />
+                                  Gửi <MDBIcon fas icon="long-arrow-alt-right ms-1"  />
                                 </MDBBtn>
                               </div>
                             </div>
