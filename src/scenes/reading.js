@@ -6,24 +6,24 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./Components/css/App.css";
 import Notes from "./Components/NoteComponents/Notes";
-import Header from "./Components/NoteComponents/Header";
-import CreateNote from './Components/NoteComponents/CreateNote';
-
+import React, { Component } from "react";
+import { ScrollTo } from "react-scroll-to";
 function Reading() {
   const nav = useNavigate( )
   const { book_id } = useParams()
   const [data, setData] = useState([]);
   const [bookMark, setbookMark] = useState([])
 
-  function fetchBook() {
-    axios.get(`http://127.0.0.1:5000/books/?book_id=${book_id}`, {
+  const fetchBook = async () => {
+    let res;
+  res = await axios.get(`http://127.0.0.1:5000/books/?book_id=${book_id}`, {
       
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
         'Content-Type': 'application/json'
       },
     })
-      .then((res) => {
+     
         if (res.status === 203) {
           nav("/login")
         }
@@ -33,36 +33,57 @@ function Reading() {
           
     
         }
-      })
-      .catch((err) => console.log(err));
+      
+      
   }
 
-  function fetchBookmark() {
-    axios.get(`http://127.0.0.1:5000/my_bookmark?book_id=${book_id}&bm_name=aaa`, {
+  const fetchBookmark = async() => {
+    let res; res = await axios.get(`http://127.0.0.1:5000/my_bookmark?book_id=${book_id}&bm_name=aaa`, {
       params: { 'state': localStorage.getItem('state') },
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
         'Content-Type': 'application/json'
       },
     })
-      .then((res) => {
+      
         if (res.status === 203) {
           nav("/login")
         }
         else {
           console.log(res.data)
-          setbookMark(res.data)
-         
+          setbookMark(res.data[1])
+          localStorage.setItem('text', (res.data[0].content))
           
     
         }
-      })
-      .catch((err) => console.log(err));
+     
+     
+  }
+  const upLoadBookMark = async (e) => {
+    axios.post(`http://127.0.0.1:5000/my_bookmark?state=${localStorage.getItem('state')}&bm_name=book_mar`, {
+      
+    
+      "book_id": book_id,
+      "line_pos": scrollPosition
+ 
+    
+      }, {
+     
+  })
+    .then(function (response) {
+      console.log(response);
+      
+     
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
   useEffect(() => { 
     
     fetchBook()
     fetchBookmark()
+    
     return () => {
     }
   }, [])
@@ -76,17 +97,23 @@ function Reading() {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
-
+    upLoadBookMark()
     return () => {
         window.removeEventListener('scroll', handleScroll);
     };
-  }, []); 
+  }, [upLoadBookMark]); 
 
   return (
+    
     <div className='reading-view'>
+      <ScrollTo>
+        {({ scroll }) => (
+          <a onClick={() => scroll({ x: 20, y: bookMark.line_pos })}>đi đến chỗ dang đọc</a>
+        )}
+      </ScrollTo>
         <h1>{data.title}</h1>
         <hr />
-      < Notes {...bookMark} />
+      < Notes {... bookMark} />
       {/* <div className="book-cover"><img src={data.cover} alt=""/></div> */}
       
       <div id='book-content' className="paper">

@@ -14,15 +14,16 @@ function Notes(props) {
   // get text and store in state
   const textHandler = (e) => {
     setInputText(e.target.value);
+    
   };
 
   // add new note to the state array
   const saveHandler = async (e) => {
-    axios.post(`http://127.0.0.1:5000/my_bookmark?state=${localStorage.getItem('state')}`, {
+    axios.post(`http://127.0.0.1:5000/my_bookmark?state=${localStorage.getItem('state')}&bm_name=note`, {
       
         "book_id": props.book_id,
-        "bm_name": "ssssassaaas",
-        "line_pos": null,
+        
+        
         "content": inputText
     
       }, {
@@ -30,7 +31,7 @@ function Notes(props) {
   })
     .then(function (response) {
       console.log(response);
-      
+      localStorage.setItem('text',inputText);
      
     })
     .catch(function (error) {
@@ -44,7 +45,7 @@ function Notes(props) {
   //apply the save and get functions using useEffect
   //get the saved notes and add them to the array
   useEffect(() => {
-    const data = props.content;
+    const data = props.content? props.content:localStorage.getItem('text');
     console.log(data)
     if (data) {
       setInputText(data);
