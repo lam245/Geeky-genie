@@ -3,12 +3,16 @@ import '../styles/search.css'
 import SearchIcon from '@mui/icons-material/Search';
 import Rating from '@mui/material/Rating';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import {useRef} from 'react';
 
 
 
 function Search() {
   const [searchValue, setSearchValue] = useState('')
   const [books, setBooks] = useState([])
+  const ref = useRef(null);
+  const nav = useNavigate()
 
 
   useEffect(() => {
@@ -27,6 +31,13 @@ function Search() {
       })
     }
   }, [searchValue])
+
+  const readpopularBooks = async (e) => {
+    console.log(e.currentTarget.id);
+   const id = e.currentTarget.id
+    console.log(ref.current.id);
+    nav("/book/"+id) 
+  }
 
   const ratings = {
     position: "absolute",
@@ -53,7 +64,7 @@ function Search() {
         <ul className="products">
           { books.map((book, key) => {
             return <li key={key}>
-              <div className="product-item">
+              <div className="product-item" ref={ref}  id ={book.book_id} onClick={ readpopularBooks}>
                 
                 <div className="product-top">
                   
