@@ -65,7 +65,12 @@ const Account = (props) => {
         console.log(error);
       });
   }
-  
+  function deleteCollection(bookId, coolName) {
+    console.log(coolName);
+    console.log(bookId);
+    //axios.put(`http://127.0.0.1:5000/my_collections/${coolName}?book_id=${bookId}?state=${localStorage.getItem('state')}`)
+    axios.put(`http://127.0.0.1:5000/my_collections/${coolName}?bookId=${bookId}?state=${localStorage.getItem('state')}`)
+  }
 
   function fetchUser() {
     axios.get("http://127.0.0.1:5000/my_account", {
@@ -144,15 +149,19 @@ const Account = (props) => {
             <div className="fs-3 fw-bold mt-4">Bộ sưu tập</div>
             <div className="row mt-2">
               {collections?.map((collection) => (
-                <>
+                <div key={collection.coll_name}>
                   <h1 className='fs-4 fw-bold mt-4'>{collection.coll_name}</h1>
                   <div className="row mt-2">
                     {collection?.books.map(book => (
-                      <div className="col-12 col-md-3" style={{ position: 'relative' }}>
+                      <div className="col-12 col-md-3" style={{ position: 'relative' }} key={book.book_id}>
                         <div style={{ position: 'absolute', zIndex: '100', right: '1rem', margin: '0.5rem 0.25rem' }}>
-                          <button className='delete'>
-                            <Icon icon={trashO} data-bs-toggle="modal"
-                              data-bs-target="#deleteModal" />
+                          <button className='delete' onClick={() => {
+                            const isDelete = window.confirm('Xóa sách ?');
+                            if (isDelete) {
+                              deleteCollection(book.book_id, collection.coll_name)
+                            }
+                          }}>
+                            <Icon icon={trashO} />
                           </button>
                         </div>
                         <a className='no-underline book' href={``} target="_blank">
@@ -175,7 +184,7 @@ const Account = (props) => {
                       </div>
                     ))}
                   </div>
-                </>
+                </div>
               ))}
             </div>
           </div>
@@ -291,7 +300,7 @@ const Account = (props) => {
         aria-hidden="true"
       >
         <div className="modal-dialog">
-          <form className="modal-content" onSubmit={handleSubmit(updateAccount)}>
+          <form className="modal-content" >
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel" style={{ color: 'black' }}>
                 Xác nhận xóa
@@ -311,17 +320,21 @@ const Account = (props) => {
                 type="button"
                 className="btn btn-secondary"
                 id="form1-close"
+                onChange={() => {
+                  // setBookId('')
+                  // setCoolName('')
+                }}
                 data-bs-dismiss="modal"
               >
                 Không
               </button>
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" onClick={(e) => deleteCollection(e)} className="btn btn-primary">
                 Có
               </button>
             </div>
           </form>
         </div>
-      </div>      
+      </div>
     </div>
   );
 }
