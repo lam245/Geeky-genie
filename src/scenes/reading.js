@@ -14,7 +14,7 @@ function Reading() {
   const [data, setData] = useState([]);
   const [bookMark, setbookMark] = useState([])
   const [note, setbookNote] = useState([])
-  
+
   const upLoadBookMark = async (e) => {
     axios.post(`http://127.0.0.1:5000/my_bookmark?state=${localStorage.getItem('state')}&bm_name=bookmark`, {
       
@@ -37,6 +37,7 @@ function Reading() {
   }
 
   useEffect(() => {
+    
     window.addEventListener('scroll', handleScroll, { passive: true });
     upLoadBookMark()
     return () => {
@@ -44,6 +45,7 @@ function Reading() {
     };
   }, [upLoadBookMark]);
   const fetchBook = async () => {
+    
     let res;
   res = await axios.get(`http://127.0.0.1:5000/books/?book_id=${book_id}`, {
       
@@ -80,9 +82,9 @@ function Reading() {
         }
         else {
           console.log(res.data)
-          setbookMark(res.data[0])
-          setbookNote(res.data[1])
-          localStorage.setItem('text', (res.data[1].content))
+        const res1 = await  setbookMark(res.data[0])
+        const res2 = setbookNote(res.data[1])
+        // const res3= localStorage.setItem('text', (res.data[1].content))
           
     
         }
@@ -91,7 +93,7 @@ function Reading() {
   }
   
   useEffect(() => { 
-    
+    localStorage.removeItem('text')
     fetchBook()
     fetchBookmark()
     
