@@ -1,13 +1,28 @@
-Hướng dẫn sử dụng
+# THƯ VIỆN SÁCH GEEKYGENIE
 
-Cài đặt nodeJS v18.12.0: https://nodejs.org/en/download/
+Bài tập lớn môn Phát triển ứng dụng web (Frontend)
 
-git clone https://github.com/lam245/Geeky-genie.git
+## Nhóm thực hiện
 
-git checkout lam
+**CayDenThan - w22u7**
 
-cd ./G
+1. Nguyễn Xuân Lâm
+2. Đỗ Thùy Linh
+3. Quách Ngọc Minh
+4. Nguyễn Anh Tuấn
+5. Vũ Hà Minh Trang
+6. Bùi Hữu Việt Hùng
 
-npm install
+## Cài đặt
 
-npm  start
+- Cài đặt nodeJS v18.12.0: <https://nodejs.org/en/download/>
+- git clone <https://github.com/lam245/Geeky-genie.git>
+- git checkout lam
+- cd ./G
+- npm install
+- npm start
+
+## Tài liệu
+
+- [Feature list](https://docs.google.com/spreadsheets/d/16_SqTAeuqi7YudJ4mNYvjmDNA3pg7s8gmrUuEo_QVOg/edit#gid=0)
+- [Backend repo](https://github.com/beckachuu/temp-backend)
