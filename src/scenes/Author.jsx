@@ -3,10 +3,14 @@ import axios from "axios"
 import { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom'
 import Rating from '@mui/material/Rating';
+import { useNavigate } from 'react-router-dom';
+import {useRef} from 'react';
 
 const Author = (props) => {
   const [user, setUser] = useState(null)
   const [books, setBooks] = useState([])
+  const ref = useRef(null);
+  const nav = useNavigate()
 
   const { auth_id } = useParams()
 
@@ -19,6 +23,13 @@ const Author = (props) => {
 
   if (!user) {
     return <></> //loading
+  }
+
+  const readpopularBooks = async (e) => {
+    console.log(e.currentTarget.id);
+   const id = e.currentTarget.id
+    console.log(ref.current.id);
+    nav("/book/"+id) 
   }
 
   return (
@@ -62,8 +73,8 @@ const Author = (props) => {
             <div class="fs-3 fw-bold mt-4">Các tác phẩm</div>
             <div class="row mt-2">
               {books.map((book) => (
-              <div class="col-12 col-md-3">
-                <a className='no-underline book' href={`http://w22g7.int3306.freeddns.org/book/${book.book_id}`} target="_blank">
+              <div class="col-12 col-md-3" ref={ref}  id ={book.book_id} onClick={readpopularBooks}>
+                <a className='no-underline book'>
                   <img
                     src={book.cover}
                     class="w-100 h-100"
@@ -75,7 +86,7 @@ const Author = (props) => {
                     </div>
                 </a>
                 
-                      <h1 className='fs-4 fw-bold mt-4 text-center'>{book.title}</h1>
+                      <h1 className='fs-4 fw-bold mt-4 text-center' style={{ cursor: "pointer" }}>{book.title}</h1>
               
               </div>
                 

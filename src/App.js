@@ -39,7 +39,7 @@ function App() {
               <Route path="/form" element={<Form />} />
               <Route path="/book/:auth_id" element={<> <Header /> <BookDetail /> <Footer /> </>} />
               <Route path="/account" element= {<> <Header /> <Accounts /> <Footer /> </>} />
-              <Route path="/author/:auth_id" element= {<Author />} />
+              <Route path="/author/:auth_id" element= {<> <Header /> <Author /> <Footer /> </>} />
             </Routes>
           </main>
         </div>

@@ -113,6 +113,16 @@
     color: #dbdbdb;
 }
 
+.book-details-table a.author-link {
+    text-decoration: none;
+    color: #dbdbdb;
+    cursor: pointer;
+}
+
+.book-details-table a.author-link:hover {
+    color: var(--bs-link-color);
+}
+
 .book-description {
     margin-top: 5vh;
     margin-bottom: 5vh;
@@ -124,6 +134,7 @@ a.genre-tag {
     text-align: center;
     text-decoration: none;
     color: #dbdbdb;
+    cursor: pointer;
     margin-left: 1vw;
     font-weight: 100;
 }
