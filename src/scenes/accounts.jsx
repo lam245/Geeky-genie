@@ -1,3 +1,6 @@
+import { Icon } from 'react-icons-kit'
+import { trashO } from 'react-icons-kit/fa/trashO'
+
 import "../styles/accounts.css";
 import "../styles/authorDetail.css";
 import axios from "axios"
@@ -50,7 +53,9 @@ const Account = (props) => {
       "profile_pic": e.profile_pic,
       "receive_email": 1,
       "bio": e.bio
-    }, {})
+    }, {
+
+    })
       .then(function (response) {
         console.log(response.data);
         document.getElementById('form1-close')?.click()
@@ -60,7 +65,7 @@ const Account = (props) => {
         console.log(error);
       });
   }
-
+  
 
   function fetchUser() {
     axios.get("http://127.0.0.1:5000/my_account", {
@@ -91,7 +96,7 @@ const Account = (props) => {
   }, [])
 
   if (!user) {
-    return <>Please login first</> //loading
+    return <>loading</> //loading
   }
 
   return (
@@ -143,13 +148,20 @@ const Account = (props) => {
                   <h1 className='fs-4 fw-bold mt-4'>{collection.coll_name}</h1>
                   <div className="row mt-2">
                     {collection?.books.map(book => (
-                      <div className="col-12 col-md-3">
+                      <div className="col-12 col-md-3" style={{ position: 'relative' }}>
+                        <div style={{ position: 'absolute', zIndex: '100', right: '1rem', margin: '0.5rem 0.25rem' }}>
+                          <button className='delete'>
+                            <Icon icon={trashO} data-bs-toggle="modal"
+                              data-bs-target="#deleteModal" />
+                          </button>
+                        </div>
                         <a className='no-underline book' href={``} target="_blank">
                           <img
                             src={book.cover}
                             class="w-100 h-100"
                             alt="image"
-                          />
+                          >
+                          </img>
                           <div className='rating'>
                             {/* http://w22g7.int3306.freeddns.org/book/book_id */}
                             <Rating name="half-rating" value={book.current_rating} precision={1} />
@@ -270,6 +282,46 @@ const Account = (props) => {
           </form>
         </div>
       </div>
+
+      <div
+        className="modal fade"
+        id="deleteModal"
+        tabIndex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog">
+          <form className="modal-content" onSubmit={handleSubmit(updateAccount)}>
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="exampleModalLabel" style={{ color: 'black' }}>
+                Xác nhận xóa
+              </h1>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body" style={{ color: 'black' }}>
+              <p>Bạn có muốn xóa sách này không?</p>
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                id="form1-close"
+                data-bs-dismiss="modal"
+              >
+                Không
+              </button>
+              <button type="submit" className="btn btn-primary">
+                Có
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>      
     </div>
   );
 }
