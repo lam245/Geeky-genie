@@ -5,10 +5,12 @@ import Note from "./Note";
 import { v4 as uuid } from "uuid";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
+import { useParams, useSearchParams } from 'react-router-dom'
 
 function Notes(props) {
   //states
-  
+  const { book_id } = useParams()
+
   const [inputText, setInputText] = useState("");
 
   // get text and store in state
@@ -21,7 +23,7 @@ function Notes(props) {
   const saveHandler = async (e) => {
     axios.post(`http://127.0.0.1:5000/my_bookmark?state=${localStorage.getItem('state')}&bm_name=note`, {
       
-        "book_id": props.book_id,
+        "book_id": book_id,
         
         
         "content": inputText
