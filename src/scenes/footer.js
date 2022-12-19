@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/general.css';
-import imgTele from '../images/telegram.png'
-import imgFB from '../images/fb.png'
-import imgMail from '../images/mail.png'
 import { FacebookShareButton, TwitterShareButton, TelegramShareButton } from "react-share";
 import { FacebookIcon, TwitterIcon, TelegramIcon } from "react-share";
+
+/**
+ * Footer for user's pages.
+ */
 function Footer() {
     return (
         <footer>
@@ -40,7 +41,7 @@ function Footer() {
         hashtags={["hashtag1", "hashtag2"]}
         className="circle-share-btn"
       >
-        <TwitterIcon size={33} round />
+        <TwitterIcon size={33} round /> 
         Twitter
         </TwitterShareButton>
 
@@ -50,7 +51,7 @@ function Footer() {
         hashtags={["hashtag1", "hashtag2"]}
         className="circle-share-btn"
       >
-        <TelegramIcon size={33} round />
+        <TelegramIcon size={33} round /> 
         Telegram
         </TelegramShareButton>
         
