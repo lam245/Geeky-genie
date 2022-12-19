@@ -1,20 +1,20 @@
 
 .column {
-    float: left;
-    
-  }
+    float: left;    
+}
   
-  .left {
+.left {
     margin-top: 10%;
     width: 15%;
     top: 30%; /* this is required for "sticky" to work */
     position: sticky;
     align-self: flex-start
-  }
+}
   
-  .right {
+.right {
     width: 85%;
-  }
+}
+
 .paper {
     background-color: #fafaf3;
     color: #000000;
@@ -27,9 +27,11 @@
     min-width: 300px;
     
 }
-book-content{
+
+.book-content {
     box-sizing: border-box;
 }
+
 .paper p {
     text-align: justify;
 }
@@ -49,10 +51,4 @@ book-content{
     text-align: center;
     color: yellow;
     font-family: Gabriola;
-}
-
-.notee{
-margin-top: 110px;
-margin-right: 300px;
-
 }
