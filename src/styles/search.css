@@ -40,6 +40,7 @@ ul.products li img{
 .product-info a {
     display: block;
     text-decoration: none;
+    cursor: pointer;
 }
 .product-info a.product-name {
     font-size: 16px;
