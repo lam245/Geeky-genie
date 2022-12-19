@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import '../styles/general.css';
 
+/**
+ * Header for user's pages.
+ */
 function Header() {
   const isLogin = () => {
     if (localStorage.getItem("state") === null) { return false };
