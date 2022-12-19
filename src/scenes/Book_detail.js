@@ -154,8 +154,8 @@ function BookDetail() {
                             <div class="bar-5"></div>
                         </div>
                     </div>
-                    <div class="side right">
-                        <div>150</div>
+                    <div class="side">
+                        <div class="right">150</div>
                     </div>
                     <div class="side">
                         <div>4 sao</div>
@@ -165,8 +165,8 @@ function BookDetail() {
                             <div class="bar-4"></div>
                         </div>
                     </div>
-                    <div class="side right">
-                        <div>63</div>
+                    <div class="side">
+                        <div class="right">63</div>
                     </div>
                     <div class="side">
                         <div>3 sao</div>
@@ -176,8 +176,8 @@ function BookDetail() {
                             <div class="bar-3"></div>
                         </div>
                     </div>
-                    <div class="side right">
-                        <div>15</div>
+                    <div class="side">
+                        <div class="right">15</div>
                     </div>
                     <div class="side">
                         <div>2 sao</div>
@@ -187,8 +187,8 @@ function BookDetail() {
                             <div class="bar-2"></div>
                         </div>
                     </div>
-                    <div class="side right">
-                        <div>6</div>
+                    <div class="side">
+                        <div class="right">6</div>
                     </div>
                     <div class="side">
                         <div>1 sao</div>
@@ -198,8 +198,8 @@ function BookDetail() {
                             <div class="bar-1"></div>
                         </div>
                     </div>
-                    <div class="side right">
-                        <div>20</div>
+                    <div class="side">
+                        <div class="right">20</div>
                     </div>
                 </div>
             </div>
