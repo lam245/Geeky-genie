@@ -52,7 +52,8 @@ function BookDetail() {
     }, {})
       .then(function (response) {
         console.log(response);
-        document.getElementById('form1-close')?.click()
+        document.getElementById('closeadd')?.click()
+        //handleClose()
       })
       .catch(function (error) {
         
@@ -556,14 +557,14 @@ function BookDetail() {
         </div>
       </div>
       <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <form class="modal-dialog"onSubmit={handleSubmit(updateCollection)}>
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="staticBackdropLabel" style={{ color: 'black' }}>Add Collection</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form onSubmit={handleSubmit(updateCollection)}>
+              <div >
                 <div class="mb-3">
                 <label for="coll-name1" class="form-label" style={{ color: 'black' }}>Collection's Name</label>
                 <input type="text" {...register('name')} id="coll-name" aria-describedby="emailHelp"/>
@@ -571,14 +572,14 @@ function BookDetail() {
                 </div>
                 {/* <button type="submit" class="btn btn-primary">Submit</button> */}
                 
-              </form>
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Xác nhận</button>
+              <button type="submit" class="btn btn-primary"id="closeadd">Xác nhận</button>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </>
 

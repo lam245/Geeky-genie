@@ -1,6 +1,6 @@
 import { Icon } from 'react-icons-kit'
 import { trashO } from 'react-icons-kit/fa/trashO'
-
+import Modal from 'react-bootstrap/Modal';
 import "../styles/accounts.css";
 import "../styles/authorDetail.css";
 import axios from "axios"
@@ -20,6 +20,7 @@ import { useCookies } from 'react-cookie'
 import { useNavigate } from "react-router-dom";
 import Rating from '@mui/material/Rating';
 import { useForm } from "react-hook-form";
+import { Button } from 'bootstrap';
 
 const Account = (props) => {
   let nav = useNavigate()
@@ -28,7 +29,11 @@ const Account = (props) => {
   const [imageUpload, setImageUpload] = useState(null);
   const [imageUrls, setImageUrls] = useState(null);
   const { register, handleSubmit } = useForm()
+  const [deletingBook, setDeletingBook] = useState(undefined)
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const items = {
     'state': (localStorage.getItem('state'))
   };
@@ -77,6 +82,7 @@ const Account = (props) => {
       console.log(response.data);
       document.getElementById('form1-close')?.click()
       fetchUser()
+      handleClose()
     })
     .catch(function (error) {
       console.log(error);
@@ -166,11 +172,17 @@ const Account = (props) => {
                     {collection?.books.map(book => (
                       <div className="col-12 col-md-3" style={{ position: 'relative' }} key={book.book_id}>
                         <div style={{ position: 'absolute', zIndex: '100', right: '1rem', margin: '0.5rem 0.25rem' }}>
-                          <button className='delete' onClick={() => {
-                            const isDelete = window.confirm('Xóa sách ?');
-                            if (isDelete) {
-                              deleteCollection(book.book_id, collection.coll_name)
-                            }
+                          <button className='delete'data-bs-toggle="modal" data-bs-target="#deleteModal" onClick={() => {
+                            // const isDelete = window.confirm('Xóa sách ?');
+                            // if (isDelete) {
+                            //   deleteCollection(book.book_id, collection.coll_name)
+                            // }
+                            console.log("?");
+                            setDeletingBook({
+                              id: book.book_id,
+                              collName: collection.coll_name
+                            })
+                            handleShow()
                           }}>
                             <Icon icon={trashO} />
                           </button>
@@ -303,49 +315,20 @@ const Account = (props) => {
         </div>
       </div>
 
-      <div
-        className="modal fade"
-        id="deleteModal"
-        tabIndex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog">
-          <form className="modal-content" >
-            <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel" style={{ color: 'black' }}>
-                Xác nhận xóa
-              </h1>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body" style={{ color: 'black' }}>
-              <p>Bạn có muốn xóa sách này không?</p>
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                id="form1-close"
-                onChange={() => {
-                  // setBookId('')
-                  // setCoolName('')
-                }}
-                data-bs-dismiss="modal"
-              >
-                Không
-              </button>
-              <button type="submit" onClick={(e) => deleteCollection(e)} className="btn btn-primary">
-                Có
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton style={{ color: 'black' }}>
+          <Modal.Title>Delete this book ?</Modal.Title>
+        </Modal.Header>
+        <Modal.Footer>
+          <button variant="secondary" className="btn btn-primary" onClick={handleClose}>
+            Close
+          </button>
+          <button variant="primary" className="btn btn-primary" onClick={()=>deleteCollection(deletingBook.id, deletingBook.collName)}>
+            Save Changes
+          </button>
+        </Modal.Footer>
+      </Modal>
+
     </div>
   );
 }
