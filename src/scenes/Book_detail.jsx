@@ -560,13 +560,13 @@ function BookDetail() {
         <form class="modal-dialog"onSubmit={handleSubmit(updateCollection)}>
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel" style={{ color: 'black' }}>Add Collection</h1>
+              <h1 class="modal-title fs-5" id="staticBackdropLabel" style={{ color: 'black' }}>Add Book into Collection</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <div >
                 <div class="mb-3">
-                <label for="coll-name1" class="form-label" style={{ color: 'black' }}>Collection's Name</label>
+                <label for="coll-name1" class="form-label" style={{ color: 'black' }} >Collection's Name     </label>
                 <input type="text" {...register('name')} id="coll-name" aria-describedby="emailHelp"/>
 
                 </div>
@@ -575,8 +575,8 @@ function BookDetail() {
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary"id="closeadd">Xác nhận</button>
+              <button type="button" class="btn btn-secondary" id="closeadd" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Xác nhận</button>
             </div>
           </div>
         </form>
