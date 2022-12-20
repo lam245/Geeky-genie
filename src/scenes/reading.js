@@ -8,6 +8,7 @@ import "./Components/css/App.css";
 import Notes from "./Components/NoteComponents/Notes";
 import React, { Component } from "react";
 import { ScrollTo } from "react-scroll-to";
+
 function Reading() {
   const nav = useNavigate( )
   const { book_id } = useParams()
@@ -115,7 +116,7 @@ function Reading() {
     <div className='reading-view'>
       <ScrollTo>
         {({ scroll }) => (
-          <a onClick={() => scroll({ x: 20, y: bookMark.line_position })}>đi đến chỗ dang đọc</a>
+          <a class="tooltiplink" onClick={() => scroll({ x: 20, y: bookMark.line_position })} data-title="Đi tới chỗ đang đọc"><div className="bookmark"></div></a>
         )}
       </ScrollTo>
         <h1>{data.title}</h1>

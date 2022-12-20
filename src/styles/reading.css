@@ -25,6 +25,7 @@
   
 .reading-view h1 {
     color: white;
+    padding-left: 20px;
     margin: auto;
     width: 100%;
     display: block;
@@ -53,3 +54,44 @@
     background-size: cover;
     z-index: 1;
 }
+
+a.tooltiplink {
+    position: relative;
+    float: right;
+    margin-right: 20px;
+}
+
+a.tooltiplink:hover::after {
+    content: attr(data-title);
+    background-color: #424243;
+    color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 14px;
+    display: block;
+    position: absolute;
+    top: 25%;
+    right: -10%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    z-index: 1;
+}
+
+.bookmark { 
+    position: relative; 
+    height: 50px; 
+    width: 30px; 
+    padding: 0px; 
+    -webkit-transform: rotate(0deg) skew(0deg); 
+    transform: rotate(0deg) skew(0deg); 
+    border-left: 20px solid yellow; 
+    border-right: 20px solid yellow; 
+    border-bottom: 25px solid transparent; 
+    cursor: pointer;
+}
+
+.bookmark:hover {
+    border-left: 20px solid rgb(243, 243, 128); 
+    border-right: 20px solid rgb(243, 243, 128);
+} 
