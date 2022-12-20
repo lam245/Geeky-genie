@@ -73,10 +73,10 @@ function BookDetail() {
           nav("/login")
         }
         else {
-          console.log(res.data)
+          console.log(Object.keys(res.data.authors[0]))
           setData(res.data)
           setGenre(res.data.genre)
-          setAuthor(res.data.author)
+          setAuthor(res.data.authors[0])
           updatefiveStar(res.data.five_star.ratings)
           updatefourStar(res.data.four_star.ratings)
           updateoneStar(res.data.one_star.ratings)
@@ -88,6 +88,11 @@ function BookDetail() {
       })
       .catch((err) => console.log(err));
   }
+
+  
+
+  
+  
   let nav = useNavigate()
 
   useEffect(() => {
@@ -121,7 +126,12 @@ function BookDetail() {
         console.log(error);
       });
   }
-
+  const toAuthor = async (e) => {
+    console.log(e.currentTarget.id);
+   const id = await e.currentTarget.id
+    
+    nav("/author/"+id) 
+  }
 
 
   return (
@@ -153,8 +163,8 @@ function BookDetail() {
               <table className="book-details-table">
                 <tbody><tr>
                   <th>TÁC GIẢ : </th>
-
-                  <td><Link className="author-link" to='/author/1'>Edward Berger</Link></td>
+    
+                  <td className="author-link" id = {[Object.keys(author)[0]]} onClick={toAuthor} > { author[Object.keys(author)]}</td>
                 </tr>
                   <tr>
                     <th>THỂ LOẠI : </th>

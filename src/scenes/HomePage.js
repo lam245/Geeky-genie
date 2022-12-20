@@ -46,18 +46,22 @@ const HomePage = (props) => {
   }
 
   const filterItem = async (e) => {
-    
-    // console.log(popularBooks)
-    // console.log(popularBooks.books) 
-    // console.log(e.target.value)
-   const newItem = await copypopularBooks?.filter((newVal) => {
-    return  newVal.genre[0]  ? newVal.genre[0] === e.target.value : false
+    if (e.target.value === "All") {
+      
+    }
+    else {
+      // console.log(popularBooks)
+      // console.log(popularBooks.books) 
+      // console.log(e.target.value)
+      const newItem = await copypopularBooks?.filter((newVal) => {
+        return newVal.genre[0] ? newVal.genre[0] === e.target.value : false
       
       
-        	// comparing category for displaying data
-    });
-    console.log(newItem)
-    setPopularBooks(newItem);
+        // comparing category for displaying data
+      });
+      console.log(newItem)
+      setPopularBooks(newItem);
+    }
   };
   
 
