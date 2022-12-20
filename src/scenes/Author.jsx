@@ -15,7 +15,7 @@ const Author = (props) => {
   const { auth_id } = useParams()
 
   useEffect(() => {
-    axios.get(`http://127.0.0.1:5000/authors/?author_id=${auth_id}`).then(res => {
+    axios.get(`http://w22g7.int3306.freeddns.org/authors/?author_id=${auth_id}`).then(res => {
       setUser(res.data)
       setBooks(res.data.books)
     })

@@ -20,7 +20,7 @@ function Login() {
     const cookies = new Cookies();
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:5000//login`, {
+        axios.get(`http://w22g7.int3306.freeddns.org//login`, {
             headers: {
                 "Access-Control-Allow-Headers": "Content-Type",
             },

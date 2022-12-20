@@ -58,7 +58,7 @@ const Team = (props) => {
     
   ];
   function fetchUser() {
-    axios.get("http://127.0.0.1:5000/my_account", {
+    axios.get("http://w22g7.int3306.freeddns.org/my_account", {
       params: { 'state': localStorage.getItem('state') },
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
@@ -79,7 +79,7 @@ const Team = (props) => {
   const Ban10 = (e) => {
     console.log(user)
     console.log(data[selectionModel.newSelectionModel]['username'])
-    axios.post(`http://127.0.0.1:5000/ban_user?state=${localStorage.getItem('state')}`, {
+    axios.post(`http://w22g7.int3306.freeddns.org/ban_user?state=${localStorage.getItem('state')}`, {
       "username": data[selectionModel.newSelectionModel]['username'],
       "restrict_due": "2022-12-26 22:27:5"
   }, {
@@ -98,7 +98,7 @@ const Team = (props) => {
   
 
   function fetchBook() {
-    axios.get("http://127.0.0.1:5000/user_list", {
+    axios.get("http://w22g7.int3306.freeddns.org/user_list", {
       params: { 'state': localStorage.getItem('state') },
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
@@ -130,7 +130,7 @@ const Team = (props) => {
   }, [])
   useEffect(() => {
     if (searchValue === '') {
-      axios.get(`http://127.0.0.1:5000/`).then(res => {
+      axios.get(`http://w22g7.int3306.freeddns.org/`).then(res => {
         console.log(res.data?.popular?.books);
         setBooks(res.data?.popular?.books)
       }).catch(() => {
