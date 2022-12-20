@@ -32,6 +32,7 @@ const Account = (props) => {
   const { register, handleSubmit } = useForm()
   const [deletingBook, setDeletingBook] = useState(undefined)
   const [deletingCollection, setDeletingCollection] = useState(undefined)
+  const [RenameCollection, setRenameCollection] = useState(undefined)
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -44,6 +45,22 @@ const Account = (props) => {
   const items = {
     'state': (localStorage.getItem('state'))
   };
+  const updateCollectionName = async (e) => {
+    console.log(e);
+    axios.patch(`http://127.0.0.1:5000/my_collections/${RenameCollection.collName}?state=${localStorage.getItem('state')}`, {
+
+      //  axios.post(`http://w22g7.int3306.freeddns.org/my_account?state=${localSlogtorage.getItem('state')}`, 
+      params: { 'new_coll_name': e.name },
+    }, {})
+      .then(function (response) {
+        console.log(response);
+        document.getElementById('closeadd1')?.click()
+        //handleClose()
+      })
+      .catch(function (error) {
+        
+      });
+  }
   const uploadFile = async () => {
     if (imageUpload == null) return;
     const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
@@ -81,7 +98,7 @@ const Account = (props) => {
     console.log(coolName);
     console.log(bookId);
     //axios.put(`http://127.0.0.1:5000/my_collections/${coolName}?book_id=${bookId}?state=${localStorage.getItem('state')}`)
-    axios.delete(`http://127.0.0.1:5000/my_collections/${coolName}?book_id=${bookId}&state=${localStorage.getItem('state')}`,{
+    axios.put(`http://127.0.0.1:5000/my_collections/${coolName}?book_id=${bookId}&state=${localStorage.getItem('state')}`,{
       
     })
 
@@ -106,7 +123,7 @@ const Account = (props) => {
       console.log(response.data);
       document.getElementById('form1-close')?.click()
       fetchUser()
-      handleClose()
+      handleClose1()
     })
     .catch(function (error) {
       console.log(error);
@@ -128,7 +145,7 @@ const Account = (props) => {
         else {
           console.log(res)
           setUser(res.data)
-          setCollections(res.data.collections)
+          setCollections(res.data.collections[0])
         }
       })
       .catch((err) => console.log(err));
@@ -208,11 +225,14 @@ const Account = (props) => {
                           }}>
                             <Icon icon={trashO} />
                           </button>
-                          <button className='delete'data-bs-toggle="modal" data-bs-target="#deleteModal" onClick={() => {
+                          <button className='delete'data-bs-toggle="modal" data-bs-target="#staticBack" onClick={() => {
                             // const isDelete = window.confirm('Xóa sách ?');
                             // if (isDelete) {
                             //   deleteCollection(book.book_id, collection.coll_name)
                             // }
+                            setRenameCollection({
+                              collName: collection.coll_name
+                            })
                             // console.log("?");
                             // setDeletingBook({
                             //   id: book.book_id,
@@ -397,11 +417,11 @@ const Account = (props) => {
           </button>
         </Modal.Footer>
       </Modal>
-      {/* <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <form class="modal-dialog"onSubmit={handleSubmit(updateCollection)}>
+      <div class="modal fade" id="staticBack" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackLabel" aria-hidden="true">
+        <form class="modal-dialog"onSubmit={handleSubmit(updateCollectionName)}>
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel" style={{ color: 'black' }}>Add Book into Collection</h1>
+              <h1 class="modal-title fs-5" id="staticBackLabel" style={{ color: 'black' }}>ReName</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -416,12 +436,12 @@ const Account = (props) => {
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" id="closeadd" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" id="closeadd1" data-bs-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary">Xác nhận</button>
             </div>
           </div>
         </form>
-      </div> */}
+      </div>
     </div>
   );
 }
