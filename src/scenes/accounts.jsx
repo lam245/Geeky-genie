@@ -135,7 +135,7 @@ const Account = (props) => {
             </div>
             <div className="p-3">
               <div className="fw-bold text-center fs-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
-                Thông tin cá nhân
+                Thông tin cá nhân 
                 <i
                   className="fa-solid fa-pen-to-square fs-y"
                   style={{ color: "#FBC634", cursor: "pointer" }}

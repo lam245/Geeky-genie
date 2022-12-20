@@ -66,7 +66,7 @@ Trang đọc sách có ô nhỏ để bạn ghi chú thích.
 
 ### Đánh dấu trang
 
-Tự động đánh dấu và chuyển đến vị trí lần cuối dừng đọc.
+Tự động đánh dấu và cho phép bạn chuyển đến vị trí lần cuối dừng đọc.
 
 ### Đánh giá sách
 

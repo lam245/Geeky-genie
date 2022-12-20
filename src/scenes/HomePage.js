@@ -104,7 +104,7 @@ const HomePage = (props) => {
           {popularBooks?.books.map(book => (
             <li  ><div className="product-item" ref={ref}  id ={book.book_id} onClick={ readpopularBooks}>
               <div className="product-top">
-                <a className="product-thumb" target="_blank">
+                <a className="product-thumb">
                   <img
                     src={book.cover}
                     alt="image"
@@ -136,7 +136,7 @@ const HomePage = (props) => {
           {newBooks?.books.map(book => (
             <li><div ref={ref}  id ={book.book_id} onClick={ readpopularBooks} className="product-item">
               <div className="product-top">
-                <a className='product-thumb' href={``} target="_blank">
+                <a className='product-thumb'>
                   <img
                     src={book.cover}
                     alt="image"
