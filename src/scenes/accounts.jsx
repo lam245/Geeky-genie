@@ -69,7 +69,18 @@ const Account = (props) => {
     console.log(coolName);
     console.log(bookId);
     //axios.put(`http://127.0.0.1:5000/my_collections/${coolName}?book_id=${bookId}?state=${localStorage.getItem('state')}`)
-    axios.put(`http://127.0.0.1:5000/my_collections/${coolName}?bookId=${bookId}?state=${localStorage.getItem('state')}`)
+    axios.put(`http://127.0.0.1:5000/my_collections/${coolName}?book_id=${bookId}&state=${localStorage.getItem('state')}`,{
+      
+    })
+
+    .then(function (response) {
+      console.log(response.data);
+      document.getElementById('form1-close')?.click()
+      fetchUser()
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   function fetchUser() {
