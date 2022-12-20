@@ -164,7 +164,7 @@ function BookDetail() {
                 <tbody><tr>
                   <th>TÁC GIẢ : </th>
     
-                  <td className="author-link" id = {[Object.keys(author)[0]]} onClick={toAuthor} > { author[Object.keys(author)]}</td>
+                  <td className="author-link" id = {[Object.keys(author)[0]]} onClick={toAuthor} >{ author[Object.keys(author)]}</td>
                 </tr>
                   <tr>
                     <th>THỂ LOẠI : </th>

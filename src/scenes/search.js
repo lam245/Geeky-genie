@@ -19,7 +19,7 @@ function Search() {
     if (searchValue === '') {
       axios.get(`http://127.0.0.1:5000/`).then(res => {
         console.log(res.data?.popular?.books);
-        setBooks(res.data?.popular?.books)
+        setBooks(res.data?.popular?.books);
       }).catch(() => {
         setBooks([])
       })
@@ -37,6 +37,13 @@ function Search() {
    const id = e.currentTarget.id
     console.log(ref.current.id);
     nav("/book/"+id) 
+  }
+
+  const toAuthor = async (e) => {
+    console.log(e.currentTarget.id);
+   const id = await e.currentTarget.id
+    
+    nav("/author/"+id) 
   }
 
   const ratings = {
@@ -81,7 +88,7 @@ function Search() {
                 
                 <div className="product-info">
                   <a href className="product-name">{book.title}</a>
-                  <a href className="product-author">{book.authors[0][3]}</a>
+                  <a href className="product-author" id={Object.keys(book.authors[0])} onClick={toAuthor}>{Object.values(book.authors[0])}</a>
                 </div>
               </div>
             </li>

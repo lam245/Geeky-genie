@@ -139,6 +139,10 @@ a.genre-tag {
     font-weight: 100;
 }
 
+.author-link {
+    cursor: pointer;
+}
+
 /* Rating stars */
 .side {
   float: left;
