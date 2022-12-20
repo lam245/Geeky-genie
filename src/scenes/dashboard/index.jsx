@@ -13,7 +13,7 @@ import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
 import Sidebar from "../../scenes/global/Sidebar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import '../../styles/HomePage.css';
 import imgSrc1 from '../../images/mainPage/book1.jpg'
 import imgSrc2 from '../../images/mainPage/book2.jpg'
@@ -23,15 +23,44 @@ import imgSrc5 from '../../images/mainPage/book5.jpg'
 import imgSrc6 from '../../images/mainPage/book6.jpg'
 import imgSrc7 from '../../images/mainPage/book7.jpg'
 import imgSrc8 from '../../images/mainPage/book8.jpg'
+import axios from "axios"
 
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isSidebar, setIsSidebar] = useState(true);
+  const [user, setUser] = useState([])
+
+  function fetchUser() {
+    axios.get("http://127.0.0.1:5000/my_account", {
+      params: { 'state': localStorage.getItem('state') },
+      headers: {
+        "Access-Control-Allow-Headers": "Content-Type",
+        'Content-Type': 'application/json'
+      },
+    })
+      .then((res) => {
+        if (res.status == 203) {
+          
+        }
+        else {
+          console.log(res)
+          setUser(res.data)
+        }
+      })
+      .catch((err) => console.log(err));
+  }
+
+  useEffect(() => {
+    
+    fetchUser()
+    
+    
+  }, [])
   return (
     <div className="app">
       <div className="side">
-        <Sidebar isSidebar={isSidebar} />
+        <Sidebar {...user} isSidebar={isSidebar} />
         </div>
       <main className="content">
        

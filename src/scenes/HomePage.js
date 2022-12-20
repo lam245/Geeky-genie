@@ -15,6 +15,15 @@ const HomePage = (props) => {
 
   const [newBooks, setNewBooks] = useState(null)
   const [personalBooks, setPersonalBooks] = useState([])
+  const [genres, setgenres] = useState(null)
+  const [sort_by_year, setsort_by_year] = useState(null)
+  const [min_rating, setmin_rating] = useState(null)
+  const [min_pages, setmin_pages] = useState(10)
+  const [max_pages, setmax_pages] = useState(10000)
+
+  
+
+  
   const nav = useNavigate()
   
   
@@ -27,6 +36,7 @@ const HomePage = (props) => {
     },
   })
       .then(res => {
+        console.log(res.data.popular.books)
         setPopularBooks(res.data.popular.books);
         setNewBooks(res.data.new);
         copysetPopularBooks(res.data.popular.books)
@@ -53,23 +63,125 @@ const HomePage = (props) => {
   }
 
   const filterItem = async (e) => {
-    if (e.target.value === "All") {
-      
+    
+ const res = await axios.get(`http://127.0.0.1:5000/books/filter?state=${localStorage.getItem('state')}&genres=${genres}&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=${min_pages}&max_pages=${max_pages}`, {
+    
+      headers: {
+        "Access-Control-Allow-Headers": "Content-Type",
+        'Content-Type': 'application/json'
+      },
+    })
+     
+        if (res.status === 203) {
+          nav("/login")
+        }
+        else {
+          setPopularBooks(res.data)
+         
+          
+    
+        }
+  };
+
+  const filterItem0 = async (e) => {
+    const dat = e.target.value
+    if (dat === "sachle") {
+      const res = await axios.get(`http://127.0.0.1:5000/books/filter?state=${localStorage.getItem('state')}&&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=0&max_pages=100`, {
+    
+      headers: {
+        "Access-Control-Allow-Headers": "Content-Type",
+        'Content-Type': 'application/json'
+      },
+    })
+     
+        if (res.status === 203) {
+          nav("/login")
+        }
+        else {
+          setPopularBooks(res.data)
+         
+          
+    
+        }
+    }
+    else if (dat === "sachbo") {
+      const res = await axios.get(`http://127.0.0.1:5000/books/filter?state=${localStorage.getItem('state')}&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=300&max_pages=500`, {
+    
+      headers: {
+        "Access-Control-Allow-Headers": "Content-Type",
+        'Content-Type': 'application/json'
+      },
+    })
+     
+        if (res.status === 203) {
+          nav("/login")
+        }
+        else {
+          setPopularBooks(res.data)
+         
+          
+    
+        }
+    }
+    
+    
+    
+   }
+   const filterItem1 = async (e) => {
+    const dat = e.target.value
+    const res = await axios.get(`http://127.0.0.1:5000/books/filter?state=${localStorage.getItem('state')}&genres=${dat}&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=${min_pages}&max_pages=${max_pages}`, {
+    
+      headers: {
+        "Access-Control-Allow-Headers": "Content-Type",
+        'Content-Type': 'application/json'
+      },
+    })
+     
+        if (res.status === 203) {
+          nav("/login")
+        }
+        else {
+          setPopularBooks(res.data)
+         
+          
+    
+        }
+    
+    
+
+  }
+  const filterItem2 = async (e) => {
+    var dat = e.target.value
+    let  true_dat = 1
+    if (dat === "cao") {
+       true_dat = 3
     }
     else {
-      // console.log(popularBooks)
-      // console.log(popularBooks.books) 
-      // console.log(e.target.value)
-      const newItem = await copypopularBooks?.filter((newVal) => {
-        return newVal.genre[0] ? newVal.genre[0] === e.target.value : false
-      
-      
-        // comparing category for displaying data
-      });
-      console.log(newItem)
-      setPopularBooks(newItem);
+       true_dat = 1
     }
-  };
+    const res = await axios.get(`http://127.0.0.1:5000/books/filter?state=${localStorage.getItem('state')}&genres=${dat}&sort_by_year=${sort_by_year}&min_rating=${true_dat}&min_pages=${min_pages}&max_pages=${max_pages}`, {
+    
+      headers: {
+        "Access-Control-Allow-Headers": "Content-Type",
+        'Content-Type': 'application/json'
+      },
+    })
+     
+        if (res.status === 203) {
+          nav("/login")
+        }
+        else {
+          setPopularBooks(res.data)
+         
+          
+    
+        }
+    
+    
+    
+   }
+
+  
 
   return (
     <div>
@@ -78,21 +190,23 @@ const HomePage = (props) => {
         <div className="search-field">
           <div className="field">
             <label className="label">Loại sách:</label>
-            <select>
+            <select onChange={(e) => {
+                                filterItem0(e);
+                            }}>
               <option>- Tất cả -</option>
-              <option value="sach-le">Sách lẻ</option>
-              <option value="sach-bo">Sách bộ</option>
+              <option value="sachle">Sách lẻ</option>
+              <option value="sachbo">Sách bộ</option>
             </select>
           </div>
           <div className="field">
             <label className="label">Thể loại:</label>
             <select onChange={(e) => {
-                                filterItem(e);
+                                filterItem1(e);
                             }}>
-              <option value="All">- Tất cả -</option>
+              <option value="">- Tất cả -</option>
               <option value="Phiêu lưu">Phiêu lưu</option>
               <option value="Cổ điển">Cổ điển</option>
-              <option value="Tội phạm, Trinh thám">Tội phạm - Trinh thám</option>
+              <option value="Tội phạm Trinh thám">Tội phạm - Trinh thám</option>
               <option value="Viễn tưởng">Viễn tưởng</option>
               <option value="Cổ tích - Truyền thuyết">Cổ tích - Truyền thuyết</option>
               <option value="Lịch sử">Lịch sử</option>
@@ -101,12 +215,14 @@ const HomePage = (props) => {
             </select>
           </div>
           <div className="field">
-            <label className="label">Tác giả:</label>
-            <select>
+            <label className="label">Ratings:</label>
+            <select onChange={(e) => {
+                                filterItem2(e);
+                            }}>
               <option>- Tất cả -</option>
-              <option value="nguyen-nhat-anh">Nguyễn Nhật Ánh</option>
-              <option value="co-man">Cố Mạn</option>
-              <option value="diep-lac-vo-tam">Diệp Lạc Vô Tâm</option>
+              <option value="cao">Cao</option>
+              <option value="thap">Thấp</option>
+              
             </select>
           </div>
           <div className="field">

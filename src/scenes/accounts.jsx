@@ -128,6 +128,7 @@ const Account = (props) => {
     })
     .catch(function (error) {
       console.log(error);
+      
     });
   }
 
@@ -243,7 +244,7 @@ const Account = (props) => {
                           }}>
                             <Icon icon={pencil} />
                           </button>
-                        </div>  
+                        </div>      
                   <div className="row mt-2">
                     {collection?.books.map(book => (
                       <div className="col-12 col-md-3" style={{ position: 'relative' }} key={book.book_id}>

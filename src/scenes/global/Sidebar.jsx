@@ -44,7 +44,8 @@ const Sidebar = (props) => {
   return (
     <Box
       sx={{
-        height: 895,
+        height: 1000,
+        width:200,
         "& .pro-sidebar-inner": {
           background: `${colors.primary[400]} !important`,
         },

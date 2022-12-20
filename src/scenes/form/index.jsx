@@ -28,6 +28,8 @@ const Form = () => {
   const [imageUrls, setImageUrls] = useState([]);
   const [isSidebar, setIsSidebar] = useState(true);
   const [age, setAge] = useState("")
+  const [user, setUser] = useState([])
+
 
   
   const [Info, setInfos] = useState(initialValues);
@@ -55,17 +57,42 @@ const ITEM_PADDING_TOP = 8;
       });
     });
   };
-  
+  function fetchUser() {
+    axios.get("http://127.0.0.1:5000/my_account", {
+      params: { 'state': localStorage.getItem('state') },
+      headers: {
+        "Access-Control-Allow-Headers": "Content-Type",
+        'Content-Type': 'application/json'
+      },
+    })
+      .then((res) => {
+        if (res.status == 203) {
+          
+        }
+        else {
+          console.log(res)
+          setUser(res.data)
+        }
+      })
+      .catch((err) => console.log(err));
+  }
 
-  const handleFormSubmit = (e) => {
-    axios.post(`http://127.0.0.1:5000/books?state=${localStorage.getItem('state')}`, {
-      "title": "second book added via api",
-      "page_count": 88,
-      "public_year": 3033,
-      "content": "...(mandatory)",
+  useEffect(() => {
+    
+    fetchUser()
+    
+    
+  }, [])
+  const handleFormSubmit = async(e) => {
+    console.log(e)
+    axios.post(`http://127.0.0.1:5000/books/?state=SNeeTJqC2EreYpcWxP7XQrnEXWTRfP`, {
+      "title": e.title,
+      "page_count": e.page_count,
+      "public_year": e.public_year,
+      "content": e.content,
       "descript": "...(mandatory)",
       "translator": null,
-      "cover": null,
+      "cover": imageUrls,
       "republish_count": null,
       "genres": [
           "ggenre1",
@@ -76,12 +103,7 @@ const ITEM_PADDING_TOP = 8;
           3,
           4
       ]
-  }, {
-      headers: {
-        "Access-Control-Allow-Headers": "Content-Type",
-        'Content-Type': 'application/json'
-      },
-    })
+  }, )
       .then(function (response) {
         console.log(response.data);
         
@@ -93,7 +115,7 @@ const ITEM_PADDING_TOP = 8;
   return (
     <div className="app">
     <div className="side-team">
-      <Sidebar isSidebar={isSidebar} />
+      <Sidebar{...user} isSidebar={isSidebar} />
       </div>
     <main className="content">
       
@@ -161,13 +183,13 @@ const ITEM_PADDING_TOP = 8;
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Cover"
+                label="Descrript"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.cover}
+                value={values.descript}
                 name="cover"
-                error={!!touched.cover && !!errors.cover}
-                helperText={touched.cover && errors.cover}
+                error={!!touched.descript && !!errors.descript}
+                helperText={touched.descript && errors.descript}
                 sx={{ gridColumn: "span 4" }}
               />
               <TextField
@@ -199,7 +221,7 @@ const ITEM_PADDING_TOP = 8;
               <TextField
                 fullWidth
                 variant="filled"
-                type="text"
+                type="int"
                 label="Public year"
                 onBlur={handleBlur}
                 onChange={handleChange}
@@ -260,16 +282,16 @@ const checkoutSchema = yup.object().shape({
   
   page_count: yup
     .string().required("required"),
-  public_year: yup.string().required("required"),
+  
   content: yup.string().required("required"),
 });
 const initialValues = {
   author: "",
   title: "",
   translator: "",
-  cover: "",
-  page_count: "",
-  public_year: "",
+  descript: "",
+  page_count: 100,
+  public_year: 210,
   republish_count: "",
   content: "",
 };
