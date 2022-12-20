@@ -46,16 +46,17 @@ const Account = (props) => {
     'state': (localStorage.getItem('state'))
   };
   const updateCollectionName = async (e) => {
-    console.log(e);
-    axios.patch(`http://127.0.0.1:5000/my_collections/${RenameCollection.collName}?state=${localStorage.getItem('state')}`, {
+    console.log(e.name);
+    console.log(RenameCollection.collName)
+    axios.patch(`http://127.0.0.1:5000/my_collections/${RenameCollection.collName}?state=${localStorage.getItem('state')}&new_name=${e.name}`, {
 
       //  axios.post(`http://w22g7.int3306.freeddns.org/my_account?state=${localSlogtorage.getItem('state')}`, 
-      params: { 'new_coll_name': e.name },
+      // params: { 'new_coll_name': e.name },
     }, {})
       .then(function (response) {
         console.log(response);
         document.getElementById('closeadd1')?.click()
-        //handleClose()
+        fetchUser()
       })
       .catch(function (error) {
         
