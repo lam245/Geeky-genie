@@ -11,6 +11,8 @@ const HomePage = (props) => {
   const ref = useRef(null);
 
   const [popularBooks, setPopularBooks] = useState(null)
+  const [copypopularBooks, copysetPopularBooks] = useState(null)
+
   const [newBooks, setNewBooks] = useState(null)
   const [personalBooks, setPersonalBooks] = useState([])
   const nav = useNavigate()
@@ -25,9 +27,9 @@ const HomePage = (props) => {
     },
   })
       .then(res => {
-        console.log(res.data.popular)
-        setPopularBooks(res.data.popular);
+        setPopularBooks(res.data.popular.books);
         setNewBooks(res.data.new);
+        copysetPopularBooks(res.data.popular.books)
 
         if (res.data.for_this_user) {
           setPersonalBooks(res.data.for_this_user);
@@ -38,13 +40,28 @@ const HomePage = (props) => {
 
   const readpopularBooks = async (e) => {
     console.log(e.currentTarget.id);
-   const id = e.currentTarget.id
-    console.log(ref.current.id);
+   const id = await e.currentTarget.id
+    
     nav("/book/"+id) 
   }
-  const readnewBooks = async (e) => {
-    // nav("/book/"+newBooks.book_id)
-  }
+
+  const filterItem = async (e) => {
+    
+    // console.log(popularBooks)
+    // console.log(popularBooks.books) 
+    // console.log(e.target.value)
+   const newItem = await copypopularBooks?.filter((newVal) => {
+    return  newVal.genre[0]  ? newVal.genre[0] === e.target.value : false
+      
+      
+        	// comparing category for displaying data
+    });
+    console.log(newItem)
+    setPopularBooks(newItem);
+  };
+  
+
+
   return (
     <div>
       <title>GeekyGenie</title>
@@ -60,16 +77,18 @@ const HomePage = (props) => {
           </div>
           <div className="field">
             <label className="label">Thể loại:</label>
-            <select>
-              <option>- Tất cả -</option>
-              <option value="phieu-luu">Phiêu lưu</option>
-              <option value="co-dien">Cổ điển</option>
-              <option value="toi-pham-trinh-tham">Tội phạm - Trinh thám</option>
-              <option value="vien-tuong">Viễn tưởng</option>
-              <option value="co-tich-truyen-thuyet">Cổ tích - Truyền thuyết</option>
-              <option value="lich-su">Lịch sử</option>
-              <option value="kinh-di">Kinh dị</option>
-              <option value="hai-huoc">Hài hước</option>
+            <select onChange={(e) => {
+                                filterItem(e);
+                            }}>
+              <option value="All">- Tất cả -</option>
+              <option value="Phiêu lưu">Phiêu lưu</option>
+              <option value="Cổ điển">Cổ điển</option>
+              <option value="Tội phạm, Trinh thám">Tội phạm - Trinh thám</option>
+              <option value="Viễn tưởng">Viễn tưởng</option>
+              <option value="Cổ tích - Truyền thuyết">Cổ tích - Truyền thuyết</option>
+              <option value="Lịch sử">Lịch sử</option>
+              <option value="Kinh dị">Kinh dị</option>
+              <option value="Hài hước">Hài hước</option>
             </select>
           </div>
           <div className="field">
@@ -101,7 +120,7 @@ const HomePage = (props) => {
           <hr />
         </div>
         <ul className="products">
-          {popularBooks?.books.map(book => (
+          {popularBooks?.map(book => (
             <li  ><div className="product-item" ref={ref}  id ={book.book_id} onClick={ readpopularBooks}>
               <div className="product-top">
                 <a className="product-thumb">
