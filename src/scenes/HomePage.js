@@ -45,6 +45,13 @@ const HomePage = (props) => {
     nav("/book/"+id) 
   }
 
+  const toAuthor = async (e) => {
+    console.log(e.currentTarget.id);
+   const id = await e.currentTarget.id
+    
+    nav("/author/"+id) 
+  }
+
   const filterItem = async (e) => {
     if (e.target.value === "All") {
       
@@ -63,8 +70,6 @@ const HomePage = (props) => {
       setPopularBooks(newItem);
     }
   };
-  
-
 
   return (
     <div>
@@ -125,12 +130,12 @@ const HomePage = (props) => {
         </div>
         <ul className="products">
           {popularBooks?.map(book => (
-            <li  ><div className="product-item" ref={ref}  id ={book.book_id} onClick={ readpopularBooks}>
-              <div className="product-top">
+            <li  ><div className="product-item" >
+              <div className="product-top" ref={ref} id ={book.book_id} onClick={ readpopularBooks}>
                 <a className="product-thumb">
                   <img
                     src={book.cover}
-                    alt="image"
+                    alt="image" 
                   />
                   <div className='product-rating'>
                     {/* http://w22g7.int3306.freeddns.org/book/book_id */}
@@ -144,7 +149,8 @@ const HomePage = (props) => {
               </div>
 
               <div className="product-info">
-                    <a href className="product-name">{book.title}</a>
+                    <a href className="product-name" ref={ref} id ={book.book_id} onClick={ readpopularBooks}>{book.title}</a>
+                    <a href className="product-author" id={Object.keys(book.authors[0])} onClick={toAuthor}>{Object.values(book.authors[0])}</a>
               </div>
             </div></li>
           ))}
@@ -157,8 +163,8 @@ const HomePage = (props) => {
         </div>
         <ul className="products">
           {newBooks?.books.map(book => (
-            <li><div ref={ref}  id ={book.book_id} onClick={ readpopularBooks} className="product-item">
-              <div className="product-top">
+            <li><div className="product-item">
+              <div className="product-top" ref={ref} id ={book.book_id} onClick={ readpopularBooks}>
                 <a className='product-thumb'>
                   <img
                     src={book.cover}
@@ -176,7 +182,8 @@ const HomePage = (props) => {
               </div>
 
               <div className="product-info">
-                    <a href className="product-name">{book.title}</a>
+                    <a href className="product-name" ref={ref} id ={book.book_id} onClick={ readpopularBooks}>{book.title}</a>
+                    <a href className="product-author" id={Object.keys(book.authors[0])} onClick={toAuthor}>{Object.values(book.authors[0])}</a>
               </div>
             </div></li>
           ))}

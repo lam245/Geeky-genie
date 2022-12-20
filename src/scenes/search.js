@@ -62,7 +62,7 @@ function Search() {
 
       <div id="wrapper">
         <div className="search-field">
-          <input type="text" className="input is-medium" placeholder="Nhập tên sách..." onInput={e => setSearchValue(e.target.value)} />
+          <input type="text" className="input is-medium" placeholder="Nhập tên sách hoặc tác giả..." onInput={e => setSearchValue(e.target.value)} />
           <div className="icon-margin">
             <SearchIcon sx={{ fontSize: 40 }} />
           </div>
@@ -71,7 +71,7 @@ function Search() {
         <ul className="products">
           { books.map((book, key) => {
             return <li key={key}>
-              <div className="product-item" ref={ref}  id ={book.book_id} onClick={ readpopularBooks}>
+              <div className="product-item" ref={ref}  id ={book.book_id} onClick={readpopularBooks}>
                 
                 <div className="product-top">
                   

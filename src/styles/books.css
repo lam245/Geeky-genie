@@ -119,6 +119,10 @@
     cursor: pointer;
 }
 
+.genre-tag:hover {
+    color: var(--color);
+}
+
 .book-details-table a.author-link:hover {
     color: var(--bs-link-color);
 }
