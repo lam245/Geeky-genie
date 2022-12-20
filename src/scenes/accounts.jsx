@@ -1,5 +1,6 @@
 import { Icon } from 'react-icons-kit'
 import { trashO } from 'react-icons-kit/fa/trashO'
+import {pencil} from 'react-icons-kit/icomoon/pencil'
 import Modal from 'react-bootstrap/Modal';
 import "../styles/accounts.css";
 import "../styles/authorDetail.css";
@@ -30,10 +31,16 @@ const Account = (props) => {
   const [imageUrls, setImageUrls] = useState(null);
   const { register, handleSubmit } = useForm()
   const [deletingBook, setDeletingBook] = useState(undefined)
+  const [deletingCollection, setDeletingCollection] = useState(undefined)
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [show1, setShow1] = useState(false);
+
+  const handleClose1 = () => setShow1(false);
+  const handleShow1 = () => setShow1(true);
   const items = {
     'state': (localStorage.getItem('state'))
   };
@@ -74,7 +81,24 @@ const Account = (props) => {
     console.log(coolName);
     console.log(bookId);
     //axios.put(`http://127.0.0.1:5000/my_collections/${coolName}?book_id=${bookId}?state=${localStorage.getItem('state')}`)
-    axios.put(`http://127.0.0.1:5000/my_collections/${coolName}?book_id=${bookId}&state=${localStorage.getItem('state')}`,{
+    axios.delete(`http://127.0.0.1:5000/my_collections/${coolName}?book_id=${bookId}&state=${localStorage.getItem('state')}`,{
+      
+    })
+
+    .then(function (response) {
+      console.log(response.data);
+      document.getElementById('form1-close')?.click()
+      fetchUser()
+      handleClose()
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+  function deleteColBook(coolName) {
+    console.log(coolName);
+    //axios.put(`http://127.0.0.1:5000/my_collections/${coolName}?book_id=${bookId}?state=${localStorage.getItem('state')}`)
+    axios.delete(`http://127.0.0.1:5000/my_collections/${coolName}?state=${localStorage.getItem('state')}`,{
       
     })
 
@@ -167,7 +191,38 @@ const Account = (props) => {
             <div className="row mt-2">
               {collections?.map((collection) => (
                 <div key={collection.coll_name}>
-                  <h1 className='fs-4 fw-bold mt-4'>{collection.coll_name}</h1>
+                <div style={{display:"flex", gap: '10px'}}> 
+                  <h1 className='fs-4 fw-bold mt-0 mb-0'>{collection.coll_name}</h1>
+            
+                  
+                          <button className='delete'data-bs-toggle="modal" data-bs-target="#deleteModal" onClick={() => {
+                            // const isDelete = window.confirm('Xóa sách ?');
+                            // if (isDelete) {
+                            //   deleteCollection(book.book_id, collection.coll_name)
+                            // }
+                            // console.log("?");
+                            setDeletingCollection({
+                              collName: collection.coll_name
+                            })
+                            handleShow1()
+                          }}>
+                            <Icon icon={trashO} />
+                          </button>
+                          <button className='delete'data-bs-toggle="modal" data-bs-target="#deleteModal" onClick={() => {
+                            // const isDelete = window.confirm('Xóa sách ?');
+                            // if (isDelete) {
+                            //   deleteCollection(book.book_id, collection.coll_name)
+                            // }
+                            // console.log("?");
+                            // setDeletingBook({
+                            //   id: book.book_id,
+                            //   collName: collection.coll_name
+                            // })
+                            // handleShow()
+                          }}>
+                            <Icon icon={pencil} />
+                          </button>
+                        </div>  
                   <div className="row mt-2">
                     {collection?.books.map(book => (
                       <div className="col-12 col-md-3" style={{ position: 'relative' }} key={book.book_id}>
@@ -324,11 +379,49 @@ const Account = (props) => {
             Close
           </button>
           <button variant="primary" className="btn btn-primary" onClick={()=>deleteCollection(deletingBook.id, deletingBook.collName)}>
-            Save Changes
+            Yes
           </button>
         </Modal.Footer>
       </Modal>
 
+      <Modal show={show1} onHide={handleClose1}>
+        <Modal.Header closeButton style={{ color: 'black' }}>
+          <Modal.Title>Delete this collection ?</Modal.Title>
+        </Modal.Header>
+        <Modal.Footer>
+          <button variant="secondary" className="btn btn-primary" onClick={handleClose1}>
+            Close
+          </button>
+          <button variant="primary" className="btn btn-primary" onClick={()=>deleteColBook(deletingCollection.collName)}>
+            Yes
+          </button>
+        </Modal.Footer>
+      </Modal>
+      {/* <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <form class="modal-dialog"onSubmit={handleSubmit(updateCollection)}>
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel" style={{ color: 'black' }}>Add Book into Collection</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div >
+                <div class="mb-3">
+                <label for="coll-name1" class="form-label" style={{ color: 'black' }} >Collection's Name     </label>
+                <input type="text" {...register('name')} id="coll-name" aria-describedby="emailHelp"/>
+
+                </div>
+               
+                
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" id="closeadd" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Xác nhận</button>
+            </div>
+          </div>
+        </form>
+      </div> */}
     </div>
   );
 }
