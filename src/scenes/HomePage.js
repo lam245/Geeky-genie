@@ -28,7 +28,7 @@ const HomePage = (props) => {
   
   
   useEffect(() => {
-    axios.get(`http://127.0.0.1:5000`, {
+    axios.get(`http://w22g7.int3306.freeddns.org`, {
       
     headers: {
       "Access-Control-Allow-Headers": "Content-Type",
@@ -64,7 +64,7 @@ const HomePage = (props) => {
 
   const filterItem = async (e) => {
     
- const res = await axios.get(`http://127.0.0.1:5000/books/filter?state=${localStorage.getItem('state')}&genres=${genres}&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=${min_pages}&max_pages=${max_pages}`, {
+ const res = await axios.get(`http://w22g7.int3306.freeddns.org/books/filter?state=${localStorage.getItem('state')}&genres=${genres}&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=${min_pages}&max_pages=${max_pages}`, {
     
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
@@ -89,7 +89,7 @@ const HomePage = (props) => {
     if (dat === "sachle") {
       setmin_pages(0)
       setmax_pages(100)
-      const res = await axios.get(`http://127.0.0.1:5000/books/filter?state=${localStorage.getItem('state')}&&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=0&max_pages=100`, {
+      const res = await axios.get(`http://w22g7.int3306.freeddns.org/books/filter?state=${localStorage.getItem('state')}&&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=0&max_pages=100`, {
     
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
@@ -110,7 +110,7 @@ const HomePage = (props) => {
     else if (dat === "sachbo") {
       setmin_pages(300)
       setmax_pages(500)
-      const res = await axios.get(`http://127.0.0.1:5000/books/filter?state=${localStorage.getItem('state')}&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=300&max_pages=500`, {
+      const res = await axios.get(`http://w22g7.int3306.freeddns.org/books/filter?state=${localStorage.getItem('state')}&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=300&max_pages=500`, {
     
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
@@ -135,7 +135,7 @@ const HomePage = (props) => {
    const filterItem1 = async (e) => {
      const dat = e.target.value
      setgenres(dat)
-    const res = await axios.get(`http://127.0.0.1:5000/books/filter?state=${localStorage.getItem('state')}&genres=${dat}&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=${min_pages}&max_pages=${max_pages}`, {
+    const res = await axios.get(`http://w22g7.int3306.freeddns.org/books/filter?state=${localStorage.getItem('state')}&genres=${dat}&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=${min_pages}&max_pages=${max_pages}`, {
     
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
@@ -168,7 +168,7 @@ const HomePage = (props) => {
        true_dat = 1
     }
     setmin_rating(true_dat)
-    const res = await axios.get(`http://127.0.0.1:5000/books/filter?state=${localStorage.getItem('state')}&sort_by_year=${sort_by_year}&min_rating=${true_dat}&min_pages=${min_pages}&max_pages=${max_pages}`, {
+    const res = await axios.get(`http://w22g7.int3306.freeddns.org/books/filter?state=${localStorage.getItem('state')}&sort_by_year=${sort_by_year}&min_rating=${true_dat}&min_pages=${min_pages}&max_pages=${max_pages}`, {
     
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
@@ -201,7 +201,7 @@ const HomePage = (props) => {
 
     }
     setsort_by_year(data)
-   const res = await axios.get(`http://127.0.0.1:5000/books/filter?state=${localStorage.getItem('state')}&genres=${genres}&sort_by_year=${data}&min_rating=${min_rating}&min_pages=${min_pages}&max_pages=${max_pages}`, {
+   const res = await axios.get(`http://w22g7.int3306.freeddns.org/books/filter?state=${localStorage.getItem('state')}&genres=${genres}&sort_by_year=${data}&min_rating=${min_rating}&min_pages=${min_pages}&max_pages=${max_pages}`, {
    
      headers: {
        "Access-Control-Allow-Headers": "Content-Type",
@@ -292,11 +292,11 @@ const HomePage = (props) => {
                     alt="image" 
                   />
                   <div className='product-rating'>
-                    {/* http://127.0.0.1:5000/book/book_id */}
+                    {/* http://w22g7.int3306.freeddns.org/book/book_id */}
                     <Rating name="half-rating" value={book.current_rating} precision={1} />
                   </div>
                   <div className='rating'>
-                    {/* http://127.0.0.1:5000/book/book_id */}
+                    {/* http://w22g7.int3306.freeddns.org/book/book_id */}
                     <Rating name="half-rating" value={book.current_rating} precision={1} />
                   </div>
                 </a>
@@ -325,11 +325,11 @@ const HomePage = (props) => {
                     alt="image"
                   />
                   <div className='product-rating'>
-                    {/* http://127.0.0.1:5000/book/book_id */}
+                    {/* http://w22g7.int3306.freeddns.org/book/book_id */}
                     <Rating name="half-rating" value={book.current_rating} precision={1} />
                   </div>
                   <div className='rating'>
-                    {/* http://127.0.0.1:5000/book/book_id */}
+                    {/* http://w22g7.int3306.freeddns.org/book/book_id */}
                     <Rating name="half-rating" value={book.current_rating} precision={1} />
                   </div>
                 </a>

@@ -21,7 +21,7 @@ function Notes(props) {
 
   // add new note to the state array
   const saveHandler = async (e) => {
-    axios.post(`http://127.0.0.1:5000/my_bookmark?state=${localStorage.getItem('state')}&bm_name=note`, {
+    axios.post(`http://w22g7.int3306.freeddns.org/my_bookmark?state=${localStorage.getItem('state')}&bm_name=note`, {
       
         "book_id": book_id,
         

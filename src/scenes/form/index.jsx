@@ -61,7 +61,7 @@ const ITEM_PADDING_TOP = 8;
     });
   };
   function fetchUser() {
-    axios.get("http://127.0.0.1:5000/my_account", {
+    axios.get("http://w22g7.int3306.freeddns.org/my_account", {
       params: { 'state': localStorage.getItem('state') },
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
@@ -88,7 +88,7 @@ const ITEM_PADDING_TOP = 8;
   }, [])
   const handleFormSubmit = async(e) => {
     console.log(e)
-    axios.post(`http://127.0.0.1:5000/books/?state=${localStorage.getItem('state')}`, {
+    axios.post(`http://w22g7.int3306.freeddns.org/books/?state=${localStorage.getItem('state')}`, {
       "title": e.title,
       "page_count": e.page_count,
       "public_year": e.public_year,
