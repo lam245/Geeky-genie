@@ -269,7 +269,9 @@ const HomePage = (props) => {
           </div>
           <div className="field">
             <label className="label">Năm:</label>
-            <select>
+            <select {(e) => {
+                                filterItem2(e);
+                            }}>
              
               <option value={"tang"}>Từ 2000</option>
               <option value={"giam"}>Trước 2000</option>
