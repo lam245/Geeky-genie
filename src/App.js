@@ -16,7 +16,7 @@ import Reading from "./scenes/reading";
 import CommentModal from "./scenes/comment/CommentModal";
 import Accounts from "./scenes/accounts";
 import Author from "./scenes/Author";
-
+import DeleteBook from "./scenes/deletebook";
 function App() {
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
@@ -29,13 +29,14 @@ function App() {
           <main className="content">
             
             <Routes>
-              <Route path="/" element={<><Header /> <HomePage /> <Footer /> </>}/>
+              <Route path="/home" element={<><Header /> <HomePage /> <Footer /> </>}/>
               <Route path="/register" element={<><Header /> <Register /> <Footer /> </>}/>
               <Route path="/search" element={<><Header /> <Search /> <Footer /> </>}/>
               <Route path="/login" element={<><Header /> <Login /> <Footer /> </>}/>
               <Route path="/reading/:book_id" element={<><Header /> <Reading /> <Footer /> </>}/>
               <Route path="/Dashboard" element={<Dashboard />} />
               <Route path="/team" element={<Team />} />
+              <Route path="/form1" element={<DeleteBook />} />
               <Route path="/form" element={<Form />} />
               <Route path="/book/:auth_id" element={<> <Header /> <BookDetail /> <Footer /> </>} />
               <Route path="/account" element= {<> <Header /> <Accounts /> <Footer /> </>} />

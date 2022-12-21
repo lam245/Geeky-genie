@@ -10,7 +10,7 @@ import { FacebookIcon, TwitterIcon, TelegramIcon } from "react-share";
 function Footer() {
     return (
         <footer>
-        <div>Tại sao thư viện sách <Link to="/">GeekyGenie</Link> nên là sự lựa chọn của bạn?</div>
+        <div>Tại sao thư viện sách <Link to="/home">GeekyGenie</Link> nên là sự lựa chọn của bạn?</div>
         <ul>
           <li>
             Thư viện cung cấp những tiện ích hoàn toàn miễn phí.
@@ -26,7 +26,7 @@ function Footer() {
           </li>
         </ul>
         <FacebookShareButton
-        url={"http://localhost:3000/home"}
+        url={window.location.href}
         quote={""}
         hashtag={"#hashtag"}
         description={"aiueo"}
@@ -37,7 +37,7 @@ function Footer() {
   
       <TwitterShareButton
         title={"test"}
-        url={"http://localhost:3000/home"}
+        url={window.location.href}
         hashtags={["hashtag1", "hashtag2"]}
         className="circle-share-btn"
       >
@@ -47,7 +47,7 @@ function Footer() {
 
         <TelegramShareButton
         title={"test"}
-        url={"http://localhost:3000/home"}
+        url={window.location.href}
         hashtags={["hashtag1", "hashtag2"]}
         className="circle-share-btn"
       >
