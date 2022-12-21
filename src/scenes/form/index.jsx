@@ -20,9 +20,12 @@ import {
 import { storage } from "../../firebase";
 import { v4 } from "uuid";
 import axios from "axios"
+import Alert from '@mui/material/Alert';
 
 
 const Form = () => {
+  const [success, setSucess] = useState(false)
+
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const [imageUpload, setImageUpload] = useState(null);
   const [imageUrls, setImageUrls] = useState([]);
@@ -85,7 +88,7 @@ const ITEM_PADDING_TOP = 8;
   }, [])
   const handleFormSubmit = async(e) => {
     console.log(e)
-    axios.post(`http://w22g7.int3306.freeddns.org/books/?state=SNeeTJqC2EreYpcWxP7XQrnEXWTRfP`, {
+    axios.post(`http://127.0.0.1:5000/books/?state=${localStorage.getItem('state')}`, {
       "title": e.title,
       "page_count": e.page_count,
       "public_year": e.public_year,
@@ -104,13 +107,20 @@ const ITEM_PADDING_TOP = 8;
           4
       ]
   }, )
-      .then(function (response) {
-        console.log(response.data);
-        
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+  .then(function (response) {
+    console.log(response.data);
+    setSucess(true);
+  })
+  .then(function (response){
+    const timeout = setTimeout(() => {
+      setSucess(false);
+    }, 1000);
+    
+    
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
   };
   return (
     <div className="app">
@@ -118,7 +128,7 @@ const ITEM_PADDING_TOP = 8;
       <Sidebar{...user} isSidebar={isSidebar} />
       </div>
     <main className="content">
-      
+    {success? <Alert severity="success">BOOKED ADDED!</Alert>: <></>}
         <Box sx={{
           width: 4000,
           height: 2000

@@ -13,14 +13,14 @@ import { useEffect, useState } from "react";
 import "../../index.css"
 import Sidebar from "../../scenes/global/Sidebar";
 import SearchIcon from "@mui/icons-material/Search";
-
+import Alert from '@mui/material/Alert';
 const Team = (props) => {
-  
+  const [success, setSucess] = useState(false)
   const [data, setData] = useState([]);
   const [searchValue, setSearchValue] = useState('')
   const [books, setBooks] = useState([])
   const [users, setUsers] = useState([])
-
+  
 
   const [uid, setId] = useState([]);
   let id = -1;
@@ -35,6 +35,9 @@ const Team = (props) => {
   const [isSidebar, setIsSidebar] = useState(true);
   const [selectionModel, setSelectionModel] = useState([]);
   const [user, setUser] = useState([]);
+  const current = new Date();
+  const date10 = `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate() + 10}`;
+  const date100 = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()+100}`;
 
   const columns = [
     { field: "id", headerName: "ID" },
@@ -81,12 +84,46 @@ const Team = (props) => {
     console.log(data[selectionModel.newSelectionModel]['username'])
     axios.post(`http://w22g7.int3306.freeddns.org/ban_user?state=${localStorage.getItem('state')}`, {
       "username": data[selectionModel.newSelectionModel]['username'],
-      "restrict_due": "2022-12-26 22:27:5"
+      "restrict_due": date10 + " 22:27:5"
   }, {
       
     })
       .then(function (response) {
         console.log(response.data);
+        setSucess(true);
+        
+
+      })
+      .then(function (response){
+        const timeout = setTimeout(() => {
+          setSucess(false);
+        }, 3000);
+        
+        
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  const Ban100 = (e) => {
+    console.log(user)
+    console.log(data[selectionModel.newSelectionModel]['username'])
+    axios.post(`http://127.0.0.1:5000/ban_user?state=${localStorage.getItem('state')}`, {
+      "username": data[selectionModel.newSelectionModel]['username'],
+      "restrict_due": date100 + " 22:27:5"
+  }, {
+      
+    })
+      .then(function (response) {
+        console.log(response.data);
+        setSucess(true);
+      })
+      .then(function (response){
+        const timeout = setTimeout(() => {
+          setSucess(false);
+        }, 1000);
+        
         
       })
       .catch(function (error) {
@@ -148,6 +185,8 @@ const Team = (props) => {
       <Sidebar {...user} isSidebar={isSidebar} />
       </div>
       <main className="content">
+        
+        {success? <Alert severity="success">USER  BANNED!</Alert>: <></>}
       <div id="wrapper">
         <div className="search-field">
           <input type="text" className="input is-medium" placeholder="Nhập tên user..." onInput={e => setSearchValue(e.target.value)} />
@@ -182,6 +221,7 @@ const Team = (props) => {
             </Typography>
             </Box>
             <Box
+              onClick={(e) => Ban10( e)}
             width="20%"
             m="0 auto"
             p="5px"
