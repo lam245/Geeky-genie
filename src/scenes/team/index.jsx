@@ -109,7 +109,7 @@ const Team = (props) => {
   const Ban100 = (e) => {
     console.log(user)
     console.log(data[selectionModel.newSelectionModel]['username'])
-    axios.post(`http://127.0.0.1:5000/ban_user?state=${localStorage.getItem('state')}`, {
+    axios.post(`http://w22g7.int3306.freeddns.org/ban_user?state=${localStorage.getItem('state')}`, {
       "username": data[selectionModel.newSelectionModel]['username'],
       "restrict_due": date100 + " 22:27:5"
   }, {

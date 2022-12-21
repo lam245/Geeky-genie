@@ -17,6 +17,7 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import BusinessIcon from '@mui/icons-material/Business';
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -143,6 +144,13 @@ const Sidebar = (props) => {
               title="Add book"
               to="/form"
               icon={<AutoStoriesIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="home page"
+              to="/home"
+              icon={<BusinessIcon />}
               selected={selected}
               setSelected={setSelected}
             />

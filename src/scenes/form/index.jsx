@@ -88,13 +88,13 @@ const ITEM_PADDING_TOP = 8;
   }, [])
   const handleFormSubmit = async(e) => {
     console.log(e)
-    axios.post(`http://127.0.0.1:5000/books/?state=${localStorage.getItem('state')}`, {
+    axios.post(`http://w22g7.int3306.freeddns.org/books/?state=${localStorage.getItem('state')}`, {
       "title": e.title,
       "page_count": e.page_count,
       "public_year": e.public_year,
       "content": e.content,
-      "descript": "...(mandatory)",
-      "translator": null,
+      "descript": e.descript,
+      "translator": e.translator,
       "cover": imageUrls,
       "republish_count": null,
       "genres": [
@@ -190,14 +190,14 @@ const ITEM_PADDING_TOP = 8;
                 sx={{ gridColumn: "span 2" }}
               />
               <TextField
-                fullWidth
+                fullWidth 
                 variant="filled"
                 type="text"
                 label="Descrript"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.descript}
-                name="cover"
+                name="descript"
                 error={!!touched.descript && !!errors.descript}
                 helperText={touched.descript && errors.descript}
                 sx={{ gridColumn: "span 4" }}

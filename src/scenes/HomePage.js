@@ -85,7 +85,10 @@ const HomePage = (props) => {
 
   const filterItem0 = async (e) => {
     const dat = e.target.value
+    
     if (dat === "sachle") {
+      setmin_pages(0)
+      setmax_pages(100)
       const res = await axios.get(`http://w22g7.int3306.freeddns.org/books/filter?state=${localStorage.getItem('state')}&&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=0&max_pages=100`, {
     
       headers: {
@@ -105,6 +108,8 @@ const HomePage = (props) => {
         }
     }
     else if (dat === "sachbo") {
+      setmin_pages(300)
+      setmax_pages(500)
       const res = await axios.get(`http://w22g7.int3306.freeddns.org/books/filter?state=${localStorage.getItem('state')}&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=300&max_pages=500`, {
     
       headers: {
@@ -128,7 +133,8 @@ const HomePage = (props) => {
     
    }
    const filterItem1 = async (e) => {
-    const dat = e.target.value
+     const dat = e.target.value
+     setgenres(dat)
     const res = await axios.get(`http://w22g7.int3306.freeddns.org/books/filter?state=${localStorage.getItem('state')}&genres=${dat}&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=${min_pages}&max_pages=${max_pages}`, {
     
       headers: {
@@ -154,12 +160,15 @@ const HomePage = (props) => {
     var dat = e.target.value
     let  true_dat = 1
     if (dat === "cao") {
-       true_dat = 3
+
+      true_dat = 3
+      
     }
     else {
        true_dat = 1
     }
-    const res = await axios.get(`http://w22g7.int3306.freeddns.org/books/filter?state=${localStorage.getItem('state')}&genres=${dat}&sort_by_year=${sort_by_year}&min_rating=${true_dat}&min_pages=${min_pages}&max_pages=${max_pages}`, {
+    setmin_rating(true_dat)
+    const res = await axios.get(`http://w22g7.int3306.freeddns.org/books/filter?state=${localStorage.getItem('state')}&sort_by_year=${sort_by_year}&min_rating=${true_dat}&min_pages=${min_pages}&max_pages=${max_pages}`, {
     
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
@@ -179,7 +188,40 @@ const HomePage = (props) => {
     
     
     
-   }
+  }
+  
+  const filterItem3 = async (e) => {
+    const dat = e.target.value
+    let data = "asceding"
+    if (dat === "tang") {
+      data = "asceding"
+    }
+    else {
+      data = "descending"
+
+    }
+    setsort_by_year(data)
+   const res = await axios.get(`http://w22g7.int3306.freeddns.org/books/filter?state=${localStorage.getItem('state')}&genres=${genres}&sort_by_year=${data}&min_rating=${min_rating}&min_pages=${min_pages}&max_pages=${max_pages}`, {
+   
+     headers: {
+       "Access-Control-Allow-Headers": "Content-Type",
+       'Content-Type': 'application/json'
+     },
+   })
+    
+       if (res.status === 203) {
+         nav("/login")
+       }
+       else {
+         setPopularBooks(res.data)
+        
+         
+   
+       }
+   
+   
+
+ }
 
   
 
@@ -227,14 +269,12 @@ const HomePage = (props) => {
           </div>
           <div className="field">
             <label className="label">Năm:</label>
-            <select>
-              <option>- Tất cả -</option>
-              <option value={2020}>Từ 2020</option>
-              <option value={2015}>Từ 2015</option>
-              <option value={2010}>Từ 2010</option>
-              <option value={2005}>Từ 2005</option>
-              <option value={2000}>Từ 2000</option>
-              <option value={-9999}>Trước 2000</option>
+            <select {(e) => {
+                                filterItem2(e);
+                            }}>
+             
+              <option value={"tang"}>Từ 2000</option>
+              <option value={"giam"}>Trước 2000</option>
             </select>
           </div>
         </div>
