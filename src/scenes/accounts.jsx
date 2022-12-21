@@ -48,7 +48,7 @@ const Account = (props) => {
   const updateCollectionName = async (e) => {
     console.log(e.name);
     console.log(RenameCollection.collName)
-    axios.patch(`http://127.0.0.1:5000/my_collections/${RenameCollection.collName}?state=${localStorage.getItem('state')}&new_name=${e.name}`, {
+    axios.patch(`http://w22g7.int3306.freeddns.org/my_collections/${RenameCollection.collName}?state=${localStorage.getItem('state')}&new_name=${e.name}`, {
 
       //  axios.post(`http://w22g7.int3306.freeddns.org/my_account?state=${localSlogtorage.getItem('state')}`, 
       // params: { 'new_coll_name': e.name },
@@ -73,7 +73,7 @@ const Account = (props) => {
   const updateAccount = async (e) => {
     console.log(e);
     e.profile_pic = await uploadFile()
-    axios.post(`http://127.0.0.1:5000/my_account?state=${localStorage.getItem('state')}`, {
+    axios.post(`http://w22g7.int3306.freeddns.org/my_account?state=${localStorage.getItem('state')}`, {
 
       //  axios.post(`http://w22g7.int3306.freeddns.org/my_account?state=${localSlogtorage.getItem('state')}`, {
       "username": user.username,
@@ -98,8 +98,8 @@ const Account = (props) => {
   function deleteCollection(bookId, coolName) {
     console.log(coolName);
     console.log(bookId);
-    //axios.put(`http://127.0.0.1:5000/my_collections/${coolName}?book_id=${bookId}?state=${localStorage.getItem('state')}`)
-    axios.put(`http://127.0.0.1:5000/my_collections/${coolName}?book_id=${bookId}&state=${localStorage.getItem('state')}`,{
+    //axios.put(`http://w22g7.int3306.freeddns.org/my_collections/${coolName}?book_id=${bookId}?state=${localStorage.getItem('state')}`)
+    axios.put(`http://w22g7.int3306.freeddns.org/my_collections/${coolName}?book_id=${bookId}&state=${localStorage.getItem('state')}`,{
       
     })
 
@@ -115,8 +115,8 @@ const Account = (props) => {
   }
   function deleteColBook(coolName) {
     console.log(coolName);
-    //axios.put(`http://127.0.0.1:5000/my_collections/${coolName}?book_id=${bookId}?state=${localStorage.getItem('state')}`)
-    axios.delete(`http://127.0.0.1:5000/my_collections/${coolName}?state=${localStorage.getItem('state')}`,{
+    //axios.put(`http://w22g7.int3306.freeddns.org/my_collections/${coolName}?book_id=${bookId}?state=${localStorage.getItem('state')}`)
+    axios.delete(`http://w22g7.int3306.freeddns.org/my_collections/${coolName}?state=${localStorage.getItem('state')}`,{
       
     })
 
@@ -133,7 +133,7 @@ const Account = (props) => {
   }
 
   function fetchUser() {
-    axios.get("http://127.0.0.1:5000/my_account", {
+    axios.get("http://w22g7.int3306.freeddns.org/my_account", {
       params: { 'state': localStorage.getItem('state') },
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",

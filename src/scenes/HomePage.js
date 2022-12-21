@@ -28,7 +28,7 @@ const HomePage = (props) => {
   
   
   useEffect(() => {
-    axios.get(`http://127.0.0.1:5000`, {
+    axios.get(`http://w22g7.int3306.freeddns.org`, {
       
     headers: {
       "Access-Control-Allow-Headers": "Content-Type",
@@ -64,7 +64,7 @@ const HomePage = (props) => {
 
   const filterItem = async (e) => {
     
- const res = await axios.get(`http://127.0.0.1:5000/books/filter?state=${localStorage.getItem('state')}&genres=${genres}&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=${min_pages}&max_pages=${max_pages}`, {
+ const res = await axios.get(`http://w22g7.int3306.freeddns.org/books/filter?state=${localStorage.getItem('state')}&genres=${genres}&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=${min_pages}&max_pages=${max_pages}`, {
     
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
@@ -86,7 +86,7 @@ const HomePage = (props) => {
   const filterItem0 = async (e) => {
     const dat = e.target.value
     if (dat === "sachle") {
-      const res = await axios.get(`http://127.0.0.1:5000/books/filter?state=${localStorage.getItem('state')}&&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=0&max_pages=100`, {
+      const res = await axios.get(`http://w22g7.int3306.freeddns.org/books/filter?state=${localStorage.getItem('state')}&&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=0&max_pages=100`, {
     
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
@@ -105,7 +105,7 @@ const HomePage = (props) => {
         }
     }
     else if (dat === "sachbo") {
-      const res = await axios.get(`http://127.0.0.1:5000/books/filter?state=${localStorage.getItem('state')}&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=300&max_pages=500`, {
+      const res = await axios.get(`http://w22g7.int3306.freeddns.org/books/filter?state=${localStorage.getItem('state')}&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=300&max_pages=500`, {
     
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
@@ -129,7 +129,7 @@ const HomePage = (props) => {
    }
    const filterItem1 = async (e) => {
     const dat = e.target.value
-    const res = await axios.get(`http://127.0.0.1:5000/books/filter?state=${localStorage.getItem('state')}&genres=${dat}&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=${min_pages}&max_pages=${max_pages}`, {
+    const res = await axios.get(`http://w22g7.int3306.freeddns.org/books/filter?state=${localStorage.getItem('state')}&genres=${dat}&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=${min_pages}&max_pages=${max_pages}`, {
     
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
@@ -159,7 +159,7 @@ const HomePage = (props) => {
     else {
        true_dat = 1
     }
-    const res = await axios.get(`http://127.0.0.1:5000/books/filter?state=${localStorage.getItem('state')}&genres=${dat}&sort_by_year=${sort_by_year}&min_rating=${true_dat}&min_pages=${min_pages}&max_pages=${max_pages}`, {
+    const res = await axios.get(`http://w22g7.int3306.freeddns.org/books/filter?state=${localStorage.getItem('state')}&genres=${dat}&sort_by_year=${sort_by_year}&min_rating=${true_dat}&min_pages=${min_pages}&max_pages=${max_pages}`, {
     
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",

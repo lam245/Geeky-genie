@@ -17,7 +17,7 @@ function Reading() {
   const [note, setbookNote] = useState([])
 
   const upLoadBookMark = async (e) => {
-    axios.post(`http://127.0.0.1:5000/my_bookmark?state=${localStorage.getItem('state')}&bm_name=bookmark`, {
+    axios.post(`http://w22g7.int3306.freeddns.org/my_bookmark?state=${localStorage.getItem('state')}&bm_name=bookmark`, {
       
     
       "book_id": book_id,
@@ -48,7 +48,7 @@ function Reading() {
   const fetchBook = async () => {
     
     let res;
-  res = await axios.get(`http://127.0.0.1:5000/books/?book_id=${book_id}`, {
+  res = await axios.get(`http://w22g7.int3306.freeddns.org/books/?book_id=${book_id}`, {
       
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
@@ -70,7 +70,7 @@ function Reading() {
   }
 
   const fetchBookmark = async() => {
-    let res; res = await axios.get(`http://127.0.0.1:5000/my_bookmark?book_id=${book_id}&bm_name=aaa`, {
+    let res; res = await axios.get(`http://w22g7.int3306.freeddns.org/my_bookmark?book_id=${book_id}&bm_name=aaa`, {
       params: { 'state': localStorage.getItem('state') },
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
