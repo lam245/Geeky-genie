@@ -17,14 +17,14 @@ function Search() {
 
   useEffect(() => {
     if (searchValue === '') {
-      axios.get(`http://w22g7.int3306.freeddns.org/`).then(res => {
+      axios.get(`http://127.0.0.1:5000/`).then(res => {
         console.log(res.data?.popular?.books);
         setBooks(res.data?.popular?.books);
       }).catch(() => {
         setBooks([])
       })
     } else {
-      axios.get(`http://w22g7.int3306.freeddns.org/books/search?query=${searchValue}`).then(res => {
+      axios.get(`http://127.0.0.1:5000/books/search?query=${searchValue}`).then(res => {
         setBooks(res.data)
       }).catch(() => {
         setBooks([])
@@ -81,7 +81,7 @@ function Search() {
                     <div className="product-rating">
                             <Rating classes={ratings} value={book.current_rating} precision={1} />
                     </div>
-                            {/* http://w22g7.int3306.freeddns.org/book/book_id */}
+                            {/* http://127.0.0.1:5000/book/book_id */}
                          
                   </a>
                 </div>

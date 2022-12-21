@@ -42,9 +42,9 @@ function BookDetail() {
 
   const updateCollection = async (e) => {
     console.log(e);
-    axios.post(`http://w22g7.int3306.freeddns.org/my_collections/${e.name}?state=${localStorage.getItem('state')}`, {
+    axios.post(`http://127.0.0.1:5000/my_collections/${e.name}?state=${localStorage.getItem('state')}`, {
 
-      //  axios.post(`http://w22g7.int3306.freeddns.org/my_account?state=${localSlogtorage.getItem('state')}`, {
+      //  axios.post(`http://127.0.0.1:5000/my_account?state=${localSlogtorage.getItem('state')}`, {
       //"username": user.username,
       
       "books": [auth_id],
@@ -61,7 +61,7 @@ function BookDetail() {
   }
 
   function fetchBook() {
-    axios.get(`http://w22g7.int3306.freeddns.org/books/?book_id=${auth_id}`, {
+    axios.get(`http://127.0.0.1:5000/books/?book_id=${auth_id}`, {
 
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
@@ -110,7 +110,7 @@ function BookDetail() {
     setcommentData(cmmt)
   }
   const addRatings = async (e) => {
-    axios.post(`http://w22g7.int3306.freeddns.org/my_ratings?state=${localStorage.getItem('state')}`, {
+    axios.post(`http://127.0.0.1:5000/my_ratings?state=${localStorage.getItem('state')}`, {
       "book_id": data.book_id,
       "stars": 3,
       "content": commentData

@@ -98,7 +98,7 @@ function DeleteBook() {
                     <div className="product-rating">
                             <Rating classes={ratings} value={book.current_rating} precision={1} />
                     </div>
-                            {/* http://w22g7.int3306.freeddns.org/book/book_id */}
+                            {/* http://127.0.0.1:5000/book/book_id */}
                          
                   </a>
                 </div>

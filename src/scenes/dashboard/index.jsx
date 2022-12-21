@@ -32,7 +32,7 @@ const Dashboard = () => {
   const [user, setUser] = useState([])
 
   function fetchUser() {
-    axios.get("http://w22g7.int3306.freeddns.org/my_account", {
+    axios.get("http://127.0.0.1:5000/my_account", {
       params: { 'state': localStorage.getItem('state') },
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
