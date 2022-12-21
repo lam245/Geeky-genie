@@ -75,6 +75,10 @@ ul.products li img{
     padding: 3px 0px;
 }
 
+.product-info a.product-name:hover {
+    font-size: 18px;
+}
+
 .label {
     font-size: 16px;
     color: #ffffff;

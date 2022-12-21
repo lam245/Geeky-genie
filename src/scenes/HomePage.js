@@ -50,36 +50,32 @@ const HomePage = (props) => {
 
   const readpopularBooks = async (e) => {
     console.log(e.currentTarget.id);
-   const id = await e.currentTarget.id
+    const id = await e.currentTarget.id
     
     nav("/book/"+id) 
   }
 
   const toAuthor = async (e) => {
     console.log(e.currentTarget.id);
-   const id = await e.currentTarget.id
+    const id = await e.currentTarget.id
     
     nav("/author/"+id) 
   }
 
   const filterItem = async (e) => {
     
- const res = await axios.get(`http://w22g7.int3306.freeddns.org/books/filter?state=${localStorage.getItem('state')}&genres=${genres}&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=${min_pages}&max_pages=${max_pages}`, {
+  const res = await axios.get(`http://w22g7.int3306.freeddns.org/books/filter?state=${localStorage.getItem('state')}&genres=${genres}&sort_by_year=${sort_by_year}&min_rating=${min_rating}&min_pages=${min_pages}&max_pages=${max_pages}`, {
     
       headers: {
         "Access-Control-Allow-Headers": "Content-Type",
         'Content-Type': 'application/json'
       },
-    })
-     
+    }) 
         if (res.status === 203) {
           nav("/login")
         }
         else {
           setPopularBooks(res.data)
-         
-          
-    
         }
   };
 
@@ -102,9 +98,6 @@ const HomePage = (props) => {
         }
         else {
           setPopularBooks(res.data)
-         
-          
-    
         }
     }
     else if (dat === "sachbo") {
@@ -123,15 +116,9 @@ const HomePage = (props) => {
         }
         else {
           setPopularBooks(res.data)
-         
-          
-    
-        }
+         }
     }
-    
-    
-    
-   }
+  }
    const filterItem1 = async (e) => {
      const dat = e.target.value
      setgenres(dat)
@@ -148,21 +135,13 @@ const HomePage = (props) => {
         }
         else {
           setPopularBooks(res.data)
-         
-          
-    
         }
-    
-    
-
-  }
+      }
   const filterItem2 = async (e) => {
     var dat = e.target.value
     let  true_dat = 1
     if (dat === "cao") {
-
       true_dat = 3
-      
     }
     else {
        true_dat = 1
@@ -181,14 +160,8 @@ const HomePage = (props) => {
         }
         else {
           setPopularBooks(res.data)
-         
-          
-    
         }
-    
-    
-    
-  }
+      }
   
   const filterItem3 = async (e) => {
     const dat = e.target.value
@@ -214,14 +187,8 @@ const HomePage = (props) => {
        }
        else {
          setPopularBooks(res.data)
-        
-         
-   
-       }
-   
-   
-
- }
+        }
+      }
 
   
 
@@ -269,7 +236,7 @@ const HomePage = (props) => {
           </div>
           <div className="field">
             <label className="label">Năm:</label>
-            <select {(e) => {
+            <select onChange={(e) => {
                                 filterItem2(e);
                             }}>
              

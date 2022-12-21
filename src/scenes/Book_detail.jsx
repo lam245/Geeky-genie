@@ -88,11 +88,6 @@ function BookDetail() {
       })
       .catch((err) => console.log(err));
   }
-
-  
-
-  
-  
   let nav = useNavigate()
 
   useEffect(() => {
