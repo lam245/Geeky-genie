@@ -48,6 +48,10 @@ Khi nhấn vào bìa sách, ta có thể xem được các thông tin chi tiết
 
 Mỗi tác giả có một trang riêng cung cấp thông tin cũng như những sáng tác của họ.
 
+### Chia sẻ trang
+
+Nút chia sẻ trang tại phần chân trang cho phép ta chia sẻ nhanh đường dẫn trang web bằng Facebook, Telegram, Twitter.
+
 ### Chỉnh sửa thông tin cá nhân
 
 Người dùng đã đăng nhập có thể em và chỉnh sửa thông tin cá nhân của họ trong trang tài khoản.
