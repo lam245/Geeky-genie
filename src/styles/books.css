@@ -1,3 +1,7 @@
+input#coll-name {
+    margin-left: 5px;
+}
+
 .bookDetails {
     position: relative;
     top: 0;
@@ -232,6 +236,7 @@ a.genre-tag {
         display: none;
     }
 }
+
 .black{
     color: black;
 }

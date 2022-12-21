@@ -141,7 +141,7 @@ const Account = (props) => {
       },
     })
       .then((res) => {
-        if (res.status == 203) {
+        if (res.status === 203) {
           nav("/login")
         }
         else {
@@ -181,7 +181,7 @@ const Account = (props) => {
                 Thông tin cá nhân 
                 <i
                   className="fa-solid fa-pen-to-square fs-y"
-                  style={{ color: "#FBC634", cursor: "pointer" }}
+                  style={{ color: "#FBC634", cursor: "pointer", marginLeft: "5px" }}
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
                 ></i>
@@ -280,7 +280,7 @@ const Account = (props) => {
                             <Rating name="half-rating" value={book.current_rating} precision={1} />
                           </div>
                         </a>
-                        <h1 className='fs-4 fw-bold mt-4 text-center'>{book.title}</h1>
+                        <h1 className='fs-4 text-center'>{book.title}</h1>
                       </div>
                     ))}
                   </div>
@@ -301,7 +301,7 @@ const Account = (props) => {
           <form className="modal-content" onSubmit={handleSubmit(updateAccount)}>
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Chỉnh Sửa Thông Tin
+                Chỉnh sửa thông tin
               </h1>
               <button
                 type="button"
@@ -382,10 +382,10 @@ const Account = (props) => {
                 id="form1-close"
                 data-bs-dismiss="modal"
               >
-                Close
+                Đóng
               </button>
               <button type="submit" className="btn btn-primary">
-                Save changes
+                Lưu
               </button>
             </div>
           </form>
@@ -394,28 +394,28 @@ const Account = (props) => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton style={{ color: 'black' }}>
-          <Modal.Title>Delete this book ?</Modal.Title>
+          <Modal.Title>Sách này sẽ bị xóa?</Modal.Title>
         </Modal.Header>
         <Modal.Footer>
-          <button variant="secondary" className="btn btn-primary" onClick={handleClose}>
-            Close
+          <button variant="secondary" style={{ backgroundColor : "#6C757D" }} className="btn btn-primary" onClick={handleClose}>
+            Hủy
           </button>
           <button variant="primary" className="btn btn-primary" onClick={()=>deleteCollection(deletingBook.id, deletingBook.collName)}>
-            Yes
+            Đồng ý
           </button>
         </Modal.Footer>
       </Modal>
 
       <Modal show={show1} onHide={handleClose1}>
         <Modal.Header closeButton style={{ color: 'black' }}>
-          <Modal.Title>Delete this collection ?</Modal.Title>
+          <Modal.Title>Xóa bộ sưu tập này?</Modal.Title>
         </Modal.Header>
         <Modal.Footer>
-          <button variant="secondary" className="btn btn-primary" onClick={handleClose1}>
-            Close
+          <button variant="secondary" style={{ backgroundColor : "#6C757D" }} className="btn btn-primary" onClick={handleClose1}>
+            Hủy
           </button>
           <button variant="primary" className="btn btn-primary" onClick={()=>deleteColBook(deletingCollection.collName)}>
-            Yes
+            Đồng ý
           </button>
         </Modal.Footer>
       </Modal>
@@ -423,13 +423,13 @@ const Account = (props) => {
         <form class="modal-dialog"onSubmit={handleSubmit(updateCollectionName)}>
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackLabel" style={{ color: 'black' }}>ReName</h1>
+              <h1 class="modal-title fs-5" id="staticBackLabel" style={{ color: 'black' }}>Đổi tên</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <div >
                 <div class="mb-3">
-                <label for="coll-name1" class="form-label" style={{ color: 'black' }} >Collection's Name     </label>
+                <label for="coll-name1" class="form-label" style={{ color: 'black' }} >Tên bộ sưu tập     </label>
                 <input type="text" {...register('name')} id="coll-name" aria-describedby="emailHelp"/>
 
                 </div>
@@ -438,7 +438,7 @@ const Account = (props) => {
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" id="closeadd1" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" id="closeadd1" data-bs-dismiss="modal">Đóng</button>
               <button type="submit" class="btn btn-primary">Xác nhận</button>
             </div>
           </div>

@@ -7,9 +7,11 @@
   border-color: transparent;
   color: rgba(0, 0, 0, 0.7);
 }
+
 .icon-edit:hover {
   color: #ffe08a !important;
 }
+
 .icon {
   display: none;
 }
@@ -17,6 +19,7 @@
 .image:hover .icon {
   display: block;
 }
+
 .fs-y::before{
   font-size: 20px;
 }
@@ -26,3 +29,9 @@ button.delete {
   padding: 0.25rem 0.45rem;
   border-radius: 8px;
 }
+
+form h1 {
+  color: black;
+  font-weight: bold;
+}
+

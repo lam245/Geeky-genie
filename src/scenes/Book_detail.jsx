@@ -154,7 +154,7 @@ function BookDetail() {
                 <span className="fa fa-star checked-star" />
                 <span className="fa fa-star checked-star" />
                 <span className="fa fa-star" />&nbsp;
-                <div className="average-rating-point">4.1</div>
+                <div className="average-rating-point">4</div>
               </a><br />
               <button className="share-to-fb"><i className="fab fa-facebook-square" /> &nbsp;Chia sẻ</button>
               <button className="add-to-collection" type='button' data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i className="fas fa-plus" /> &nbsp;Bộ sưu tập</button>
@@ -570,13 +570,13 @@ function BookDetail() {
         <form class="modal-dialog"onSubmit={handleSubmit(updateCollection)}>
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel" style={{ color: 'black' }}>Add Book into Collection</h1>
+              <h1 class="modal-title fs-5" id="staticBackdropLabel" style={{ color: 'black' }}>Thêm sách vào bộ sưu tập</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <div >
                 <div class="mb-3">
-                <label for="coll-name1" class="form-label" style={{ color: 'black' }} >Collection's Name     </label>
+                <label for="coll-name1" class="form-label" style={{ color: 'black' }} >Tên bộ sưu tập: </label>
                 <input type="text" {...register('name')} id="coll-name" aria-describedby="emailHelp"/>
 
                 </div>

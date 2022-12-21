@@ -62,6 +62,10 @@ a.tooltiplink:hover::after {
     text-align: justify;
 }
 
+input#coll-name {
+    margin-left: 5px;
+}
+
 .reading-view {
     margin-top: 90px;
 }
@@ -75,6 +79,7 @@ a.tooltiplink:hover::after {
     text-align: center;
     text-transform: uppercase;
     font-family: sans-serif;
+    font-weight: bold;
 }
 
 .reading-view hr {
